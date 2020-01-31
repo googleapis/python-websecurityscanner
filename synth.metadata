@@ -1,5 +1,5 @@
 {
-  "updateTime": "2020-01-30T20:59:06.689419Z",
+  "updateTime": "2020-01-31T13:12:50.460114Z",
   "sources": [
     {
       "generator": {
@@ -11,9 +11,10 @@
     {
       "git": {
         "name": "googleapis",
-        "remote": "git@github.com:googleapis/googleapis.git",
-        "sha": "7a15e7fe78ff4b6d5c9606a3264559e5bde341d1",
-        "internalRef": "292391607"
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "7ac66d9be8a7d7de4f13566d8663978c9ee9dcd7",
+        "internalRef": "292450564",
+        "log": "7ac66d9be8a7d7de4f13566d8663978c9ee9dcd7\nAdd Dataproc Autoscaling API to V1.\n\nPiperOrigin-RevId: 292450564\n\n5d932b2c1be3a6ef487d094e3cf5c0673d0241dd\n- Improve documentation\n- Add a client_id field to StreamingPullRequest\n\nPiperOrigin-RevId: 292434036\n\neaff9fa8edec3e914995ce832b087039c5417ea7\nmonitoring: v3 publish annotations and client retry config\n\nPiperOrigin-RevId: 292425288\n\n70958bab8c5353870d31a23fb2c40305b050d3fe\nBigQuery Storage Read API v1 clients.\n\nPiperOrigin-RevId: 292407644\n\n"
       }
     },
     {

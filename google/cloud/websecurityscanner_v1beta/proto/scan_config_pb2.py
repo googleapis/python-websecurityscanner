@@ -710,8 +710,6 @@ ScanConfig = _reflection.GeneratedProtocolMessageType(
                         DESCRIPTOR=_SCANCONFIG_AUTHENTICATION_GOOGLEACCOUNT,
                         __module__="google.cloud.websecurityscanner_v1beta.proto.scan_config_pb2",
                         __doc__="""Describes authentication configuration that uses a Google account.
-      
-      
       Attributes:
           username:
               Required. The user name of the Google account.
@@ -729,10 +727,7 @@ ScanConfig = _reflection.GeneratedProtocolMessageType(
                     dict(
                         DESCRIPTOR=_SCANCONFIG_AUTHENTICATION_CUSTOMACCOUNT,
                         __module__="google.cloud.websecurityscanner_v1beta.proto.scan_config_pb2",
-                        __doc__="""Describes authentication configuration that uses a custom
-      account.
-      
-      
+                        __doc__="""Describes authentication configuration that uses a custom account.
       Attributes:
           username:
               Required. The user name of the custom account.
@@ -749,8 +744,6 @@ ScanConfig = _reflection.GeneratedProtocolMessageType(
                 DESCRIPTOR=_SCANCONFIG_AUTHENTICATION,
                 __module__="google.cloud.websecurityscanner_v1beta.proto.scan_config_pb2",
                 __doc__="""Scan authentication configuration.
-    
-    
     Attributes:
         authentication:
             Required. Authentication configuration
@@ -769,8 +762,6 @@ ScanConfig = _reflection.GeneratedProtocolMessageType(
                 DESCRIPTOR=_SCANCONFIG_SCHEDULE,
                 __module__="google.cloud.websecurityscanner_v1beta.proto.scan_config_pb2",
                 __doc__="""Scan schedule configuration.
-    
-    
     Attributes:
         schedule_time:
             A timestamp indicates when the next run will be scheduled. The
@@ -785,10 +776,7 @@ ScanConfig = _reflection.GeneratedProtocolMessageType(
         ),
         DESCRIPTOR=_SCANCONFIG,
         __module__="google.cloud.websecurityscanner_v1beta.proto.scan_config_pb2",
-        __doc__="""A ScanConfig resource contains the configurations to
-  launch a scan.
-  
-  
+        __doc__="""A ScanConfig resource contains the configurations to launch a scan.
   Attributes:
       name:
           The resource name of the ScanConfig. The name follows the

@@ -17,14 +17,14 @@ config = {
                 }
             },
             "methods": {
-                "DeleteScanConfig": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "idempotent",
-                    "retry_params_name": "default",
-                },
                 "CreateScanConfig": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default",
+                },
+                "DeleteScanConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "idempotent",
                     "retry_params_name": "default",
                 },
                 "GetScanConfig": {

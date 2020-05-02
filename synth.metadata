@@ -1,17 +1,10 @@
 {
   "sources": [
     {
-      "generator": {
-        "name": "artman",
-        "version": "2.0.0",
-        "dockerImage": "googleapis/artman@sha256:b3b47805231a305d0f40c4bf069df20f6a2635574e6d4259fac651d3f9f6e098"
-      }
-    },
-    {
       "git": {
         "name": ".",
-        "remote": "git@github.com:googleapis/python-websecurityscanner",
-        "sha": "709cf0f7b76482113374b922070881efd4171975"
+        "remote": "https://github.com/googleapis/python-websecurityscanner.git",
+        "sha": "429103785469bf32cccd351f942a46d85ebf47c1"
       }
     },
     {
@@ -37,8 +30,7 @@
         "apiName": "websecurityscanner",
         "apiVersion": "v1alpha",
         "language": "python",
-        "generator": "gapic",
-        "config": "google/cloud/websecurityscanner/artman_websecurityscanner_v1alpha.yaml"
+        "generator": "bazel"
       }
     },
     {
@@ -47,8 +39,7 @@
         "apiName": "websecurityscanner",
         "apiVersion": "v1beta",
         "language": "python",
-        "generator": "gapic",
-        "config": "google/cloud/websecurityscanner/artman_websecurityscanner_v1beta.yaml"
+        "generator": "bazel"
       }
     }
   ]

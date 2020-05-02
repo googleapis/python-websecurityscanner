@@ -588,9 +588,9 @@ class WebSecurityScannerClient(object):
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.websecurityscanner_v1beta.types.ScanConfig`
-            update_mask (Union[dict, ~google.cloud.websecurityscanner_v1beta.types.FieldMask]): Required. The update mask applies to the resource. For the ``FieldMask``
-                definition, see
-                https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+            update_mask (Union[dict, ~google.cloud.websecurityscanner_v1beta.types.FieldMask]): Denotes a field as required. This indicates that the field **must**
+                be provided as part of the request, and failure to do so will cause an
+                error (usually ``INVALID_ARGUMENT``).
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.websecurityscanner_v1beta.types.FieldMask`
@@ -1177,8 +1177,10 @@ class WebSecurityScannerClient(object):
             parent (str): Required. The parent resource name, which should be a scan run resource name in the
                 format
                 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
-            filter_ (str): Required. The filter expression. The expression must be in the format: .
-                Supported field: 'finding\_type'. Supported operator: '='.
+            filter_ (str): The same concept of the ``singular`` field in k8s CRD spec
+                https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions/
+                Such as "project" for the ``resourcemanager.googleapis.com/Project``
+                type.
             page_size (int): The maximum number of resources contained in the
                 underlying API response. If page streaming is performed per-
                 resource, this parameter does not affect the return value. If page

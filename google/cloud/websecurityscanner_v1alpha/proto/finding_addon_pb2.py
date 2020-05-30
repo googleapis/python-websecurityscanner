@@ -380,8 +380,6 @@ OutdatedLibrary = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _OUTDATEDLIBRARY,
         "__module__": "google.cloud.websecurityscanner_v1alpha.proto.finding_addon_pb2",
         "__doc__": """Information reported for an outdated library.
-  
-  
   Attributes:
       library_name:
           The name of the outdated library.
@@ -402,10 +400,8 @@ ViolatingResource = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _VIOLATINGRESOURCE,
         "__module__": "google.cloud.websecurityscanner_v1alpha.proto.finding_addon_pb2",
-        "__doc__": """Information regarding any resource causing the
-  vulnerability such as JavaScript sources, image, audio files, etc.
-  
-  
+        "__doc__": """Information regarding any resource causing the vulnerability such as
+  JavaScript sources, image, audio files, etc.
   Attributes:
       content_type:
           The MIME type of this resource.
@@ -424,8 +420,6 @@ VulnerableParameters = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _VULNERABLEPARAMETERS,
         "__module__": "google.cloud.websecurityscanner_v1alpha.proto.finding_addon_pb2",
         "__doc__": """Information about vulnerable request parameters.
-  
-  
   Attributes:
       parameter_names:
           The vulnerable parameter names.
@@ -446,8 +440,6 @@ VulnerableHeaders = _reflection.GeneratedProtocolMessageType(
                 "DESCRIPTOR": _VULNERABLEHEADERS_HEADER,
                 "__module__": "google.cloud.websecurityscanner_v1alpha.proto.finding_addon_pb2",
                 "__doc__": """Describes a HTTP Header.
-    
-    
     Attributes:
         name:
             Header name.
@@ -460,8 +452,6 @@ VulnerableHeaders = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _VULNERABLEHEADERS,
         "__module__": "google.cloud.websecurityscanner_v1alpha.proto.finding_addon_pb2",
         "__doc__": """Information about vulnerable or missing HTTP Headers.
-  
-  
   Attributes:
       headers:
           List of vulnerable headers.
@@ -481,8 +471,6 @@ Xss = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _XSS,
         "__module__": "google.cloud.websecurityscanner_v1alpha.proto.finding_addon_pb2",
         "__doc__": """Information reported for an XSS.
-  
-  
   Attributes:
       stack_traces:
           Stack traces leading to the point where the XSS occurred.

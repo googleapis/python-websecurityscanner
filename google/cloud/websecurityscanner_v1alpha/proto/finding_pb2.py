@@ -23,6 +23,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
     package="google.cloud.websecurityscanner.v1alpha",
     syntax="proto3",
     serialized_options=b"\n+com.google.cloud.websecurityscanner.v1alphaB\014FindingProtoP\001ZYgoogle.golang.org/genproto/googleapis/cloud/websecurityscanner/v1alpha;websecurityscanner",
+    create_key=_descriptor._internal_create_key,
     serialized_pb=b'\n;google/cloud/websecurityscanner_v1alpha/proto/finding.proto\x12\'google.cloud.websecurityscanner.v1alpha\x1a\x19google/api/resource.proto\x1a\x41google/cloud/websecurityscanner_v1alpha/proto/finding_addon.proto"\xe9\x08\n\x07\x46inding\x12\x0c\n\x04name\x18\x01 \x01(\t\x12R\n\x0c\x66inding_type\x18\x02 \x01(\x0e\x32<.google.cloud.websecurityscanner.v1alpha.Finding.FindingType\x12\x13\n\x0bhttp_method\x18\x03 \x01(\t\x12\x12\n\nfuzzed_url\x18\x04 \x01(\t\x12\x0c\n\x04\x62ody\x18\x05 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x06 \x01(\t\x12\x18\n\x10reproduction_url\x18\x07 \x01(\t\x12\x11\n\tframe_url\x18\x08 \x01(\t\x12\x11\n\tfinal_url\x18\t \x01(\t\x12\x13\n\x0btracking_id\x18\n \x01(\t\x12R\n\x10outdated_library\x18\x0b \x01(\x0b\x32\x38.google.cloud.websecurityscanner.v1alpha.OutdatedLibrary\x12V\n\x12violating_resource\x18\x0c \x01(\x0b\x32:.google.cloud.websecurityscanner.v1alpha.ViolatingResource\x12V\n\x12vulnerable_headers\x18\x0f \x01(\x0b\x32:.google.cloud.websecurityscanner.v1alpha.VulnerableHeaders\x12\\\n\x15vulnerable_parameters\x18\r \x01(\x0b\x32=.google.cloud.websecurityscanner.v1alpha.VulnerableParameters\x12\x39\n\x03xss\x18\x0e \x01(\x0b\x32,.google.cloud.websecurityscanner.v1alpha.Xss"\xb6\x02\n\x0b\x46indingType\x12\x1c\n\x18\x46INDING_TYPE_UNSPECIFIED\x10\x00\x12\x11\n\rMIXED_CONTENT\x10\x01\x12\x14\n\x10OUTDATED_LIBRARY\x10\x02\x12\x11\n\rROSETTA_FLASH\x10\x05\x12\x10\n\x0cXSS_CALLBACK\x10\x03\x12\r\n\tXSS_ERROR\x10\x04\x12\x17\n\x13\x43LEAR_TEXT_PASSWORD\x10\x06\x12\x18\n\x14INVALID_CONTENT_TYPE\x10\x07\x12\x18\n\x14XSS_ANGULAR_CALLBACK\x10\x08\x12\x12\n\x0eINVALID_HEADER\x10\t\x12#\n\x1fMISSPELLED_SECURITY_HEADER_NAME\x10\n\x12&\n"MISMATCHING_SECURITY_HEADER_VALUES\x10\x0b:\x84\x01\xea\x41\x80\x01\n)websecurityscanner.googleapis.com/Finding\x12Sprojects/{project}/scanConfigs/{scan_config}/scanRuns/{scan_run}/findings/{finding}B\x98\x01\n+com.google.cloud.websecurityscanner.v1alphaB\x0c\x46indingProtoP\x01ZYgoogle.golang.org/genproto/googleapis/cloud/websecurityscanner/v1alpha;websecurityscannerb\x06proto3',
     dependencies=[
         google_dot_api_dot_resource__pb2.DESCRIPTOR,
@@ -36,6 +37,7 @@ _FINDING_FINDINGTYPE = _descriptor.EnumDescriptor(
     full_name="google.cloud.websecurityscanner.v1alpha.Finding.FindingType",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="FINDING_TYPE_UNSPECIFIED",
@@ -43,9 +45,15 @@ _FINDING_FINDINGTYPE = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="MIXED_CONTENT", index=1, number=1, serialized_options=None, type=None
+            name="MIXED_CONTENT",
+            index=1,
+            number=1,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="OUTDATED_LIBRARY",
@@ -53,15 +61,31 @@ _FINDING_FINDINGTYPE = _descriptor.EnumDescriptor(
             number=2,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="ROSETTA_FLASH", index=3, number=5, serialized_options=None, type=None
+            name="ROSETTA_FLASH",
+            index=3,
+            number=5,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="XSS_CALLBACK", index=4, number=3, serialized_options=None, type=None
+            name="XSS_CALLBACK",
+            index=4,
+            number=3,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="XSS_ERROR", index=5, number=4, serialized_options=None, type=None
+            name="XSS_ERROR",
+            index=5,
+            number=4,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="CLEAR_TEXT_PASSWORD",
@@ -69,6 +93,7 @@ _FINDING_FINDINGTYPE = _descriptor.EnumDescriptor(
             number=6,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="INVALID_CONTENT_TYPE",
@@ -76,6 +101,7 @@ _FINDING_FINDINGTYPE = _descriptor.EnumDescriptor(
             number=7,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="XSS_ANGULAR_CALLBACK",
@@ -83,9 +109,15 @@ _FINDING_FINDINGTYPE = _descriptor.EnumDescriptor(
             number=8,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="INVALID_HEADER", index=9, number=9, serialized_options=None, type=None
+            name="INVALID_HEADER",
+            index=9,
+            number=9,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="MISSPELLED_SECURITY_HEADER_NAME",
@@ -93,6 +125,7 @@ _FINDING_FINDINGTYPE = _descriptor.EnumDescriptor(
             number=10,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="MISMATCHING_SECURITY_HEADER_VALUES",
@@ -100,6 +133,7 @@ _FINDING_FINDINGTYPE = _descriptor.EnumDescriptor(
             number=11,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -116,6 +150,7 @@ _FINDING = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -134,6 +169,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="finding_type",
@@ -152,6 +188,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="http_method",
@@ -170,6 +207,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="fuzzed_url",
@@ -188,6 +226,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="body",
@@ -206,6 +245,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="description",
@@ -224,6 +264,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="reproduction_url",
@@ -242,6 +283,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="frame_url",
@@ -260,6 +302,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="final_url",
@@ -278,6 +321,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="tracking_id",
@@ -296,6 +340,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="outdated_library",
@@ -314,6 +359,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="violating_resource",
@@ -332,6 +378,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="vulnerable_headers",
@@ -350,6 +397,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="vulnerable_parameters",
@@ -368,6 +416,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="xss",
@@ -386,6 +435,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],

@@ -22,6 +22,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
     package="google.cloud.websecurityscanner.v1beta",
     syntax="proto3",
     serialized_options=b"\n*com.google.cloud.websecurityscanner.v1betaB\026ScanRunErrorTraceProtoP\001ZXgoogle.golang.org/genproto/googleapis/cloud/websecurityscanner/v1beta;websecurityscanner\312\002&Google\\Cloud\\WebSecurityScanner\\V1beta",
+    create_key=_descriptor._internal_create_key,
     serialized_pb=b'\nGgoogle/cloud/websecurityscanner_v1beta/proto/scan_run_error_trace.proto\x12&google.cloud.websecurityscanner.v1beta\x1a\x44google/cloud/websecurityscanner_v1beta/proto/scan_config_error.proto"\x95\x03\n\x11ScanRunErrorTrace\x12L\n\x04\x63ode\x18\x01 \x01(\x0e\x32>.google.cloud.websecurityscanner.v1beta.ScanRunErrorTrace.Code\x12R\n\x11scan_config_error\x18\x02 \x01(\x0b\x32\x37.google.cloud.websecurityscanner.v1beta.ScanConfigError\x12#\n\x1bmost_common_http_error_code\x18\x03 \x01(\x05"\xb8\x01\n\x04\x43ode\x12\x14\n\x10\x43ODE_UNSPECIFIED\x10\x00\x12\x12\n\x0eINTERNAL_ERROR\x10\x01\x12\x15\n\x11SCAN_CONFIG_ISSUE\x10\x02\x12\x1f\n\x1b\x41UTHENTICATION_CONFIG_ISSUE\x10\x03\x12\x1c\n\x18TIMED_OUT_WHILE_SCANNING\x10\x04\x12\x16\n\x12TOO_MANY_REDIRECTS\x10\x05\x12\x18\n\x14TOO_MANY_HTTP_ERRORS\x10\x06\x42\xc9\x01\n*com.google.cloud.websecurityscanner.v1betaB\x16ScanRunErrorTraceProtoP\x01ZXgoogle.golang.org/genproto/googleapis/cloud/websecurityscanner/v1beta;websecurityscanner\xca\x02&Google\\Cloud\\WebSecurityScanner\\V1betab\x06proto3',
     dependencies=[
         google_dot_cloud_dot_websecurityscanner__v1beta_dot_proto_dot_scan__config__error__pb2.DESCRIPTOR
@@ -34,6 +35,7 @@ _SCANRUNERRORTRACE_CODE = _descriptor.EnumDescriptor(
     full_name="google.cloud.websecurityscanner.v1beta.ScanRunErrorTrace.Code",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="CODE_UNSPECIFIED",
@@ -41,9 +43,15 @@ _SCANRUNERRORTRACE_CODE = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="INTERNAL_ERROR", index=1, number=1, serialized_options=None, type=None
+            name="INTERNAL_ERROR",
+            index=1,
+            number=1,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="SCAN_CONFIG_ISSUE",
@@ -51,6 +59,7 @@ _SCANRUNERRORTRACE_CODE = _descriptor.EnumDescriptor(
             number=2,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="AUTHENTICATION_CONFIG_ISSUE",
@@ -58,6 +67,7 @@ _SCANRUNERRORTRACE_CODE = _descriptor.EnumDescriptor(
             number=3,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="TIMED_OUT_WHILE_SCANNING",
@@ -65,6 +75,7 @@ _SCANRUNERRORTRACE_CODE = _descriptor.EnumDescriptor(
             number=4,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="TOO_MANY_REDIRECTS",
@@ -72,6 +83,7 @@ _SCANRUNERRORTRACE_CODE = _descriptor.EnumDescriptor(
             number=5,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="TOO_MANY_HTTP_ERRORS",
@@ -79,6 +91,7 @@ _SCANRUNERRORTRACE_CODE = _descriptor.EnumDescriptor(
             number=6,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -95,6 +108,7 @@ _SCANRUNERRORTRACE = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="code",
@@ -113,6 +127,7 @@ _SCANRUNERRORTRACE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="scan_config_error",
@@ -131,6 +146,7 @@ _SCANRUNERRORTRACE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="most_common_http_error_code",
@@ -149,6 +165,7 @@ _SCANRUNERRORTRACE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],

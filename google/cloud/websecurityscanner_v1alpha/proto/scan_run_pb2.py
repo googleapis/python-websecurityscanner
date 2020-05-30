@@ -21,6 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
     package="google.cloud.websecurityscanner.v1alpha",
     syntax="proto3",
     serialized_options=b"\n+com.google.cloud.websecurityscanner.v1alphaB\014ScanRunProtoP\001ZYgoogle.golang.org/genproto/googleapis/cloud/websecurityscanner/v1alpha;websecurityscanner",
+    create_key=_descriptor._internal_create_key,
     serialized_pb=b'\n<google/cloud/websecurityscanner_v1alpha/proto/scan_run.proto\x12\'google.cloud.websecurityscanner.v1alpha\x1a\x19google/api/resource.proto\x1a\x1fgoogle/protobuf/timestamp.proto"\xaf\x05\n\x07ScanRun\x12\x0c\n\x04name\x18\x01 \x01(\t\x12X\n\x0f\x65xecution_state\x18\x02 \x01(\x0e\x32?.google.cloud.websecurityscanner.v1alpha.ScanRun.ExecutionState\x12R\n\x0cresult_state\x18\x03 \x01(\x0e\x32<.google.cloud.websecurityscanner.v1alpha.ScanRun.ResultState\x12.\n\nstart_time\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12,\n\x08\x65nd_time\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x1a\n\x12urls_crawled_count\x18\x06 \x01(\x03\x12\x19\n\x11urls_tested_count\x18\x07 \x01(\x03\x12\x1b\n\x13has_vulnerabilities\x18\x08 \x01(\x08\x12\x18\n\x10progress_percent\x18\t \x01(\x05"Y\n\x0e\x45xecutionState\x12\x1f\n\x1b\x45XECUTION_STATE_UNSPECIFIED\x10\x00\x12\n\n\x06QUEUED\x10\x01\x12\x0c\n\x08SCANNING\x10\x02\x12\x0c\n\x08\x46INISHED\x10\x03"O\n\x0bResultState\x12\x1c\n\x18RESULT_STATE_UNSPECIFIED\x10\x00\x12\x0b\n\x07SUCCESS\x10\x01\x12\t\n\x05\x45RROR\x10\x02\x12\n\n\x06KILLED\x10\x03:p\xea\x41m\n)websecurityscanner.googleapis.com/ScanRun\x12@projects/{project}/scanConfigs/{scan_config}/scanRuns/{scan_run}B\x98\x01\n+com.google.cloud.websecurityscanner.v1alphaB\x0cScanRunProtoP\x01ZYgoogle.golang.org/genproto/googleapis/cloud/websecurityscanner/v1alpha;websecurityscannerb\x06proto3',
     dependencies=[
         google_dot_api_dot_resource__pb2.DESCRIPTOR,
@@ -34,6 +35,7 @@ _SCANRUN_EXECUTIONSTATE = _descriptor.EnumDescriptor(
     full_name="google.cloud.websecurityscanner.v1alpha.ScanRun.ExecutionState",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="EXECUTION_STATE_UNSPECIFIED",
@@ -41,15 +43,31 @@ _SCANRUN_EXECUTIONSTATE = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="QUEUED", index=1, number=1, serialized_options=None, type=None
+            name="QUEUED",
+            index=1,
+            number=1,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="SCANNING", index=2, number=2, serialized_options=None, type=None
+            name="SCANNING",
+            index=2,
+            number=2,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="FINISHED", index=3, number=3, serialized_options=None, type=None
+            name="FINISHED",
+            index=3,
+            number=3,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -64,6 +82,7 @@ _SCANRUN_RESULTSTATE = _descriptor.EnumDescriptor(
     full_name="google.cloud.websecurityscanner.v1alpha.ScanRun.ResultState",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="RESULT_STATE_UNSPECIFIED",
@@ -71,15 +90,31 @@ _SCANRUN_RESULTSTATE = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="SUCCESS", index=1, number=1, serialized_options=None, type=None
+            name="SUCCESS",
+            index=1,
+            number=1,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="ERROR", index=2, number=2, serialized_options=None, type=None
+            name="ERROR",
+            index=2,
+            number=2,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="KILLED", index=3, number=3, serialized_options=None, type=None
+            name="KILLED",
+            index=3,
+            number=3,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -96,6 +131,7 @@ _SCANRUN = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -114,6 +150,7 @@ _SCANRUN = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="execution_state",
@@ -132,6 +169,7 @@ _SCANRUN = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="result_state",
@@ -150,6 +188,7 @@ _SCANRUN = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="start_time",
@@ -168,6 +207,7 @@ _SCANRUN = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="end_time",
@@ -186,6 +226,7 @@ _SCANRUN = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="urls_crawled_count",
@@ -204,6 +245,7 @@ _SCANRUN = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="urls_tested_count",
@@ -222,6 +264,7 @@ _SCANRUN = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="has_vulnerabilities",
@@ -240,6 +283,7 @@ _SCANRUN = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="progress_percent",
@@ -258,6 +302,7 @@ _SCANRUN = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],

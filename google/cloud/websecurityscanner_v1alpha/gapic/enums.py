@@ -83,8 +83,8 @@ class ScanConfig(object):
         Cloud platforms supported by Cloud Web Security Scanner.
 
         Attributes:
-          TARGET_PLATFORM_UNSPECIFIED (int): The target platform is unknown. Requests with this enum value will be
-          rejected with INVALID\_ARGUMENT error.
+          TARGET_PLATFORM_UNSPECIFIED (int): The target platform is unknown. Requests with this enum value will
+          be rejected with INVALID_ARGUMENT error.
           APP_ENGINE (int): Google App Engine service.
           COMPUTE (int): Google Compute Engine service.
         """
@@ -98,7 +98,7 @@ class ScanConfig(object):
         Type of user agents used for scanning.
 
         Attributes:
-          USER_AGENT_UNSPECIFIED (int): The user agent is unknown. Service will default to CHROME\_LINUX.
+          USER_AGENT_UNSPECIFIED (int): The user agent is unknown. Service will default to CHROME_LINUX.
           CHROME_LINUX (int): Chrome on Linux. This is the service default if unspecified.
           CHROME_ANDROID (int): Chrome on Android.
           SAFARI_IPHONE (int): Safari on IPhone.

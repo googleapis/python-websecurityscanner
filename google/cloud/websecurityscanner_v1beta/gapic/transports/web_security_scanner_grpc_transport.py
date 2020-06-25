@@ -113,19 +113,6 @@ class WebSecurityScannerGrpcTransport(object):
         return self._channel
 
     @property
-    def create_scan_config(self):
-        """Return the gRPC stub for :meth:`WebSecurityScannerClient.create_scan_config`.
-
-        Creates a new ScanConfig.
-
-        Returns:
-            Callable: A callable which accepts the appropriate
-                deserialized request object and returns a
-                deserialized response object.
-        """
-        return self._stubs["web_security_scanner_stub"].CreateScanConfig
-
-    @property
     def delete_scan_config(self):
         """Return the gRPC stub for :meth:`WebSecurityScannerClient.delete_scan_config`.
 
@@ -137,6 +124,19 @@ class WebSecurityScannerGrpcTransport(object):
                 deserialized response object.
         """
         return self._stubs["web_security_scanner_stub"].DeleteScanConfig
+
+    @property
+    def create_scan_config(self):
+        """Return the gRPC stub for :meth:`WebSecurityScannerClient.create_scan_config`.
+
+        Creates a new ScanConfig.
+
+        Returns:
+            Callable: A callable which accepts the appropriate
+                deserialized request object and returns a
+                deserialized response object.
+        """
+        return self._stubs["web_security_scanner_stub"].CreateScanConfig
 
     @property
     def get_scan_config(self):

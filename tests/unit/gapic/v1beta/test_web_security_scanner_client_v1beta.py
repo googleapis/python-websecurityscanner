@@ -66,6 +66,37 @@ class CustomException(Exception):
 
 
 class TestWebSecurityScannerClient(object):
+    def test_delete_scan_config(self):
+        channel = ChannelStub()
+        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        with patch as create_channel:
+            create_channel.return_value = channel
+            client = websecurityscanner_v1beta.WebSecurityScannerClient()
+
+        # Setup Request
+        name = client.scan_config_path("[PROJECT]", "[SCAN_CONFIG]")
+
+        client.delete_scan_config(name)
+
+        assert len(channel.requests) == 1
+        expected_request = web_security_scanner_pb2.DeleteScanConfigRequest(name=name)
+        actual_request = channel.requests[0][1]
+        assert expected_request == actual_request
+
+    def test_delete_scan_config_exception(self):
+        # Mock the API response
+        channel = ChannelStub(responses=[CustomException()])
+        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
+        with patch as create_channel:
+            create_channel.return_value = channel
+            client = websecurityscanner_v1beta.WebSecurityScannerClient()
+
+        # Setup request
+        name = client.scan_config_path("[PROJECT]", "[SCAN_CONFIG]")
+
+        with pytest.raises(CustomException):
+            client.delete_scan_config(name)
+
     def test_create_scan_config(self):
         # Setup Expected Response
         name = "name3373707"
@@ -113,37 +144,6 @@ class TestWebSecurityScannerClient(object):
 
         with pytest.raises(CustomException):
             client.create_scan_config(parent, scan_config)
-
-    def test_delete_scan_config(self):
-        channel = ChannelStub()
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
-        with patch as create_channel:
-            create_channel.return_value = channel
-            client = websecurityscanner_v1beta.WebSecurityScannerClient()
-
-        # Setup Request
-        name = client.scan_config_path("[PROJECT]", "[SCAN_CONFIG]")
-
-        client.delete_scan_config(name)
-
-        assert len(channel.requests) == 1
-        expected_request = web_security_scanner_pb2.DeleteScanConfigRequest(name=name)
-        actual_request = channel.requests[0][1]
-        assert expected_request == actual_request
-
-    def test_delete_scan_config_exception(self):
-        # Mock the API response
-        channel = ChannelStub(responses=[CustomException()])
-        patch = mock.patch("google.api_core.grpc_helpers.create_channel")
-        with patch as create_channel:
-            create_channel.return_value = channel
-            client = websecurityscanner_v1beta.WebSecurityScannerClient()
-
-        # Setup request
-        name = client.scan_config_path("[PROJECT]", "[SCAN_CONFIG]")
-
-        with pytest.raises(CustomException):
-            client.delete_scan_config(name)
 
     def test_get_scan_config(self):
         # Setup Expected Response

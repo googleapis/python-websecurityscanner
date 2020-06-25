@@ -56,8 +56,8 @@ class ScanConfig(object):
         Cloud platforms supported by Cloud Web Security Scanner.
 
         Attributes:
-          TARGET_PLATFORM_UNSPECIFIED (int): The target platform is unknown. Requests with this enum value will
-          be rejected with INVALID_ARGUMENT error.
+          TARGET_PLATFORM_UNSPECIFIED (int): The target platform is unknown. Requests with this enum value will be
+          rejected with INVALID\_ARGUMENT error.
           APP_ENGINE (int): Google App Engine service.
           COMPUTE (int): Google Compute Engine service.
         """
@@ -71,7 +71,7 @@ class ScanConfig(object):
         Type of user agents used for scanning.
 
         Attributes:
-          USER_AGENT_UNSPECIFIED (int): The user agent is unknown. Service will default to CHROME_LINUX.
+          USER_AGENT_UNSPECIFIED (int): The user agent is unknown. Service will default to CHROME\_LINUX.
           CHROME_LINUX (int): Chrome on Linux. This is the service default if unspecified.
           CHROME_ANDROID (int): Chrome on Android.
           SAFARI_IPHONE (int): Safari on IPhone.
@@ -241,16 +241,16 @@ class ScanRunErrorTrace(object):
         Attributes:
           CODE_UNSPECIFIED (int): Default value is never used.
           INTERNAL_ERROR (int): Indicates that the scan run failed due to an internal server error.
-          SCAN_CONFIG_ISSUE (int): Indicates a scan configuration error, usually due to outdated
-          ScanConfig settings, such as starting_urls or the DNS configuration.
+          SCAN_CONFIG_ISSUE (int): Indicates a scan configuration error, usually due to outdated ScanConfig
+          settings, such as starting\_urls or the DNS configuration.
           AUTHENTICATION_CONFIG_ISSUE (int): Indicates an authentication error, usually due to outdated ScanConfig
           authentication settings.
           TIMED_OUT_WHILE_SCANNING (int): Indicates a scan operation timeout, usually caused by a very large site.
           TOO_MANY_REDIRECTS (int): Indicates that a scan encountered excessive redirects, either to
           authentication or some other page outside of the scan scope.
           TOO_MANY_HTTP_ERRORS (int): Indicates that a scan encountered numerous errors from the web site
-          pages. When available, most_common_http_error_code field indicates the
-          most common HTTP error code encountered during the scan.
+          pages. When available, most\_common\_http\_error\_code field indicates
+          the most common HTTP error code encountered during the scan.
         """
 
         CODE_UNSPECIFIED = 0

@@ -398,6 +398,7 @@ Finding = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.websecurityscanner_v1beta.proto.finding_pb2",
         "__doc__": """A Finding resource represents a vulnerability instance identified
   during a ScanRun.
+  
   Attributes:
       name:
           The resource name of the Finding. The name follows the format

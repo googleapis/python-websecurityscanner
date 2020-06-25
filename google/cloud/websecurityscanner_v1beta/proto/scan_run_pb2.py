@@ -394,6 +394,7 @@ ScanRun = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.websecurityscanner_v1beta.proto.scan_run_pb2",
         "__doc__": """A ScanRun is a output-only resource representing an actual run of the
   scan. Next id: 12
+  
   Attributes:
       name:
           The resource name of the ScanRun. The name follows the format

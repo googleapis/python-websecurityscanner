@@ -1149,6 +1149,7 @@ CreateScanConfigRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _CREATESCANCONFIGREQUEST,
         "__module__": "google.cloud.websecurityscanner_v1beta.proto.web_security_scanner_pb2",
         "__doc__": """Request for the ``CreateScanConfig`` method.
+  
   Attributes:
       parent:
           Required. The parent resource name where the scan is created,
@@ -1169,6 +1170,7 @@ DeleteScanConfigRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _DELETESCANCONFIGREQUEST,
         "__module__": "google.cloud.websecurityscanner_v1beta.proto.web_security_scanner_pb2",
         "__doc__": """Request for the ``DeleteScanConfig`` method.
+  
   Attributes:
       name:
           Required. The resource name of the ScanConfig to be deleted.
@@ -1187,6 +1189,7 @@ GetScanConfigRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _GETSCANCONFIGREQUEST,
         "__module__": "google.cloud.websecurityscanner_v1beta.proto.web_security_scanner_pb2",
         "__doc__": """Request for the ``GetScanConfig`` method.
+  
   Attributes:
       name:
           Required. The resource name of the ScanConfig to be returned.
@@ -1205,6 +1208,7 @@ ListScanConfigsRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _LISTSCANCONFIGSREQUEST,
         "__module__": "google.cloud.websecurityscanner_v1beta.proto.web_security_scanner_pb2",
         "__doc__": """Request for the ``ListScanConfigs`` method.
+  
   Attributes:
       parent:
           Required. The parent resource name, which should be a project
@@ -1231,6 +1235,7 @@ UpdateScanConfigRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _UPDATESCANCONFIGREQUEST,
         "__module__": "google.cloud.websecurityscanner_v1beta.proto.web_security_scanner_pb2",
         "__doc__": """Request for the ``UpdateScanConfigRequest`` method.
+  
   Attributes:
       scan_config:
           Required. The ScanConfig to be updated. The name field must be
@@ -1254,6 +1259,7 @@ ListScanConfigsResponse = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _LISTSCANCONFIGSRESPONSE,
         "__module__": "google.cloud.websecurityscanner_v1beta.proto.web_security_scanner_pb2",
         "__doc__": """Response for the ``ListScanConfigs`` method.
+  
   Attributes:
       scan_configs:
           The list of ScanConfigs returned.
@@ -1273,6 +1279,7 @@ StartScanRunRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _STARTSCANRUNREQUEST,
         "__module__": "google.cloud.websecurityscanner_v1beta.proto.web_security_scanner_pb2",
         "__doc__": """Request for the ``StartScanRun`` method.
+  
   Attributes:
       name:
           Required. The resource name of the ScanConfig to be used. The
@@ -1291,6 +1298,7 @@ GetScanRunRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _GETSCANRUNREQUEST,
         "__module__": "google.cloud.websecurityscanner_v1beta.proto.web_security_scanner_pb2",
         "__doc__": """Request for the ``GetScanRun`` method.
+  
   Attributes:
       name:
           Required. The resource name of the ScanRun to be returned. The
@@ -1309,6 +1317,7 @@ ListScanRunsRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _LISTSCANRUNSREQUEST,
         "__module__": "google.cloud.websecurityscanner_v1beta.proto.web_security_scanner_pb2",
         "__doc__": """Request for the ``ListScanRuns`` method.
+  
   Attributes:
       parent:
           Required. The parent resource name, which should be a scan
@@ -1336,6 +1345,7 @@ ListScanRunsResponse = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _LISTSCANRUNSRESPONSE,
         "__module__": "google.cloud.websecurityscanner_v1beta.proto.web_security_scanner_pb2",
         "__doc__": """Response for the ``ListScanRuns`` method.
+  
   Attributes:
       scan_runs:
           The list of ScanRuns returned.
@@ -1355,6 +1365,7 @@ StopScanRunRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _STOPSCANRUNREQUEST,
         "__module__": "google.cloud.websecurityscanner_v1beta.proto.web_security_scanner_pb2",
         "__doc__": """Request for the ``StopScanRun`` method.
+  
   Attributes:
       name:
           Required. The resource name of the ScanRun to be stopped. The
@@ -1373,6 +1384,7 @@ ListCrawledUrlsRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _LISTCRAWLEDURLSREQUEST,
         "__module__": "google.cloud.websecurityscanner_v1beta.proto.web_security_scanner_pb2",
         "__doc__": """Request for the ``ListCrawledUrls`` method.
+  
   Attributes:
       parent:
           Required. The parent resource name, which should be a scan run
@@ -1400,6 +1412,7 @@ ListCrawledUrlsResponse = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _LISTCRAWLEDURLSRESPONSE,
         "__module__": "google.cloud.websecurityscanner_v1beta.proto.web_security_scanner_pb2",
         "__doc__": """Response for the ``ListCrawledUrls`` method.
+  
   Attributes:
       crawled_urls:
           The list of CrawledUrls returned.
@@ -1419,6 +1432,7 @@ GetFindingRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _GETFINDINGREQUEST,
         "__module__": "google.cloud.websecurityscanner_v1beta.proto.web_security_scanner_pb2",
         "__doc__": """Request for the ``GetFinding`` method.
+  
   Attributes:
       name:
           Required. The resource name of the Finding to be returned. The
@@ -1437,6 +1451,7 @@ ListFindingsRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _LISTFINDINGSREQUEST,
         "__module__": "google.cloud.websecurityscanner_v1beta.proto.web_security_scanner_pb2",
         "__doc__": """Request for the ``ListFindings`` method.
+  
   Attributes:
       parent:
           Required. The parent resource name, which should be a scan run
@@ -1468,6 +1483,7 @@ ListFindingsResponse = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _LISTFINDINGSRESPONSE,
         "__module__": "google.cloud.websecurityscanner_v1beta.proto.web_security_scanner_pb2",
         "__doc__": """Response for the ``ListFindings`` method.
+  
   Attributes:
       findings:
           The list of Findings returned.
@@ -1487,6 +1503,7 @@ ListFindingTypeStatsRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _LISTFINDINGTYPESTATSREQUEST,
         "__module__": "google.cloud.websecurityscanner_v1beta.proto.web_security_scanner_pb2",
         "__doc__": """Request for the ``ListFindingTypeStats`` method.
+  
   Attributes:
       parent:
           Required. The parent resource name, which should be a scan run
@@ -1505,6 +1522,7 @@ ListFindingTypeStatsResponse = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _LISTFINDINGTYPESTATSRESPONSE,
         "__module__": "google.cloud.websecurityscanner_v1beta.proto.web_security_scanner_pb2",
         "__doc__": """Response for the ``ListFindingTypeStats`` method.
+  
   Attributes:
       finding_type_stats:
           The list of FindingTypeStats returned.

@@ -132,6 +132,7 @@ ScanRunWarningTrace = _reflection.GeneratedProtocolMessageType(
         "__doc__": """Output only. Defines a warning trace message for ScanRun. Warning
   traces provide customers with useful information that helps make the
   scanning process more effective.
+  
   Attributes:
       code:
           Indicates the warning code.

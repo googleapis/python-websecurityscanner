@@ -197,6 +197,7 @@ ScanRunErrorTrace = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _SCANRUNERRORTRACE,
         "__module__": "google.cloud.websecurityscanner_v1beta.proto.scan_run_error_trace_pb2",
         "__doc__": """Output only. Defines an error trace message for a ScanRun.
+  
   Attributes:
       code:
           Indicates the error reason code.

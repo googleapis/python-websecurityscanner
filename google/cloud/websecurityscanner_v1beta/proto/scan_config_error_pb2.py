@@ -448,6 +448,7 @@ ScanConfigError = _reflection.GeneratedProtocolMessageType(
   UpdateScanConfig APIs when scan configuration validation fails. It is
   also reported as part of a ScanRunErrorTrace message if scan
   validation fails due to a scan configuration error.
+  
   Attributes:
       code:
           Indicates the reason code for a configuration failure.

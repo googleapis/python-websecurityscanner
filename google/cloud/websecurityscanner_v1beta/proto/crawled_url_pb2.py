@@ -113,6 +113,7 @@ CrawledUrl = _reflection.GeneratedProtocolMessageType(
   ScanRun. Web Security Scanner Service crawls the web applications,
   following all links within the scope of sites, to find the URLs to
   test against.
+  
   Attributes:
       http_method:
           The http method of the request that was used to visit the URL,

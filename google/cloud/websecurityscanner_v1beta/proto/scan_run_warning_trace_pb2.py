@@ -17,6 +17,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
     package="google.cloud.websecurityscanner.v1beta",
     syntax="proto3",
     serialized_options=b"\n*com.google.cloud.websecurityscanner.v1betaB\030ScanRunWarningTraceProtoP\001ZXgoogle.golang.org/genproto/googleapis/cloud/websecurityscanner/v1beta;websecurityscanner\312\002&Google\\Cloud\\WebSecurityScanner\\V1beta",
+    create_key=_descriptor._internal_create_key,
     serialized_pb=b'\nIgoogle/cloud/websecurityscanner_v1beta/proto/scan_run_warning_trace.proto\x12&google.cloud.websecurityscanner.v1beta"\xed\x01\n\x13ScanRunWarningTrace\x12N\n\x04\x63ode\x18\x01 \x01(\x0e\x32@.google.cloud.websecurityscanner.v1beta.ScanRunWarningTrace.Code"\x85\x01\n\x04\x43ode\x12\x14\n\x10\x43ODE_UNSPECIFIED\x10\x00\x12\x1e\n\x1aINSUFFICIENT_CRAWL_RESULTS\x10\x01\x12\x1a\n\x16TOO_MANY_CRAWL_RESULTS\x10\x02\x12\x17\n\x13TOO_MANY_FUZZ_TASKS\x10\x03\x12\x12\n\x0e\x42LOCKED_BY_IAP\x10\x04\x42\xcb\x01\n*com.google.cloud.websecurityscanner.v1betaB\x18ScanRunWarningTraceProtoP\x01ZXgoogle.golang.org/genproto/googleapis/cloud/websecurityscanner/v1beta;websecurityscanner\xca\x02&Google\\Cloud\\WebSecurityScanner\\V1betab\x06proto3',
 )
 
@@ -26,6 +27,7 @@ _SCANRUNWARNINGTRACE_CODE = _descriptor.EnumDescriptor(
     full_name="google.cloud.websecurityscanner.v1beta.ScanRunWarningTrace.Code",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="CODE_UNSPECIFIED",
@@ -33,6 +35,7 @@ _SCANRUNWARNINGTRACE_CODE = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="INSUFFICIENT_CRAWL_RESULTS",
@@ -40,6 +43,7 @@ _SCANRUNWARNINGTRACE_CODE = _descriptor.EnumDescriptor(
             number=1,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="TOO_MANY_CRAWL_RESULTS",
@@ -47,6 +51,7 @@ _SCANRUNWARNINGTRACE_CODE = _descriptor.EnumDescriptor(
             number=2,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="TOO_MANY_FUZZ_TASKS",
@@ -54,9 +59,15 @@ _SCANRUNWARNINGTRACE_CODE = _descriptor.EnumDescriptor(
             number=3,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="BLOCKED_BY_IAP", index=4, number=4, serialized_options=None, type=None
+            name="BLOCKED_BY_IAP",
+            index=4,
+            number=4,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -73,6 +84,7 @@ _SCANRUNWARNINGTRACE = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="code",
@@ -91,6 +103,7 @@ _SCANRUNWARNINGTRACE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],

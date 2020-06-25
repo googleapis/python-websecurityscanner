@@ -25,6 +25,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
     package="google.cloud.websecurityscanner.v1beta",
     syntax="proto3",
     serialized_options=b"\n*com.google.cloud.websecurityscanner.v1betaB\017ScanConfigProtoP\001ZXgoogle.golang.org/genproto/googleapis/cloud/websecurityscanner/v1beta;websecurityscanner\312\002&Google\\Cloud\\WebSecurityScanner\\V1beta",
+    create_key=_descriptor._internal_create_key,
     serialized_pb=b'\n>google/cloud/websecurityscanner_v1beta/proto/scan_config.proto\x12&google.cloud.websecurityscanner.v1beta\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a;google/cloud/websecurityscanner_v1beta/proto/scan_run.proto\x1a\x1fgoogle/protobuf/timestamp.proto"\xa6\r\n\nScanConfig\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x19\n\x0c\x64isplay_name\x18\x02 \x01(\tB\x03\xe0\x41\x02\x12\x0f\n\x07max_qps\x18\x03 \x01(\x05\x12\x1a\n\rstarting_urls\x18\x04 \x03(\tB\x03\xe0\x41\x02\x12Y\n\x0e\x61uthentication\x18\x05 \x01(\x0b\x32\x41.google.cloud.websecurityscanner.v1beta.ScanConfig.Authentication\x12P\n\nuser_agent\x18\x06 \x01(\x0e\x32<.google.cloud.websecurityscanner.v1beta.ScanConfig.UserAgent\x12\x1a\n\x12\x62lacklist_patterns\x18\x07 \x03(\t\x12M\n\x08schedule\x18\x08 \x01(\x0b\x32;.google.cloud.websecurityscanner.v1beta.ScanConfig.Schedule\x12[\n\x10target_platforms\x18\t \x03(\x0e\x32\x41.google.cloud.websecurityscanner.v1beta.ScanConfig.TargetPlatform\x12{\n!export_to_security_command_center\x18\n \x01(\x0e\x32P.google.cloud.websecurityscanner.v1beta.ScanConfig.ExportToSecurityCommandCenter\x12\x43\n\nlatest_run\x18\x0b \x01(\x0b\x32/.google.cloud.websecurityscanner.v1beta.ScanRun\x12P\n\nrisk_level\x18\x0c \x01(\x0e\x32<.google.cloud.websecurityscanner.v1beta.ScanConfig.RiskLevel\x1a\x94\x03\n\x0e\x41uthentication\x12i\n\x0egoogle_account\x18\x01 \x01(\x0b\x32O.google.cloud.websecurityscanner.v1beta.ScanConfig.Authentication.GoogleAccountH\x00\x12i\n\x0e\x63ustom_account\x18\x02 \x01(\x0b\x32O.google.cloud.websecurityscanner.v1beta.ScanConfig.Authentication.CustomAccountH\x00\x1a@\n\rGoogleAccount\x12\x15\n\x08username\x18\x01 \x01(\tB\x03\xe0\x41\x02\x12\x18\n\x08password\x18\x02 \x01(\tB\x06\xe0\x41\x02\xe0\x41\x04\x1aX\n\rCustomAccount\x12\x15\n\x08username\x18\x01 \x01(\tB\x03\xe0\x41\x02\x12\x18\n\x08password\x18\x02 \x01(\tB\x06\xe0\x41\x02\xe0\x41\x04\x12\x16\n\tlogin_url\x18\x03 \x01(\tB\x03\xe0\x41\x02\x42\x10\n\x0e\x61uthentication\x1a\x62\n\x08Schedule\x12\x31\n\rschedule_time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12#\n\x16interval_duration_days\x18\x02 \x01(\x05\x42\x03\xe0\x41\x02"`\n\tUserAgent\x12\x1a\n\x16USER_AGENT_UNSPECIFIED\x10\x00\x12\x10\n\x0c\x43HROME_LINUX\x10\x01\x12\x12\n\x0e\x43HROME_ANDROID\x10\x02\x12\x11\n\rSAFARI_IPHONE\x10\x03"N\n\x0eTargetPlatform\x12\x1f\n\x1bTARGET_PLATFORM_UNSPECIFIED\x10\x00\x12\x0e\n\nAPP_ENGINE\x10\x01\x12\x0b\n\x07\x43OMPUTE\x10\x02"<\n\tRiskLevel\x12\x1a\n\x16RISK_LEVEL_UNSPECIFIED\x10\x00\x12\n\n\x06NORMAL\x10\x01\x12\x07\n\x03LOW\x10\x02"m\n\x1d\x45xportToSecurityCommandCenter\x12\x31\n-EXPORT_TO_SECURITY_COMMAND_CENTER_UNSPECIFIED\x10\x00\x12\x0b\n\x07\x45NABLED\x10\x01\x12\x0c\n\x08\x44ISABLED\x10\x02:_\xea\x41\\\n,websecurityscanner.googleapis.com/ScanConfig\x12,projects/{project}/scanConfigs/{scan_config}B\xc2\x01\n*com.google.cloud.websecurityscanner.v1betaB\x0fScanConfigProtoP\x01ZXgoogle.golang.org/genproto/googleapis/cloud/websecurityscanner/v1beta;websecurityscanner\xca\x02&Google\\Cloud\\WebSecurityScanner\\V1betab\x06proto3',
     dependencies=[
         google_dot_api_dot_field__behavior__pb2.DESCRIPTOR,
@@ -40,6 +41,7 @@ _SCANCONFIG_USERAGENT = _descriptor.EnumDescriptor(
     full_name="google.cloud.websecurityscanner.v1beta.ScanConfig.UserAgent",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="USER_AGENT_UNSPECIFIED",
@@ -47,15 +49,31 @@ _SCANCONFIG_USERAGENT = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="CHROME_LINUX", index=1, number=1, serialized_options=None, type=None
+            name="CHROME_LINUX",
+            index=1,
+            number=1,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="CHROME_ANDROID", index=2, number=2, serialized_options=None, type=None
+            name="CHROME_ANDROID",
+            index=2,
+            number=2,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="SAFARI_IPHONE", index=3, number=3, serialized_options=None, type=None
+            name="SAFARI_IPHONE",
+            index=3,
+            number=3,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -70,6 +88,7 @@ _SCANCONFIG_TARGETPLATFORM = _descriptor.EnumDescriptor(
     full_name="google.cloud.websecurityscanner.v1beta.ScanConfig.TargetPlatform",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="TARGET_PLATFORM_UNSPECIFIED",
@@ -77,12 +96,23 @@ _SCANCONFIG_TARGETPLATFORM = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="APP_ENGINE", index=1, number=1, serialized_options=None, type=None
+            name="APP_ENGINE",
+            index=1,
+            number=1,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="COMPUTE", index=2, number=2, serialized_options=None, type=None
+            name="COMPUTE",
+            index=2,
+            number=2,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -97,6 +127,7 @@ _SCANCONFIG_RISKLEVEL = _descriptor.EnumDescriptor(
     full_name="google.cloud.websecurityscanner.v1beta.ScanConfig.RiskLevel",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="RISK_LEVEL_UNSPECIFIED",
@@ -104,12 +135,23 @@ _SCANCONFIG_RISKLEVEL = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="NORMAL", index=1, number=1, serialized_options=None, type=None
+            name="NORMAL",
+            index=1,
+            number=1,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="LOW", index=2, number=2, serialized_options=None, type=None
+            name="LOW",
+            index=2,
+            number=2,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -124,6 +166,7 @@ _SCANCONFIG_EXPORTTOSECURITYCOMMANDCENTER = _descriptor.EnumDescriptor(
     full_name="google.cloud.websecurityscanner.v1beta.ScanConfig.ExportToSecurityCommandCenter",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="EXPORT_TO_SECURITY_COMMAND_CENTER_UNSPECIFIED",
@@ -131,12 +174,23 @@ _SCANCONFIG_EXPORTTOSECURITYCOMMANDCENTER = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="ENABLED", index=1, number=1, serialized_options=None, type=None
+            name="ENABLED",
+            index=1,
+            number=1,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="DISABLED", index=2, number=2, serialized_options=None, type=None
+            name="DISABLED",
+            index=2,
+            number=2,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -153,6 +207,7 @@ _SCANCONFIG_AUTHENTICATION_GOOGLEACCOUNT = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="username",
@@ -171,6 +226,7 @@ _SCANCONFIG_AUTHENTICATION_GOOGLEACCOUNT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="password",
@@ -189,6 +245,7 @@ _SCANCONFIG_AUTHENTICATION_GOOGLEACCOUNT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\340A\004",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -209,6 +266,7 @@ _SCANCONFIG_AUTHENTICATION_CUSTOMACCOUNT = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="username",
@@ -227,6 +285,7 @@ _SCANCONFIG_AUTHENTICATION_CUSTOMACCOUNT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="password",
@@ -245,6 +304,7 @@ _SCANCONFIG_AUTHENTICATION_CUSTOMACCOUNT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\340A\004",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="login_url",
@@ -263,6 +323,7 @@ _SCANCONFIG_AUTHENTICATION_CUSTOMACCOUNT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -283,6 +344,7 @@ _SCANCONFIG_AUTHENTICATION = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="google_account",
@@ -301,6 +363,7 @@ _SCANCONFIG_AUTHENTICATION = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="custom_account",
@@ -319,6 +382,7 @@ _SCANCONFIG_AUTHENTICATION = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -337,6 +401,7 @@ _SCANCONFIG_AUTHENTICATION = _descriptor.Descriptor(
             full_name="google.cloud.websecurityscanner.v1beta.ScanConfig.Authentication.authentication",
             index=0,
             containing_type=None,
+            create_key=_descriptor._internal_create_key,
             fields=[],
         )
     ],
@@ -350,6 +415,7 @@ _SCANCONFIG_SCHEDULE = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="schedule_time",
@@ -368,6 +434,7 @@ _SCANCONFIG_SCHEDULE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="interval_duration_days",
@@ -386,6 +453,7 @@ _SCANCONFIG_SCHEDULE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -406,6 +474,7 @@ _SCANCONFIG = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -424,6 +493,7 @@ _SCANCONFIG = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="display_name",
@@ -442,6 +512,7 @@ _SCANCONFIG = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="max_qps",
@@ -460,6 +531,7 @@ _SCANCONFIG = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="starting_urls",
@@ -478,6 +550,7 @@ _SCANCONFIG = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="authentication",
@@ -496,6 +569,7 @@ _SCANCONFIG = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="user_agent",
@@ -514,6 +588,7 @@ _SCANCONFIG = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="blacklist_patterns",
@@ -532,6 +607,7 @@ _SCANCONFIG = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="schedule",
@@ -550,6 +626,7 @@ _SCANCONFIG = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="target_platforms",
@@ -568,6 +645,7 @@ _SCANCONFIG = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="export_to_security_command_center",
@@ -586,6 +664,7 @@ _SCANCONFIG = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="latest_run",
@@ -604,6 +683,7 @@ _SCANCONFIG = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="risk_level",
@@ -622,6 +702,7 @@ _SCANCONFIG = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],

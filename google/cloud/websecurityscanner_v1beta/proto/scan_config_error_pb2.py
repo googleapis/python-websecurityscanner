@@ -17,6 +17,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
     package="google.cloud.websecurityscanner.v1beta",
     syntax="proto3",
     serialized_options=b"\n*com.google.cloud.websecurityscanner.v1betaB\024ScanConfigErrorProtoP\001ZXgoogle.golang.org/genproto/googleapis/cloud/websecurityscanner/v1beta;websecurityscanner\312\002&Google\\Cloud\\WebSecurityScanner\\V1beta",
+    create_key=_descriptor._internal_create_key,
     serialized_pb=b'\nDgoogle/cloud/websecurityscanner_v1beta/proto/scan_config_error.proto\x12&google.cloud.websecurityscanner.v1beta"\xed\x0b\n\x0fScanConfigError\x12J\n\x04\x63ode\x18\x01 \x01(\x0e\x32<.google.cloud.websecurityscanner.v1beta.ScanConfigError.Code\x12\x12\n\nfield_name\x18\x02 \x01(\t"\xf9\n\n\x04\x43ode\x12\x14\n\x10\x43ODE_UNSPECIFIED\x10\x00\x12\x06\n\x02OK\x10\x00\x12\x12\n\x0eINTERNAL_ERROR\x10\x01\x12\x1f\n\x1b\x41PPENGINE_API_BACKEND_ERROR\x10\x02\x12 \n\x1c\x41PPENGINE_API_NOT_ACCESSIBLE\x10\x03\x12"\n\x1e\x41PPENGINE_DEFAULT_HOST_MISSING\x10\x04\x12!\n\x1d\x43\x41NNOT_USE_GOOGLE_COM_ACCOUNT\x10\x06\x12\x1c\n\x18\x43\x41NNOT_USE_OWNER_ACCOUNT\x10\x07\x12\x1d\n\x19\x43OMPUTE_API_BACKEND_ERROR\x10\x08\x12\x1e\n\x1a\x43OMPUTE_API_NOT_ACCESSIBLE\x10\t\x12\x37\n3CUSTOM_LOGIN_URL_DOES_NOT_BELONG_TO_CURRENT_PROJECT\x10\n\x12\x1e\n\x1a\x43USTOM_LOGIN_URL_MALFORMED\x10\x0b\x12\x33\n/CUSTOM_LOGIN_URL_MAPPED_TO_NON_ROUTABLE_ADDRESS\x10\x0c\x12\x31\n-CUSTOM_LOGIN_URL_MAPPED_TO_UNRESERVED_ADDRESS\x10\r\x12\x30\n,CUSTOM_LOGIN_URL_HAS_NON_ROUTABLE_IP_ADDRESS\x10\x0e\x12.\n*CUSTOM_LOGIN_URL_HAS_UNRESERVED_IP_ADDRESS\x10\x0f\x12\x17\n\x13\x44UPLICATE_SCAN_NAME\x10\x10\x12\x17\n\x13INVALID_FIELD_VALUE\x10\x12\x12$\n FAILED_TO_AUTHENTICATE_TO_TARGET\x10\x13\x12\x1c\n\x18\x46INDING_TYPE_UNSPECIFIED\x10\x14\x12\x1d\n\x19\x46ORBIDDEN_TO_SCAN_COMPUTE\x10\x15\x12$\n FORBIDDEN_UPDATE_TO_MANAGED_SCAN\x10+\x12\x14\n\x10MALFORMED_FILTER\x10\x16\x12\x1b\n\x17MALFORMED_RESOURCE_NAME\x10\x17\x12\x14\n\x10PROJECT_INACTIVE\x10\x18\x12\x12\n\x0eREQUIRED_FIELD\x10\x19\x12\x1e\n\x1aRESOURCE_NAME_INCONSISTENT\x10\x1a\x12\x18\n\x14SCAN_ALREADY_RUNNING\x10\x1b\x12\x14\n\x10SCAN_NOT_RUNNING\x10\x1c\x12/\n+SEED_URL_DOES_NOT_BELONG_TO_CURRENT_PROJECT\x10\x1d\x12\x16\n\x12SEED_URL_MALFORMED\x10\x1e\x12+\n\'SEED_URL_MAPPED_TO_NON_ROUTABLE_ADDRESS\x10\x1f\x12)\n%SEED_URL_MAPPED_TO_UNRESERVED_ADDRESS\x10 \x12(\n$SEED_URL_HAS_NON_ROUTABLE_IP_ADDRESS\x10!\x12&\n"SEED_URL_HAS_UNRESERVED_IP_ADDRESS\x10#\x12"\n\x1eSERVICE_ACCOUNT_NOT_CONFIGURED\x10$\x12\x12\n\x0eTOO_MANY_SCANS\x10%\x12"\n\x1eUNABLE_TO_RESOLVE_PROJECT_INFO\x10&\x12(\n$UNSUPPORTED_BLACKLIST_PATTERN_FORMAT\x10\'\x12\x16\n\x12UNSUPPORTED_FILTER\x10(\x12\x1c\n\x18UNSUPPORTED_FINDING_TYPE\x10)\x12\x1a\n\x16UNSUPPORTED_URL_SCHEME\x10*\x1a\x02\x10\x01\x42\xc7\x01\n*com.google.cloud.websecurityscanner.v1betaB\x14ScanConfigErrorProtoP\x01ZXgoogle.golang.org/genproto/googleapis/cloud/websecurityscanner/v1beta;websecurityscanner\xca\x02&Google\\Cloud\\WebSecurityScanner\\V1betab\x06proto3',
 )
 
@@ -26,6 +27,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
     full_name="google.cloud.websecurityscanner.v1beta.ScanConfigError.Code",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="CODE_UNSPECIFIED",
@@ -33,12 +35,23 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="OK", index=1, number=0, serialized_options=None, type=None
+            name="OK",
+            index=1,
+            number=0,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="INTERNAL_ERROR", index=2, number=1, serialized_options=None, type=None
+            name="INTERNAL_ERROR",
+            index=2,
+            number=1,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="APPENGINE_API_BACKEND_ERROR",
@@ -46,6 +59,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=2,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="APPENGINE_API_NOT_ACCESSIBLE",
@@ -53,6 +67,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=3,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="APPENGINE_DEFAULT_HOST_MISSING",
@@ -60,6 +75,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=4,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="CANNOT_USE_GOOGLE_COM_ACCOUNT",
@@ -67,6 +83,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=6,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="CANNOT_USE_OWNER_ACCOUNT",
@@ -74,6 +91,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=7,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="COMPUTE_API_BACKEND_ERROR",
@@ -81,6 +99,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=8,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="COMPUTE_API_NOT_ACCESSIBLE",
@@ -88,6 +107,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=9,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="CUSTOM_LOGIN_URL_DOES_NOT_BELONG_TO_CURRENT_PROJECT",
@@ -95,6 +115,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=10,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="CUSTOM_LOGIN_URL_MALFORMED",
@@ -102,6 +123,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=11,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="CUSTOM_LOGIN_URL_MAPPED_TO_NON_ROUTABLE_ADDRESS",
@@ -109,6 +131,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=12,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="CUSTOM_LOGIN_URL_MAPPED_TO_UNRESERVED_ADDRESS",
@@ -116,6 +139,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=13,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="CUSTOM_LOGIN_URL_HAS_NON_ROUTABLE_IP_ADDRESS",
@@ -123,6 +147,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=14,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="CUSTOM_LOGIN_URL_HAS_UNRESERVED_IP_ADDRESS",
@@ -130,6 +155,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=15,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="DUPLICATE_SCAN_NAME",
@@ -137,6 +163,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=16,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="INVALID_FIELD_VALUE",
@@ -144,6 +171,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=18,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="FAILED_TO_AUTHENTICATE_TO_TARGET",
@@ -151,6 +179,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=19,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="FINDING_TYPE_UNSPECIFIED",
@@ -158,6 +187,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=20,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="FORBIDDEN_TO_SCAN_COMPUTE",
@@ -165,6 +195,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=21,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="FORBIDDEN_UPDATE_TO_MANAGED_SCAN",
@@ -172,6 +203,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=43,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="MALFORMED_FILTER",
@@ -179,6 +211,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=22,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="MALFORMED_RESOURCE_NAME",
@@ -186,6 +219,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=23,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="PROJECT_INACTIVE",
@@ -193,6 +227,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=24,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="REQUIRED_FIELD",
@@ -200,6 +235,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=25,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="RESOURCE_NAME_INCONSISTENT",
@@ -207,6 +243,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=26,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="SCAN_ALREADY_RUNNING",
@@ -214,6 +251,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=27,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="SCAN_NOT_RUNNING",
@@ -221,6 +259,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=28,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="SEED_URL_DOES_NOT_BELONG_TO_CURRENT_PROJECT",
@@ -228,6 +267,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=29,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="SEED_URL_MALFORMED",
@@ -235,6 +275,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=30,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="SEED_URL_MAPPED_TO_NON_ROUTABLE_ADDRESS",
@@ -242,6 +283,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=31,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="SEED_URL_MAPPED_TO_UNRESERVED_ADDRESS",
@@ -249,6 +291,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=32,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="SEED_URL_HAS_NON_ROUTABLE_IP_ADDRESS",
@@ -256,6 +299,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=33,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="SEED_URL_HAS_UNRESERVED_IP_ADDRESS",
@@ -263,6 +307,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=35,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="SERVICE_ACCOUNT_NOT_CONFIGURED",
@@ -270,6 +315,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=36,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="TOO_MANY_SCANS",
@@ -277,6 +323,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=37,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="UNABLE_TO_RESOLVE_PROJECT_INFO",
@@ -284,6 +331,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=38,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="UNSUPPORTED_BLACKLIST_PATTERN_FORMAT",
@@ -291,6 +339,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=39,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="UNSUPPORTED_FILTER",
@@ -298,6 +347,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=40,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="UNSUPPORTED_FINDING_TYPE",
@@ -305,6 +355,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=41,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="UNSUPPORTED_URL_SCHEME",
@@ -312,6 +363,7 @@ _SCANCONFIGERROR_CODE = _descriptor.EnumDescriptor(
             number=42,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -328,6 +380,7 @@ _SCANCONFIGERROR = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="code",
@@ -346,6 +399,7 @@ _SCANCONFIGERROR = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="field_name",
@@ -364,6 +418,7 @@ _SCANCONFIGERROR = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],

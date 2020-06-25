@@ -23,6 +23,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
     package="google.cloud.websecurityscanner.v1beta",
     syntax="proto3",
     serialized_options=b"\n*com.google.cloud.websecurityscanner.v1betaB\014FindingProtoP\001ZXgoogle.golang.org/genproto/googleapis/cloud/websecurityscanner/v1beta;websecurityscanner\312\002&Google\\Cloud\\WebSecurityScanner\\V1beta",
+    create_key=_descriptor._internal_create_key,
     serialized_pb=b'\n:google/cloud/websecurityscanner_v1beta/proto/finding.proto\x12&google.cloud.websecurityscanner.v1beta\x1a\x19google/api/resource.proto\x1a@google/cloud/websecurityscanner_v1beta/proto/finding_addon.proto"\xa9\x06\n\x07\x46inding\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x14\n\x0c\x66inding_type\x18\x02 \x01(\t\x12\x13\n\x0bhttp_method\x18\x03 \x01(\t\x12\x12\n\nfuzzed_url\x18\x04 \x01(\t\x12\x0c\n\x04\x62ody\x18\x05 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x06 \x01(\t\x12\x18\n\x10reproduction_url\x18\x07 \x01(\t\x12\x11\n\tframe_url\x18\x08 \x01(\t\x12\x11\n\tfinal_url\x18\t \x01(\t\x12\x13\n\x0btracking_id\x18\n \x01(\t\x12:\n\x04\x66orm\x18\x10 \x01(\x0b\x32,.google.cloud.websecurityscanner.v1beta.Form\x12Q\n\x10outdated_library\x18\x0b \x01(\x0b\x32\x37.google.cloud.websecurityscanner.v1beta.OutdatedLibrary\x12U\n\x12violating_resource\x18\x0c \x01(\x0b\x32\x39.google.cloud.websecurityscanner.v1beta.ViolatingResource\x12U\n\x12vulnerable_headers\x18\x0f \x01(\x0b\x32\x39.google.cloud.websecurityscanner.v1beta.VulnerableHeaders\x12[\n\x15vulnerable_parameters\x18\r \x01(\x0b\x32<.google.cloud.websecurityscanner.v1beta.VulnerableParameters\x12\x38\n\x03xss\x18\x0e \x01(\x0b\x32+.google.cloud.websecurityscanner.v1beta.Xss:\x84\x01\xea\x41\x80\x01\n)websecurityscanner.googleapis.com/Finding\x12Sprojects/{project}/scanConfigs/{scan_config}/scanRuns/{scan_run}/findings/{finding}B\xbf\x01\n*com.google.cloud.websecurityscanner.v1betaB\x0c\x46indingProtoP\x01ZXgoogle.golang.org/genproto/googleapis/cloud/websecurityscanner/v1beta;websecurityscanner\xca\x02&Google\\Cloud\\WebSecurityScanner\\V1betab\x06proto3',
     dependencies=[
         google_dot_api_dot_resource__pb2.DESCRIPTOR,
@@ -37,6 +38,7 @@ _FINDING = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -55,6 +57,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="finding_type",
@@ -73,6 +76,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="http_method",
@@ -91,6 +95,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="fuzzed_url",
@@ -109,6 +114,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="body",
@@ -127,6 +133,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="description",
@@ -145,6 +152,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="reproduction_url",
@@ -163,6 +171,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="frame_url",
@@ -181,6 +190,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="final_url",
@@ -199,6 +209,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="tracking_id",
@@ -217,6 +228,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="form",
@@ -235,6 +247,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="outdated_library",
@@ -253,6 +266,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="violating_resource",
@@ -271,6 +285,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="vulnerable_headers",
@@ -289,6 +304,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="vulnerable_parameters",
@@ -307,6 +323,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="xss",
@@ -325,6 +342,7 @@ _FINDING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],

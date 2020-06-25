@@ -22,6 +22,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
     package="google.cloud.websecurityscanner.v1alpha",
     syntax="proto3",
     serialized_options=b"\n+com.google.cloud.websecurityscanner.v1alphaB\025FindingTypeStatsProtoP\001ZYgoogle.golang.org/genproto/googleapis/cloud/websecurityscanner/v1alpha;websecurityscanner",
+    create_key=_descriptor._internal_create_key,
     serialized_pb=b"\nFgoogle/cloud/websecurityscanner_v1alpha/proto/finding_type_stats.proto\x12'google.cloud.websecurityscanner.v1alpha\x1a;google/cloud/websecurityscanner_v1alpha/proto/finding.proto\"}\n\x10\x46indingTypeStats\x12R\n\x0c\x66inding_type\x18\x01 \x01(\x0e\x32<.google.cloud.websecurityscanner.v1alpha.Finding.FindingType\x12\x15\n\rfinding_count\x18\x02 \x01(\x05\x42\xa1\x01\n+com.google.cloud.websecurityscanner.v1alphaB\x15\x46indingTypeStatsProtoP\x01ZYgoogle.golang.org/genproto/googleapis/cloud/websecurityscanner/v1alpha;websecurityscannerb\x06proto3",
     dependencies=[
         google_dot_cloud_dot_websecurityscanner__v1alpha_dot_proto_dot_finding__pb2.DESCRIPTOR
@@ -35,6 +36,7 @@ _FINDINGTYPESTATS = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="finding_type",
@@ -53,6 +55,7 @@ _FINDINGTYPESTATS = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="finding_count",
@@ -71,6 +74,7 @@ _FINDINGTYPESTATS = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],

@@ -17,6 +17,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
     package="google.cloud.websecurityscanner.v1alpha",
     syntax="proto3",
     serialized_options=b"\n+com.google.cloud.websecurityscanner.v1alphaB\017CrawledUrlProtoP\001ZYgoogle.golang.org/genproto/googleapis/cloud/websecurityscanner/v1alpha;websecurityscanner",
+    create_key=_descriptor._internal_create_key,
     serialized_pb=b"\n?google/cloud/websecurityscanner_v1alpha/proto/crawled_url.proto\x12'google.cloud.websecurityscanner.v1alpha\"<\n\nCrawledUrl\x12\x13\n\x0bhttp_method\x18\x01 \x01(\t\x12\x0b\n\x03url\x18\x02 \x01(\t\x12\x0c\n\x04\x62ody\x18\x03 \x01(\tB\x9b\x01\n+com.google.cloud.websecurityscanner.v1alphaB\x0f\x43rawledUrlProtoP\x01ZYgoogle.golang.org/genproto/googleapis/cloud/websecurityscanner/v1alpha;websecurityscannerb\x06proto3",
 )
 
@@ -27,6 +28,7 @@ _CRAWLEDURL = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="http_method",
@@ -45,6 +47,7 @@ _CRAWLEDURL = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="url",
@@ -63,6 +66,7 @@ _CRAWLEDURL = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="body",
@@ -81,6 +85,7 @@ _CRAWLEDURL = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],

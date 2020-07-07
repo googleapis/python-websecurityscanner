@@ -16,7 +16,7 @@
 import synthtool as s
 from synthtool import gcp
 
-gapic = gcp.GAPICBazel()
+gapic = gcp.GAPICMicrogenerator()
 common = gcp.CommonTemplates()
 
 
@@ -26,26 +26,18 @@ common = gcp.CommonTemplates()
 versions = ["v1alpha", "v1beta"]
 
 for version in versions:
-	library = gapic.py_library(
-	    service="websecurityscanner",
-	    version=version,
-	    bazel_target=f"//google/cloud/websecurityscanner/{version}:websecurityscanner-{version}-py",
-	    include_protos=True,
-	)
-
-	s.move(library / f"google/cloud/websecurityscanner_{version}/proto")
-	s.move(library / f"google/cloud/websecurityscanner_{version}/gapic")
-	s.move(library / f"google/cloud/websecurityscanner_{version}/*.py")
-	s.move(library / f"docs/gapic/{version}")
-	s.move(library / f"tests/unit/gapic/{version}")
-
-s.move(library / "google/cloud/websecurityscanner.py")
+    library = gapic.py_library(service="websecurityscanner", version=version,)
+    s.move(library, excludes=["setup.py", "docs/index.rst"])
 
 # ----------------------------------------------------------------------------
 # Add templated files
 # ----------------------------------------------------------------------------
-templated_files = common.py_library(cov_level=89)
-s.move(templated_files)
+templated_files = common.py_library(
+    cov_level=100,
+    unit_test_python_versions=["3.6", "3.7", "3.8"],
+    system_test_python_versions=["3.7"],
+)
+s.move(templated_files, excludes=[".coveragerc"])  # microgenerator has a good .coveragerc file
 
 # TODO(busunkim): Use latest sphinx after microgenerator transition
 s.replace("noxfile.py", """['"]sphinx['"]""", '"sphinx<3.0.0"')

@@ -4166,29 +4166,6 @@ def test_web_security_scanner_grpc_asyncio_transport_channel_mtls_with_adc(
         assert transport.grpc_channel == mock_grpc_channel
 
 
-def test_scan_config_path():
-    project = "squid"
-    scan_config = "clam"
-
-    expected = "projects/{project}/scanConfigs/{scan_config}".format(
-        project=project, scan_config=scan_config,
-    )
-    actual = WebSecurityScannerClient.scan_config_path(project, scan_config)
-    assert expected == actual
-
-
-def test_parse_scan_config_path():
-    expected = {
-        "project": "whelk",
-        "scan_config": "octopus",
-    }
-    path = WebSecurityScannerClient.scan_config_path(**expected)
-
-    # Check that the path construction is reversible.
-    actual = WebSecurityScannerClient.parse_scan_config_path(path)
-    assert expected == actual
-
-
 def test_scan_run_path():
     project = "squid"
     scan_config = "clam"
@@ -4211,4 +4188,27 @@ def test_parse_scan_run_path():
 
     # Check that the path construction is reversible.
     actual = WebSecurityScannerClient.parse_scan_run_path(path)
+    assert expected == actual
+
+
+def test_scan_config_path():
+    project = "squid"
+    scan_config = "clam"
+
+    expected = "projects/{project}/scanConfigs/{scan_config}".format(
+        project=project, scan_config=scan_config,
+    )
+    actual = WebSecurityScannerClient.scan_config_path(project, scan_config)
+    assert expected == actual
+
+
+def test_parse_scan_config_path():
+    expected = {
+        "project": "whelk",
+        "scan_config": "octopus",
+    }
+    path = WebSecurityScannerClient.scan_config_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = WebSecurityScannerClient.parse_scan_config_path(path)
     assert expected == actual

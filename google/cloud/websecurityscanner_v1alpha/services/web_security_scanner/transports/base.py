@@ -17,9 +17,12 @@
 
 import abc
 import typing
+import pkg_resources
 
 from google import auth
 from google.api_core import exceptions  # type: ignore
+from google.api_core import gapic_v1  # type: ignore
+from google.api_core import retry as retries  # type: ignore
 from google.auth import credentials  # type: ignore
 
 from google.cloud.websecurityscanner_v1alpha.types import finding
@@ -28,6 +31,16 @@ from google.cloud.websecurityscanner_v1alpha.types import scan_config as gcw_sca
 from google.cloud.websecurityscanner_v1alpha.types import scan_run
 from google.cloud.websecurityscanner_v1alpha.types import web_security_scanner
 from google.protobuf import empty_pb2 as empty  # type: ignore
+
+
+try:
+    _client_info = gapic_v1.client_info.ClientInfo(
+        gapic_version=pkg_resources.get_distribution(
+            "google-cloud-websecurityscanner",
+        ).version,
+    )
+except pkg_resources.DistributionNotFound:
+    _client_info = gapic_v1.client_info.ClientInfo()
 
 
 class WebSecurityScannerTransport(abc.ABC):
@@ -85,6 +98,147 @@ class WebSecurityScannerTransport(abc.ABC):
 
         # Save the credentials.
         self._credentials = credentials
+
+        # Lifted into its own function so it can be stubbed out during tests.
+        self._prep_wrapped_messages()
+
+    def _prep_wrapped_messages(self):
+        # Precompute the wrapped methods.
+        self._wrapped_methods = {
+            self.create_scan_config: gapic_v1.method.wrap_method(
+                self.create_scan_config,
+                default_timeout=600.0,
+                client_info=_client_info,
+            ),
+            self.delete_scan_config: gapic_v1.method.wrap_method(
+                self.delete_scan_config,
+                default_retry=retries.Retry(
+                    initial=0.1,
+                    maximum=60.0,
+                    multiplier=1.3,
+                    predicate=retries.if_exception_type(
+                        exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
+                    ),
+                ),
+                default_timeout=600.0,
+                client_info=_client_info,
+            ),
+            self.get_scan_config: gapic_v1.method.wrap_method(
+                self.get_scan_config,
+                default_retry=retries.Retry(
+                    initial=0.1,
+                    maximum=60.0,
+                    multiplier=1.3,
+                    predicate=retries.if_exception_type(
+                        exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
+                    ),
+                ),
+                default_timeout=600.0,
+                client_info=_client_info,
+            ),
+            self.list_scan_configs: gapic_v1.method.wrap_method(
+                self.list_scan_configs,
+                default_retry=retries.Retry(
+                    initial=0.1,
+                    maximum=60.0,
+                    multiplier=1.3,
+                    predicate=retries.if_exception_type(
+                        exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
+                    ),
+                ),
+                default_timeout=600.0,
+                client_info=_client_info,
+            ),
+            self.update_scan_config: gapic_v1.method.wrap_method(
+                self.update_scan_config,
+                default_timeout=600.0,
+                client_info=_client_info,
+            ),
+            self.start_scan_run: gapic_v1.method.wrap_method(
+                self.start_scan_run, default_timeout=600.0, client_info=_client_info,
+            ),
+            self.get_scan_run: gapic_v1.method.wrap_method(
+                self.get_scan_run,
+                default_retry=retries.Retry(
+                    initial=0.1,
+                    maximum=60.0,
+                    multiplier=1.3,
+                    predicate=retries.if_exception_type(
+                        exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
+                    ),
+                ),
+                default_timeout=600.0,
+                client_info=_client_info,
+            ),
+            self.list_scan_runs: gapic_v1.method.wrap_method(
+                self.list_scan_runs,
+                default_retry=retries.Retry(
+                    initial=0.1,
+                    maximum=60.0,
+                    multiplier=1.3,
+                    predicate=retries.if_exception_type(
+                        exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
+                    ),
+                ),
+                default_timeout=600.0,
+                client_info=_client_info,
+            ),
+            self.stop_scan_run: gapic_v1.method.wrap_method(
+                self.stop_scan_run, default_timeout=600.0, client_info=_client_info,
+            ),
+            self.list_crawled_urls: gapic_v1.method.wrap_method(
+                self.list_crawled_urls,
+                default_retry=retries.Retry(
+                    initial=0.1,
+                    maximum=60.0,
+                    multiplier=1.3,
+                    predicate=retries.if_exception_type(
+                        exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
+                    ),
+                ),
+                default_timeout=600.0,
+                client_info=_client_info,
+            ),
+            self.get_finding: gapic_v1.method.wrap_method(
+                self.get_finding,
+                default_retry=retries.Retry(
+                    initial=0.1,
+                    maximum=60.0,
+                    multiplier=1.3,
+                    predicate=retries.if_exception_type(
+                        exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
+                    ),
+                ),
+                default_timeout=600.0,
+                client_info=_client_info,
+            ),
+            self.list_findings: gapic_v1.method.wrap_method(
+                self.list_findings,
+                default_retry=retries.Retry(
+                    initial=0.1,
+                    maximum=60.0,
+                    multiplier=1.3,
+                    predicate=retries.if_exception_type(
+                        exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
+                    ),
+                ),
+                default_timeout=600.0,
+                client_info=_client_info,
+            ),
+            self.list_finding_type_stats: gapic_v1.method.wrap_method(
+                self.list_finding_type_stats,
+                default_retry=retries.Retry(
+                    initial=0.1,
+                    maximum=60.0,
+                    multiplier=1.3,
+                    predicate=retries.if_exception_type(
+                        exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
+                    ),
+                ),
+                default_timeout=600.0,
+                client_info=_client_info,
+            ),
+        }
 
     @property
     def create_scan_config(

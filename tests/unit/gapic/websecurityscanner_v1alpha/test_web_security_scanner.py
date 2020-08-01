@@ -59,6 +59,17 @@ def client_cert_source_callback():
     return b"cert bytes", b"key bytes"
 
 
+# If default endpoint is localhost, then default mtls endpoint will be the same.
+# This method modifies the default endpoint so the client can produce a different
+# mtls endpoint for endpoint testing purposes.
+def modify_default_endpoint(client):
+    return (
+        "foo.googleapis.com"
+        if ("localhost" in client.DEFAULT_ENDPOINT)
+        else client.DEFAULT_ENDPOINT
+    )
+
+
 def test__get_default_mtls_endpoint():
     api_endpoint = "example.googleapis.com"
     api_mtls_endpoint = "example.mtls.googleapis.com"
@@ -125,6 +136,16 @@ def test_web_security_scanner_client_get_transport_class():
             "grpc_asyncio",
         ),
     ],
+)
+@mock.patch.object(
+    WebSecurityScannerClient,
+    "DEFAULT_ENDPOINT",
+    modify_default_endpoint(WebSecurityScannerClient),
+)
+@mock.patch.object(
+    WebSecurityScannerAsyncClient,
+    "DEFAULT_ENDPOINT",
+    modify_default_endpoint(WebSecurityScannerAsyncClient),
 )
 def test_web_security_scanner_client_client_options(
     client_class, transport_class, transport_name
@@ -347,14 +368,16 @@ def test_web_security_scanner_client_client_options_from_dict():
         )
 
 
-def test_create_scan_config(transport: str = "grpc"):
+def test_create_scan_config(
+    transport: str = "grpc", request_type=web_security_scanner.CreateScanConfigRequest
+):
     client = WebSecurityScannerClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = web_security_scanner.CreateScanConfigRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -377,7 +400,7 @@ def test_create_scan_config(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == web_security_scanner.CreateScanConfigRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, gcw_scan_config.ScanConfig)
@@ -397,6 +420,10 @@ def test_create_scan_config(transport: str = "grpc"):
     assert response.target_platforms == [
         gcw_scan_config.ScanConfig.TargetPlatform.APP_ENGINE
     ]
+
+
+def test_create_scan_config_from_dict():
+    test_create_scan_config(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -600,14 +627,16 @@ async def test_create_scan_config_flattened_error_async():
         )
 
 
-def test_delete_scan_config(transport: str = "grpc"):
+def test_delete_scan_config(
+    transport: str = "grpc", request_type=web_security_scanner.DeleteScanConfigRequest
+):
     client = WebSecurityScannerClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = web_security_scanner.DeleteScanConfigRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -622,10 +651,14 @@ def test_delete_scan_config(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == web_security_scanner.DeleteScanConfigRequest()
 
     # Establish that the response is the type that we expect.
     assert response is None
+
+
+def test_delete_scan_config_from_dict():
+    test_delete_scan_config(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -785,14 +818,16 @@ async def test_delete_scan_config_flattened_error_async():
         )
 
 
-def test_get_scan_config(transport: str = "grpc"):
+def test_get_scan_config(
+    transport: str = "grpc", request_type=web_security_scanner.GetScanConfigRequest
+):
     client = WebSecurityScannerClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = web_security_scanner.GetScanConfigRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client._transport.get_scan_config), "__call__") as call:
@@ -813,7 +848,7 @@ def test_get_scan_config(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == web_security_scanner.GetScanConfigRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, scan_config.ScanConfig)
@@ -833,6 +868,10 @@ def test_get_scan_config(transport: str = "grpc"):
     assert response.target_platforms == [
         scan_config.ScanConfig.TargetPlatform.APP_ENGINE
     ]
+
+
+def test_get_scan_config_from_dict():
+    test_get_scan_config(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -1018,14 +1057,16 @@ async def test_get_scan_config_flattened_error_async():
         )
 
 
-def test_list_scan_configs(transport: str = "grpc"):
+def test_list_scan_configs(
+    transport: str = "grpc", request_type=web_security_scanner.ListScanConfigsRequest
+):
     client = WebSecurityScannerClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = web_security_scanner.ListScanConfigsRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -1042,12 +1083,16 @@ def test_list_scan_configs(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == web_security_scanner.ListScanConfigsRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, pagers.ListScanConfigsPager)
 
     assert response.next_page_token == "next_page_token_value"
+
+
+def test_list_scan_configs_from_dict():
+    test_list_scan_configs(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -1375,14 +1420,16 @@ async def test_list_scan_configs_async_pages():
             assert page.raw_page.next_page_token == token
 
 
-def test_update_scan_config(transport: str = "grpc"):
+def test_update_scan_config(
+    transport: str = "grpc", request_type=web_security_scanner.UpdateScanConfigRequest
+):
     client = WebSecurityScannerClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = web_security_scanner.UpdateScanConfigRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -1405,7 +1452,7 @@ def test_update_scan_config(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == web_security_scanner.UpdateScanConfigRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, gcw_scan_config.ScanConfig)
@@ -1425,6 +1472,10 @@ def test_update_scan_config(transport: str = "grpc"):
     assert response.target_platforms == [
         gcw_scan_config.ScanConfig.TargetPlatform.APP_ENGINE
     ]
+
+
+def test_update_scan_config_from_dict():
+    test_update_scan_config(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -1632,14 +1683,16 @@ async def test_update_scan_config_flattened_error_async():
         )
 
 
-def test_start_scan_run(transport: str = "grpc"):
+def test_start_scan_run(
+    transport: str = "grpc", request_type=web_security_scanner.StartScanRunRequest
+):
     client = WebSecurityScannerClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = web_security_scanner.StartScanRunRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client._transport.start_scan_run), "__call__") as call:
@@ -1660,7 +1713,7 @@ def test_start_scan_run(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == web_security_scanner.StartScanRunRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, scan_run.ScanRun)
@@ -1678,6 +1731,10 @@ def test_start_scan_run(transport: str = "grpc"):
     assert response.has_vulnerabilities is True
 
     assert response.progress_percent == 1733
+
+
+def test_start_scan_run_from_dict():
+    test_start_scan_run(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -1857,14 +1914,16 @@ async def test_start_scan_run_flattened_error_async():
         )
 
 
-def test_get_scan_run(transport: str = "grpc"):
+def test_get_scan_run(
+    transport: str = "grpc", request_type=web_security_scanner.GetScanRunRequest
+):
     client = WebSecurityScannerClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = web_security_scanner.GetScanRunRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client._transport.get_scan_run), "__call__") as call:
@@ -1885,7 +1944,7 @@ def test_get_scan_run(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == web_security_scanner.GetScanRunRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, scan_run.ScanRun)
@@ -1903,6 +1962,10 @@ def test_get_scan_run(transport: str = "grpc"):
     assert response.has_vulnerabilities is True
 
     assert response.progress_percent == 1733
+
+
+def test_get_scan_run_from_dict():
+    test_get_scan_run(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -2082,14 +2145,16 @@ async def test_get_scan_run_flattened_error_async():
         )
 
 
-def test_list_scan_runs(transport: str = "grpc"):
+def test_list_scan_runs(
+    transport: str = "grpc", request_type=web_security_scanner.ListScanRunsRequest
+):
     client = WebSecurityScannerClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = web_security_scanner.ListScanRunsRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client._transport.list_scan_runs), "__call__") as call:
@@ -2104,12 +2169,16 @@ def test_list_scan_runs(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == web_security_scanner.ListScanRunsRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, pagers.ListScanRunsPager)
 
     assert response.next_page_token == "next_page_token_value"
+
+
+def test_list_scan_runs_from_dict():
+    test_list_scan_runs(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -2413,14 +2482,16 @@ async def test_list_scan_runs_async_pages():
             assert page.raw_page.next_page_token == token
 
 
-def test_stop_scan_run(transport: str = "grpc"):
+def test_stop_scan_run(
+    transport: str = "grpc", request_type=web_security_scanner.StopScanRunRequest
+):
     client = WebSecurityScannerClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = web_security_scanner.StopScanRunRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client._transport.stop_scan_run), "__call__") as call:
@@ -2441,7 +2512,7 @@ def test_stop_scan_run(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == web_security_scanner.StopScanRunRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, scan_run.ScanRun)
@@ -2459,6 +2530,10 @@ def test_stop_scan_run(transport: str = "grpc"):
     assert response.has_vulnerabilities is True
 
     assert response.progress_percent == 1733
+
+
+def test_stop_scan_run_from_dict():
+    test_stop_scan_run(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -2638,14 +2713,16 @@ async def test_stop_scan_run_flattened_error_async():
         )
 
 
-def test_list_crawled_urls(transport: str = "grpc"):
+def test_list_crawled_urls(
+    transport: str = "grpc", request_type=web_security_scanner.ListCrawledUrlsRequest
+):
     client = WebSecurityScannerClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = web_security_scanner.ListCrawledUrlsRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -2662,12 +2739,16 @@ def test_list_crawled_urls(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == web_security_scanner.ListCrawledUrlsRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, pagers.ListCrawledUrlsPager)
 
     assert response.next_page_token == "next_page_token_value"
+
+
+def test_list_crawled_urls_from_dict():
+    test_list_crawled_urls(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -2995,14 +3076,16 @@ async def test_list_crawled_urls_async_pages():
             assert page.raw_page.next_page_token == token
 
 
-def test_get_finding(transport: str = "grpc"):
+def test_get_finding(
+    transport: str = "grpc", request_type=web_security_scanner.GetFindingRequest
+):
     client = WebSecurityScannerClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = web_security_scanner.GetFindingRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client._transport.get_finding), "__call__") as call:
@@ -3026,7 +3109,7 @@ def test_get_finding(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == web_security_scanner.GetFindingRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, finding.Finding)
@@ -3050,6 +3133,10 @@ def test_get_finding(transport: str = "grpc"):
     assert response.final_url == "final_url_value"
 
     assert response.tracking_id == "tracking_id_value"
+
+
+def test_get_finding_from_dict():
+    test_get_finding(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -3238,14 +3325,16 @@ async def test_get_finding_flattened_error_async():
         )
 
 
-def test_list_findings(transport: str = "grpc"):
+def test_list_findings(
+    transport: str = "grpc", request_type=web_security_scanner.ListFindingsRequest
+):
     client = WebSecurityScannerClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = web_security_scanner.ListFindingsRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client._transport.list_findings), "__call__") as call:
@@ -3260,12 +3349,16 @@ def test_list_findings(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == web_security_scanner.ListFindingsRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, pagers.ListFindingsPager)
 
     assert response.next_page_token == "next_page_token_value"
+
+
+def test_list_findings_from_dict():
+    test_list_findings(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -3581,14 +3674,17 @@ async def test_list_findings_async_pages():
             assert page.raw_page.next_page_token == token
 
 
-def test_list_finding_type_stats(transport: str = "grpc"):
+def test_list_finding_type_stats(
+    transport: str = "grpc",
+    request_type=web_security_scanner.ListFindingTypeStatsRequest,
+):
     client = WebSecurityScannerClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = web_security_scanner.ListFindingTypeStatsRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -3603,10 +3699,14 @@ def test_list_finding_type_stats(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == web_security_scanner.ListFindingTypeStatsRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, web_security_scanner.ListFindingTypeStatsResponse)
+
+
+def test_list_finding_type_stats_from_dict():
+    test_list_finding_type_stats(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -3843,9 +3943,13 @@ def test_web_security_scanner_base_transport_error():
 
 def test_web_security_scanner_base_transport():
     # Instantiate the base transport.
-    transport = transports.WebSecurityScannerTransport(
-        credentials=credentials.AnonymousCredentials(),
-    )
+    with mock.patch(
+        "google.cloud.websecurityscanner_v1alpha.services.web_security_scanner.transports.WebSecurityScannerTransport.__init__"
+    ) as Transport:
+        Transport.return_value = None
+        transport = transports.WebSecurityScannerTransport(
+            credentials=credentials.AnonymousCredentials(),
+        )
 
     # Every method on the transport should just blindly
     # raise NotImplementedError.
@@ -3871,7 +3975,12 @@ def test_web_security_scanner_base_transport():
 
 def test_web_security_scanner_base_transport_with_credentials_file():
     # Instantiate the base transport with a credentials file
-    with mock.patch.object(auth, "load_credentials_from_file") as load_creds:
+    with mock.patch.object(
+        auth, "load_credentials_from_file"
+    ) as load_creds, mock.patch(
+        "google.cloud.websecurityscanner_v1alpha.services.web_security_scanner.transports.WebSecurityScannerTransport._prep_wrapped_messages"
+    ) as Transport:
+        Transport.return_value = None
         load_creds.return_value = (credentials.AnonymousCredentials(), None)
         transport = transports.WebSecurityScannerTransport(
             credentials_file="credentials.json", quota_project_id="octopus",
@@ -4106,6 +4215,29 @@ def test_web_security_scanner_grpc_asyncio_transport_channel_mtls_with_adc(
         assert transport.grpc_channel == mock_grpc_channel
 
 
+def test_scan_config_path():
+    project = "squid"
+    scan_config = "clam"
+
+    expected = "projects/{project}/scanConfigs/{scan_config}".format(
+        project=project, scan_config=scan_config,
+    )
+    actual = WebSecurityScannerClient.scan_config_path(project, scan_config)
+    assert expected == actual
+
+
+def test_parse_scan_config_path():
+    expected = {
+        "project": "whelk",
+        "scan_config": "octopus",
+    }
+    path = WebSecurityScannerClient.scan_config_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = WebSecurityScannerClient.parse_scan_config_path(path)
+    assert expected == actual
+
+
 def test_scan_run_path():
     project = "squid"
     scan_config = "clam"
@@ -4128,27 +4260,4 @@ def test_parse_scan_run_path():
 
     # Check that the path construction is reversible.
     actual = WebSecurityScannerClient.parse_scan_run_path(path)
-    assert expected == actual
-
-
-def test_scan_config_path():
-    project = "squid"
-    scan_config = "clam"
-
-    expected = "projects/{project}/scanConfigs/{scan_config}".format(
-        project=project, scan_config=scan_config,
-    )
-    actual = WebSecurityScannerClient.scan_config_path(project, scan_config)
-    assert expected == actual
-
-
-def test_parse_scan_config_path():
-    expected = {
-        "project": "whelk",
-        "scan_config": "octopus",
-    }
-    path = WebSecurityScannerClient.scan_config_path(**expected)
-
-    # Check that the path construction is reversible.
-    actual = WebSecurityScannerClient.parse_scan_config_path(path)
     assert expected == actual

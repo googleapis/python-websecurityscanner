@@ -311,29 +311,31 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, scan_config]):
+        has_flattened_params = any([parent, scan_config])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = web_security_scanner.CreateScanConfigRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a web_security_scanner.CreateScanConfigRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, web_security_scanner.CreateScanConfigRequest):
+            request = web_security_scanner.CreateScanConfigRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
-        if scan_config is not None:
-            request.scan_config = scan_config
+            if parent is not None:
+                request.parent = parent
+            if scan_config is not None:
+                request.scan_config = scan_config
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.create_scan_config,
-            default_timeout=600.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.create_scan_config]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -381,35 +383,29 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = web_security_scanner.DeleteScanConfigRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a web_security_scanner.DeleteScanConfigRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, web_security_scanner.DeleteScanConfigRequest):
+            request = web_security_scanner.DeleteScanConfigRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.delete_scan_config,
-            default_retry=retries.Retry(
-                initial=0.1,
-                maximum=60.0,
-                multiplier=1.3,
-                predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
-                ),
-            ),
-            default_timeout=600.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.delete_scan_config]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -462,35 +458,29 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = web_security_scanner.GetScanConfigRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a web_security_scanner.GetScanConfigRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, web_security_scanner.GetScanConfigRequest):
+            request = web_security_scanner.GetScanConfigRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.get_scan_config,
-            default_retry=retries.Retry(
-                initial=0.1,
-                maximum=60.0,
-                multiplier=1.3,
-                predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
-                ),
-            ),
-            default_timeout=600.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.get_scan_config]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -544,35 +534,29 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent]):
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = web_security_scanner.ListScanConfigsRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a web_security_scanner.ListScanConfigsRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, web_security_scanner.ListScanConfigsRequest):
+            request = web_security_scanner.ListScanConfigsRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
+            if parent is not None:
+                request.parent = parent
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.list_scan_configs,
-            default_retry=retries.Retry(
-                initial=0.1,
-                maximum=60.0,
-                multiplier=1.3,
-                predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
-                ),
-            ),
-            default_timeout=600.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.list_scan_configs]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -642,29 +626,31 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([scan_config, update_mask]):
+        has_flattened_params = any([scan_config, update_mask])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = web_security_scanner.UpdateScanConfigRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a web_security_scanner.UpdateScanConfigRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, web_security_scanner.UpdateScanConfigRequest):
+            request = web_security_scanner.UpdateScanConfigRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if scan_config is not None:
-            request.scan_config = scan_config
-        if update_mask is not None:
-            request.update_mask = update_mask
+            if scan_config is not None:
+                request.scan_config = scan_config
+            if update_mask is not None:
+                request.update_mask = update_mask
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.update_scan_config,
-            default_timeout=600.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.update_scan_config]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -719,27 +705,29 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = web_security_scanner.StartScanRunRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a web_security_scanner.StartScanRunRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, web_security_scanner.StartScanRunRequest):
+            request = web_security_scanner.StartScanRunRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.start_scan_run,
-            default_timeout=600.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.start_scan_run]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -791,35 +779,29 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = web_security_scanner.GetScanRunRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a web_security_scanner.GetScanRunRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, web_security_scanner.GetScanRunRequest):
+            request = web_security_scanner.GetScanRunRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.get_scan_run,
-            default_retry=retries.Retry(
-                initial=0.1,
-                maximum=60.0,
-                multiplier=1.3,
-                predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
-                ),
-            ),
-            default_timeout=600.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.get_scan_run]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -875,35 +857,29 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent]):
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = web_security_scanner.ListScanRunsRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a web_security_scanner.ListScanRunsRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, web_security_scanner.ListScanRunsRequest):
+            request = web_security_scanner.ListScanRunsRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
+            if parent is not None:
+                request.parent = parent
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.list_scan_runs,
-            default_retry=retries.Retry(
-                initial=0.1,
-                maximum=60.0,
-                multiplier=1.3,
-                predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
-                ),
-            ),
-            default_timeout=600.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.list_scan_runs]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -962,27 +938,29 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = web_security_scanner.StopScanRunRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a web_security_scanner.StopScanRunRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, web_security_scanner.StopScanRunRequest):
+            request = web_security_scanner.StopScanRunRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.stop_scan_run,
-            default_timeout=600.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.stop_scan_run]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1037,35 +1015,29 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent]):
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = web_security_scanner.ListCrawledUrlsRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a web_security_scanner.ListCrawledUrlsRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, web_security_scanner.ListCrawledUrlsRequest):
+            request = web_security_scanner.ListCrawledUrlsRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
+            if parent is not None:
+                request.parent = parent
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.list_crawled_urls,
-            default_retry=retries.Retry(
-                initial=0.1,
-                maximum=60.0,
-                multiplier=1.3,
-                predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
-                ),
-            ),
-            default_timeout=600.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.list_crawled_urls]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1124,35 +1096,29 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = web_security_scanner.GetFindingRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a web_security_scanner.GetFindingRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, web_security_scanner.GetFindingRequest):
+            request = web_security_scanner.GetFindingRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.get_finding,
-            default_retry=retries.Retry(
-                initial=0.1,
-                maximum=60.0,
-                multiplier=1.3,
-                predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
-                ),
-            ),
-            default_timeout=600.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.get_finding]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1215,37 +1181,31 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, filter]):
+        has_flattened_params = any([parent, filter])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = web_security_scanner.ListFindingsRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a web_security_scanner.ListFindingsRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, web_security_scanner.ListFindingsRequest):
+            request = web_security_scanner.ListFindingsRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
-        if filter is not None:
-            request.filter = filter
+            if parent is not None:
+                request.parent = parent
+            if filter is not None:
+                request.filter = filter
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.list_findings,
-            default_retry=retries.Retry(
-                initial=0.1,
-                maximum=60.0,
-                multiplier=1.3,
-                predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
-                ),
-            ),
-            default_timeout=600.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.list_findings]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1302,35 +1262,29 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent]):
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = web_security_scanner.ListFindingTypeStatsRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a web_security_scanner.ListFindingTypeStatsRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, web_security_scanner.ListFindingTypeStatsRequest):
+            request = web_security_scanner.ListFindingTypeStatsRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
+            if parent is not None:
+                request.parent = parent
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.list_finding_type_stats,
-            default_retry=retries.Retry(
-                initial=0.1,
-                maximum=60.0,
-                multiplier=1.3,
-                predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
-                ),
-            ),
-            default_timeout=600.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.list_finding_type_stats]
 
         # Certain fields should be provided within the metadata header;
         # add these here.

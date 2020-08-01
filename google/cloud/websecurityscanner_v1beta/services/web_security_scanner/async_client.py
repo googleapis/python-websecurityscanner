@@ -59,9 +59,9 @@ class WebSecurityScannerAsyncClient:
     DEFAULT_ENDPOINT = WebSecurityScannerClient.DEFAULT_ENDPOINT
     DEFAULT_MTLS_ENDPOINT = WebSecurityScannerClient.DEFAULT_MTLS_ENDPOINT
 
-    scan_config_path = staticmethod(WebSecurityScannerClient.scan_config_path)
-
     scan_run_path = staticmethod(WebSecurityScannerClient.scan_run_path)
+
+    scan_config_path = staticmethod(WebSecurityScannerClient.scan_config_path)
 
     from_service_account_file = WebSecurityScannerClient.from_service_account_file
     from_service_account_json = from_service_account_file

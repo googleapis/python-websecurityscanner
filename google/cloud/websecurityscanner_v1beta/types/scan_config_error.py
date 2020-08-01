@@ -19,7 +19,10 @@ import proto  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package="google.cloud.websecurityscanner.v1beta", manifest={"ScanConfigError",},
+    package='google.cloud.websecurityscanner.v1beta',
+    manifest={
+        'ScanConfigError',
+    },
 )
 
 
@@ -39,7 +42,6 @@ class ScanConfigError(proto.Message):
             field is provided for troubleshooting purposes only and its
             actual value can change in the future.
     """
-
     class Code(proto.Enum):
         r"""Output only.
         Defines an error reason code.
@@ -88,7 +90,9 @@ class ScanConfigError(proto.Message):
         UNSUPPORTED_FINDING_TYPE = 41
         UNSUPPORTED_URL_SCHEME = 42
 
-    code = proto.Field(proto.ENUM, number=1, enum=Code,)
+    code = proto.Field(proto.ENUM, number=1,
+        enum=Code,
+    )
 
     field_name = proto.Field(proto.STRING, number=2)
 

@@ -19,13 +19,13 @@ import proto  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package="google.cloud.websecurityscanner.v1alpha",
+    package='google.cloud.websecurityscanner.v1alpha',
     manifest={
-        "OutdatedLibrary",
-        "ViolatingResource",
-        "VulnerableParameters",
-        "VulnerableHeaders",
-        "Xss",
+        'OutdatedLibrary',
+        'ViolatingResource',
+        'VulnerableParameters',
+        'VulnerableHeaders',
+        'Xss',
     },
 )
 
@@ -86,7 +86,6 @@ class VulnerableHeaders(proto.Message):
         missing_headers (Sequence[~.finding_addon.VulnerableHeaders.Header]):
             List of missing headers.
     """
-
     class Header(proto.Message):
         r"""Describes a HTTP Header.
 
@@ -101,9 +100,13 @@ class VulnerableHeaders(proto.Message):
 
         value = proto.Field(proto.STRING, number=2)
 
-    headers = proto.RepeatedField(proto.MESSAGE, number=1, message=Header,)
+    headers = proto.RepeatedField(proto.MESSAGE, number=1,
+        message=Header,
+    )
 
-    missing_headers = proto.RepeatedField(proto.MESSAGE, number=2, message=Header,)
+    missing_headers = proto.RepeatedField(proto.MESSAGE, number=2,
+        message=Header,
+    )
 
 
 class Xss(proto.Message):

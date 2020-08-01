@@ -23,7 +23,10 @@ from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package="google.cloud.websecurityscanner.v1beta", manifest={"ScanConfig",},
+    package='google.cloud.websecurityscanner.v1beta',
+    manifest={
+        'ScanConfig',
+    },
 )
 
 
@@ -71,7 +74,6 @@ class ScanConfig(proto.Message):
         risk_level (~.scan_config.ScanConfig.RiskLevel):
             The risk level selected for the scan
     """
-
     class UserAgent(proto.Enum):
         r"""Type of user agents used for scanning."""
         USER_AGENT_UNSPECIFIED = 0
@@ -112,7 +114,6 @@ class ScanConfig(proto.Message):
             custom_account (~.scan_config.ScanConfig.Authentication.CustomAccount):
                 Authentication using a custom account.
         """
-
         class GoogleAccount(proto.Message):
             r"""Describes authentication configuration that uses a Google
             account.
@@ -155,18 +156,12 @@ class ScanConfig(proto.Message):
 
             login_url = proto.Field(proto.STRING, number=3)
 
-        google_account = proto.Field(
-            proto.MESSAGE,
-            number=1,
-            oneof="authentication",
-            message="ScanConfig.Authentication.GoogleAccount",
+        google_account = proto.Field(proto.MESSAGE, number=1, oneof='authentication',
+            message='ScanConfig.Authentication.GoogleAccount',
         )
 
-        custom_account = proto.Field(
-            proto.MESSAGE,
-            number=2,
-            oneof="authentication",
-            message="ScanConfig.Authentication.CustomAccount",
+        custom_account = proto.Field(proto.MESSAGE, number=2, oneof='authentication',
+            message='ScanConfig.Authentication.CustomAccount',
         )
 
     class Schedule(proto.Message):
@@ -184,8 +179,8 @@ class ScanConfig(proto.Message):
                 executions in days.
         """
 
-        schedule_time = proto.Field(
-            proto.MESSAGE, number=1, message=timestamp.Timestamp,
+        schedule_time = proto.Field(proto.MESSAGE, number=1,
+            message=timestamp.Timestamp,
         )
 
         interval_duration_days = proto.Field(proto.INT32, number=2)
@@ -198,23 +193,35 @@ class ScanConfig(proto.Message):
 
     starting_urls = proto.RepeatedField(proto.STRING, number=4)
 
-    authentication = proto.Field(proto.MESSAGE, number=5, message=Authentication,)
+    authentication = proto.Field(proto.MESSAGE, number=5,
+        message=Authentication,
+    )
 
-    user_agent = proto.Field(proto.ENUM, number=6, enum=UserAgent,)
+    user_agent = proto.Field(proto.ENUM, number=6,
+        enum=UserAgent,
+    )
 
     blacklist_patterns = proto.RepeatedField(proto.STRING, number=7)
 
-    schedule = proto.Field(proto.MESSAGE, number=8, message=Schedule,)
-
-    target_platforms = proto.RepeatedField(proto.ENUM, number=9, enum=TargetPlatform,)
-
-    export_to_security_command_center = proto.Field(
-        proto.ENUM, number=10, enum=ExportToSecurityCommandCenter,
+    schedule = proto.Field(proto.MESSAGE, number=8,
+        message=Schedule,
     )
 
-    latest_run = proto.Field(proto.MESSAGE, number=11, message=scan_run.ScanRun,)
+    target_platforms = proto.RepeatedField(proto.ENUM, number=9,
+        enum=TargetPlatform,
+    )
 
-    risk_level = proto.Field(proto.ENUM, number=12, enum=RiskLevel,)
+    export_to_security_command_center = proto.Field(proto.ENUM, number=10,
+        enum=ExportToSecurityCommandCenter,
+    )
+
+    latest_run = proto.Field(proto.MESSAGE, number=11,
+        message=scan_run.ScanRun,
+    )
+
+    risk_level = proto.Field(proto.ENUM, number=12,
+        enum=RiskLevel,
+    )
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

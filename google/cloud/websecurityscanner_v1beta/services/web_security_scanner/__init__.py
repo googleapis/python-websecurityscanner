@@ -19,6 +19,6 @@ from .client import WebSecurityScannerClient
 from .async_client import WebSecurityScannerAsyncClient
 
 __all__ = (
-    "WebSecurityScannerClient",
-    "WebSecurityScannerAsyncClient",
+    'WebSecurityScannerClient',
+    'WebSecurityScannerAsyncClient',
 )

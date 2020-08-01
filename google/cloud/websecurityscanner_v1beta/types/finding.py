@@ -22,7 +22,10 @@ from google.cloud.websecurityscanner_v1beta.types import finding_addon
 
 
 __protobuf__ = proto.module(
-    package="google.cloud.websecurityscanner.v1beta", manifest={"Finding",},
+    package='google.cloud.websecurityscanner.v1beta',
+    manifest={
+        'Finding',
+    },
 )
 
 
@@ -110,25 +113,29 @@ class Finding(proto.Message):
 
     tracking_id = proto.Field(proto.STRING, number=10)
 
-    form = proto.Field(proto.MESSAGE, number=16, message=finding_addon.Form,)
-
-    outdated_library = proto.Field(
-        proto.MESSAGE, number=11, message=finding_addon.OutdatedLibrary,
+    form = proto.Field(proto.MESSAGE, number=16,
+        message=finding_addon.Form,
     )
 
-    violating_resource = proto.Field(
-        proto.MESSAGE, number=12, message=finding_addon.ViolatingResource,
+    outdated_library = proto.Field(proto.MESSAGE, number=11,
+        message=finding_addon.OutdatedLibrary,
     )
 
-    vulnerable_headers = proto.Field(
-        proto.MESSAGE, number=15, message=finding_addon.VulnerableHeaders,
+    violating_resource = proto.Field(proto.MESSAGE, number=12,
+        message=finding_addon.ViolatingResource,
     )
 
-    vulnerable_parameters = proto.Field(
-        proto.MESSAGE, number=13, message=finding_addon.VulnerableParameters,
+    vulnerable_headers = proto.Field(proto.MESSAGE, number=15,
+        message=finding_addon.VulnerableHeaders,
     )
 
-    xss = proto.Field(proto.MESSAGE, number=14, message=finding_addon.Xss,)
+    vulnerable_parameters = proto.Field(proto.MESSAGE, number=13,
+        message=finding_addon.VulnerableParameters,
+    )
+
+    xss = proto.Field(proto.MESSAGE, number=14,
+        message=finding_addon.Xss,
+    )
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

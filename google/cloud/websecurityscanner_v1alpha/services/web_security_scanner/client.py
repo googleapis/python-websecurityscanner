@@ -21,14 +21,14 @@ import re
 from typing import Callable, Dict, Sequence, Tuple, Type, Union
 import pkg_resources
 
-import google.api_core.client_options as ClientOptions  # type: ignore
-from google.api_core import exceptions  # type: ignore
-from google.api_core import gapic_v1  # type: ignore
-from google.api_core import retry as retries  # type: ignore
-from google.auth import credentials  # type: ignore
-from google.auth.transport import mtls  # type: ignore
+import google.api_core.client_options as ClientOptions # type: ignore
+from google.api_core import exceptions                 # type: ignore
+from google.api_core import gapic_v1                   # type: ignore
+from google.api_core import retry as retries           # type: ignore
+from google.auth import credentials                    # type: ignore
+from google.auth.transport import mtls                 # type: ignore
 from google.auth.exceptions import MutualTLSChannelError  # type: ignore
-from google.oauth2 import service_account  # type: ignore
+from google.oauth2 import service_account              # type: ignore
 
 from google.cloud.websecurityscanner_v1alpha.services.web_security_scanner import pagers
 from google.cloud.websecurityscanner_v1alpha.types import crawled_url
@@ -54,16 +54,13 @@ class WebSecurityScannerClientMeta(type):
     support objects (e.g. transport) without polluting the client instance
     objects.
     """
+    _transport_registry = OrderedDict()  # type: Dict[str, Type[WebSecurityScannerTransport]]
+    _transport_registry['grpc'] = WebSecurityScannerGrpcTransport
+    _transport_registry['grpc_asyncio'] = WebSecurityScannerGrpcAsyncIOTransport
 
-    _transport_registry = (
-        OrderedDict()
-    )  # type: Dict[str, Type[WebSecurityScannerTransport]]
-    _transport_registry["grpc"] = WebSecurityScannerGrpcTransport
-    _transport_registry["grpc_asyncio"] = WebSecurityScannerGrpcAsyncIOTransport
-
-    def get_transport_class(
-        cls, label: str = None,
-    ) -> Type[WebSecurityScannerTransport]:
+    def get_transport_class(cls,
+            label: str = None,
+        ) -> Type[WebSecurityScannerTransport]:
         """Return an appropriate transport class.
 
         Args:
@@ -118,7 +115,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         return api_endpoint.replace(".googleapis.com", ".mtls.googleapis.com")
 
-    DEFAULT_ENDPOINT = "websecurityscanner.googleapis.com"
+    DEFAULT_ENDPOINT = 'websecurityscanner.googleapis.com'
     DEFAULT_MTLS_ENDPOINT = _get_default_mtls_endpoint.__func__(  # type: ignore
         DEFAULT_ENDPOINT
     )
@@ -137,50 +134,39 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         Returns:
             {@api.name}: The constructed client.
         """
-        credentials = service_account.Credentials.from_service_account_file(filename)
-        kwargs["credentials"] = credentials
+        credentials = service_account.Credentials.from_service_account_file(
+            filename)
+        kwargs['credentials'] = credentials
         return cls(*args, **kwargs)
 
     from_service_account_json = from_service_account_file
 
     @staticmethod
-    def scan_config_path(project: str, scan_config: str,) -> str:
+    def scan_config_path(project: str,scan_config: str,) -> str:
         """Return a fully-qualified scan_config string."""
-        return "projects/{project}/scanConfigs/{scan_config}".format(
-            project=project, scan_config=scan_config,
-        )
+        return "projects/{project}/scanConfigs/{scan_config}".format(project=project, scan_config=scan_config, )
 
     @staticmethod
-    def parse_scan_config_path(path: str) -> Dict[str, str]:
+    def parse_scan_config_path(path: str) -> Dict[str,str]:
         """Parse a scan_config path into its component segments."""
-        m = re.match(
-            r"^projects/(?P<project>.+?)/scanConfigs/(?P<scan_config>.+?)$", path
-        )
+        m = re.match(r"^projects/(?P<project>.+?)/scanConfigs/(?P<scan_config>.+?)$", path)
         return m.groupdict() if m else {}
-
     @staticmethod
-    def scan_run_path(project: str, scan_config: str, scan_run: str,) -> str:
+    def scan_run_path(project: str,scan_config: str,scan_run: str,) -> str:
         """Return a fully-qualified scan_run string."""
-        return "projects/{project}/scanConfigs/{scan_config}/scanRuns/{scan_run}".format(
-            project=project, scan_config=scan_config, scan_run=scan_run,
-        )
+        return "projects/{project}/scanConfigs/{scan_config}/scanRuns/{scan_run}".format(project=project, scan_config=scan_config, scan_run=scan_run, )
 
     @staticmethod
-    def parse_scan_run_path(path: str) -> Dict[str, str]:
+    def parse_scan_run_path(path: str) -> Dict[str,str]:
         """Parse a scan_run path into its component segments."""
-        m = re.match(
-            r"^projects/(?P<project>.+?)/scanConfigs/(?P<scan_config>.+?)/scanRuns/(?P<scan_run>.+?)$",
-            path,
-        )
+        m = re.match(r"^projects/(?P<project>.+?)/scanConfigs/(?P<scan_config>.+?)/scanRuns/(?P<scan_run>.+?)$", path)
         return m.groupdict() if m else {}
 
-    def __init__(
-        self,
-        *,
-        credentials: credentials.Credentials = None,
-        transport: Union[str, WebSecurityScannerTransport] = None,
-        client_options: ClientOptions = None,
-    ) -> None:
+    def __init__(self, *,
+            credentials: credentials.Credentials = None,
+            transport: Union[str, WebSecurityScannerTransport] = None,
+            client_options: ClientOptions = None,
+            ) -> None:
         """Instantiate the web security scanner client.
 
         Args:
@@ -227,9 +213,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
                     or mtls.has_default_client_cert_source()
                 )
                 client_options.api_endpoint = (
-                    self.DEFAULT_MTLS_ENDPOINT
-                    if has_client_cert_source
-                    else self.DEFAULT_ENDPOINT
+                    self.DEFAULT_MTLS_ENDPOINT if has_client_cert_source else self.DEFAULT_ENDPOINT
                 )
             else:
                 raise MutualTLSChannelError(
@@ -242,10 +226,8 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         if isinstance(transport, WebSecurityScannerTransport):
             # transport is a WebSecurityScannerTransport instance.
             if credentials or client_options.credentials_file:
-                raise ValueError(
-                    "When providing a transport instance, "
-                    "provide its credentials directly."
-                )
+                raise ValueError('When providing a transport instance, '
+                                 'provide its credentials directly.')
             if client_options.scopes:
                 raise ValueError(
                     "When providing a transport instance, "
@@ -264,16 +246,15 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
                 quota_project_id=client_options.quota_project_id,
             )
 
-    def create_scan_config(
-        self,
-        request: web_security_scanner.CreateScanConfigRequest = None,
-        *,
-        parent: str = None,
-        scan_config: gcw_scan_config.ScanConfig = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> gcw_scan_config.ScanConfig:
+    def create_scan_config(self,
+            request: web_security_scanner.CreateScanConfigRequest = None,
+            *,
+            parent: str = None,
+            scan_config: gcw_scan_config.ScanConfig = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> gcw_scan_config.ScanConfig:
         r"""Creates a new ScanConfig.
 
         Args:
@@ -313,10 +294,8 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, scan_config])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a web_security_scanner.CreateScanConfigRequest.
@@ -340,24 +319,30 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def delete_scan_config(
-        self,
-        request: web_security_scanner.DeleteScanConfigRequest = None,
-        *,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> None:
+    def delete_scan_config(self,
+            request: web_security_scanner.DeleteScanConfigRequest = None,
+            *,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> None:
         r"""Deletes an existing ScanConfig and its child
         resources.
 
@@ -385,10 +370,8 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a web_security_scanner.DeleteScanConfigRequest.
@@ -410,23 +393,27 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
         rpc(
-            request, retry=retry, timeout=timeout, metadata=metadata,
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
         )
 
-    def get_scan_config(
-        self,
-        request: web_security_scanner.GetScanConfigRequest = None,
-        *,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> scan_config.ScanConfig:
+    def get_scan_config(self,
+            request: web_security_scanner.GetScanConfigRequest = None,
+            *,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> scan_config.ScanConfig:
         r"""Gets a ScanConfig.
 
         Args:
@@ -460,10 +447,8 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a web_security_scanner.GetScanConfigRequest.
@@ -485,24 +470,30 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def list_scan_configs(
-        self,
-        request: web_security_scanner.ListScanConfigsRequest = None,
-        *,
-        parent: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> pagers.ListScanConfigsPager:
+    def list_scan_configs(self,
+            request: web_security_scanner.ListScanConfigsRequest = None,
+            *,
+            parent: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> pagers.ListScanConfigsPager:
         r"""Lists ScanConfigs under a given project.
 
         Args:
@@ -536,10 +527,8 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a web_security_scanner.ListScanConfigsRequest.
@@ -561,31 +550,40 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__iter__` convenience method.
         response = pagers.ListScanConfigsPager(
-            method=rpc, request=request, response=response, metadata=metadata,
+            method=rpc,
+            request=request,
+            response=response,
+            metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    def update_scan_config(
-        self,
-        request: web_security_scanner.UpdateScanConfigRequest = None,
-        *,
-        scan_config: gcw_scan_config.ScanConfig = None,
-        update_mask: field_mask.FieldMask = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> gcw_scan_config.ScanConfig:
+    def update_scan_config(self,
+            request: web_security_scanner.UpdateScanConfigRequest = None,
+            *,
+            scan_config: gcw_scan_config.ScanConfig = None,
+            update_mask: field_mask.FieldMask = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> gcw_scan_config.ScanConfig:
         r"""Updates a ScanConfig. This method support partial
         update of a ScanConfig.
 
@@ -628,10 +626,8 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([scan_config, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a web_security_scanner.UpdateScanConfigRequest.
@@ -655,26 +651,30 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata(
-                (("scan_config.name", request.scan_config.name),)
-            ),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('scan_config.name', request.scan_config.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def start_scan_run(
-        self,
-        request: web_security_scanner.StartScanRunRequest = None,
-        *,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> scan_run.ScanRun:
+    def start_scan_run(self,
+            request: web_security_scanner.StartScanRunRequest = None,
+            *,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> scan_run.ScanRun:
         r"""Start a ScanRun according to the given ScanConfig.
 
         Args:
@@ -707,10 +707,8 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a web_security_scanner.StartScanRunRequest.
@@ -732,24 +730,30 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def get_scan_run(
-        self,
-        request: web_security_scanner.GetScanRunRequest = None,
-        *,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> scan_run.ScanRun:
+    def get_scan_run(self,
+            request: web_security_scanner.GetScanRunRequest = None,
+            *,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> scan_run.ScanRun:
         r"""Gets a ScanRun.
 
         Args:
@@ -781,10 +785,8 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a web_security_scanner.GetScanRunRequest.
@@ -806,24 +808,30 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def list_scan_runs(
-        self,
-        request: web_security_scanner.ListScanRunsRequest = None,
-        *,
-        parent: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> pagers.ListScanRunsPager:
+    def list_scan_runs(self,
+            request: web_security_scanner.ListScanRunsRequest = None,
+            *,
+            parent: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> pagers.ListScanRunsPager:
         r"""Lists ScanRuns under a given ScanConfig, in
         descending order of ScanRun stop time.
 
@@ -859,10 +867,8 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a web_security_scanner.ListScanRunsRequest.
@@ -884,30 +890,39 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__iter__` convenience method.
         response = pagers.ListScanRunsPager(
-            method=rpc, request=request, response=response, metadata=metadata,
+            method=rpc,
+            request=request,
+            response=response,
+            metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    def stop_scan_run(
-        self,
-        request: web_security_scanner.StopScanRunRequest = None,
-        *,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> scan_run.ScanRun:
+    def stop_scan_run(self,
+            request: web_security_scanner.StopScanRunRequest = None,
+            *,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> scan_run.ScanRun:
         r"""Stops a ScanRun. The stopped ScanRun is returned.
 
         Args:
@@ -940,10 +955,8 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a web_security_scanner.StopScanRunRequest.
@@ -965,24 +978,30 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def list_crawled_urls(
-        self,
-        request: web_security_scanner.ListCrawledUrlsRequest = None,
-        *,
-        parent: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> pagers.ListCrawledUrlsPager:
+    def list_crawled_urls(self,
+            request: web_security_scanner.ListCrawledUrlsRequest = None,
+            *,
+            parent: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> pagers.ListCrawledUrlsPager:
         r"""List CrawledUrls under a given ScanRun.
 
         Args:
@@ -1017,10 +1036,8 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a web_security_scanner.ListCrawledUrlsRequest.
@@ -1042,30 +1059,39 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__iter__` convenience method.
         response = pagers.ListCrawledUrlsPager(
-            method=rpc, request=request, response=response, metadata=metadata,
+            method=rpc,
+            request=request,
+            response=response,
+            metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    def get_finding(
-        self,
-        request: web_security_scanner.GetFindingRequest = None,
-        *,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> finding.Finding:
+    def get_finding(self,
+            request: web_security_scanner.GetFindingRequest = None,
+            *,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> finding.Finding:
         r"""Gets a Finding.
 
         Args:
@@ -1098,10 +1124,8 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a web_security_scanner.GetFindingRequest.
@@ -1123,25 +1147,31 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def list_findings(
-        self,
-        request: web_security_scanner.ListFindingsRequest = None,
-        *,
-        parent: str = None,
-        filter: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> pagers.ListFindingsPager:
+    def list_findings(self,
+            request: web_security_scanner.ListFindingsRequest = None,
+            *,
+            parent: str = None,
+            filter: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> pagers.ListFindingsPager:
         r"""List Findings under a given ScanRun.
 
         Args:
@@ -1183,10 +1213,8 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, filter])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a web_security_scanner.ListFindingsRequest.
@@ -1210,30 +1238,39 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__iter__` convenience method.
         response = pagers.ListFindingsPager(
-            method=rpc, request=request, response=response, metadata=metadata,
+            method=rpc,
+            request=request,
+            response=response,
+            metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    def list_finding_type_stats(
-        self,
-        request: web_security_scanner.ListFindingTypeStatsRequest = None,
-        *,
-        parent: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> web_security_scanner.ListFindingTypeStatsResponse:
+    def list_finding_type_stats(self,
+            request: web_security_scanner.ListFindingTypeStatsRequest = None,
+            *,
+            parent: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> web_security_scanner.ListFindingTypeStatsResponse:
         r"""List all FindingTypeStats under a given ScanRun.
 
         Args:
@@ -1264,10 +1301,8 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a web_security_scanner.ListFindingTypeStatsRequest.
@@ -1289,24 +1324,38 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
 
+
+
+
+
+
 try:
     _client_info = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            "google-cloud-websecurityscanner",
+            'google-cloud-websecurityscanner',
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     _client_info = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = ("WebSecurityScannerClient",)
+__all__ = (
+    'WebSecurityScannerClient',
+)

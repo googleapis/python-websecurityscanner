@@ -24,13 +24,15 @@ from .grpc_asyncio import WebSecurityScannerGrpcAsyncIOTransport
 
 
 # Compile a registry of transports.
-_transport_registry = OrderedDict()  # type: Dict[str, Type[WebSecurityScannerTransport]]
-_transport_registry['grpc'] = WebSecurityScannerGrpcTransport
-_transport_registry['grpc_asyncio'] = WebSecurityScannerGrpcAsyncIOTransport
+_transport_registry = (
+    OrderedDict()
+)  # type: Dict[str, Type[WebSecurityScannerTransport]]
+_transport_registry["grpc"] = WebSecurityScannerGrpcTransport
+_transport_registry["grpc_asyncio"] = WebSecurityScannerGrpcAsyncIOTransport
 
 
 __all__ = (
-    'WebSecurityScannerTransport',
-    'WebSecurityScannerGrpcTransport',
-    'WebSecurityScannerGrpcAsyncIOTransport',
+    "WebSecurityScannerTransport",
+    "WebSecurityScannerGrpcTransport",
+    "WebSecurityScannerGrpcAsyncIOTransport",
 )

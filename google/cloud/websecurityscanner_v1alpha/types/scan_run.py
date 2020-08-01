@@ -22,10 +22,7 @@ from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package='google.cloud.websecurityscanner.v1alpha',
-    manifest={
-        'ScanRun',
-    },
+    package="google.cloud.websecurityscanner.v1alpha", manifest={"ScanRun",},
 )
 
 
@@ -73,6 +70,7 @@ class ScanRun(proto.Message):
             ranges from 0 to 100. If the scan is finished,
             the value is 100.
     """
+
     class ExecutionState(proto.Enum):
         r"""Types of ScanRun execution state."""
         EXECUTION_STATE_UNSPECIFIED = 0
@@ -89,21 +87,13 @@ class ScanRun(proto.Message):
 
     name = proto.Field(proto.STRING, number=1)
 
-    execution_state = proto.Field(proto.ENUM, number=2,
-        enum=ExecutionState,
-    )
+    execution_state = proto.Field(proto.ENUM, number=2, enum=ExecutionState,)
 
-    result_state = proto.Field(proto.ENUM, number=3,
-        enum=ResultState,
-    )
+    result_state = proto.Field(proto.ENUM, number=3, enum=ResultState,)
 
-    start_time = proto.Field(proto.MESSAGE, number=4,
-        message=timestamp.Timestamp,
-    )
+    start_time = proto.Field(proto.MESSAGE, number=4, message=timestamp.Timestamp,)
 
-    end_time = proto.Field(proto.MESSAGE, number=5,
-        message=timestamp.Timestamp,
-    )
+    end_time = proto.Field(proto.MESSAGE, number=5, message=timestamp.Timestamp,)
 
     urls_crawled_count = proto.Field(proto.INT64, number=6)
 

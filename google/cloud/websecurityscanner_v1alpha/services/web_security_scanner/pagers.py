@@ -41,12 +41,15 @@ class ListScanConfigsPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., web_security_scanner.ListScanConfigsResponse],
-            request: web_security_scanner.ListScanConfigsRequest,
-            response: web_security_scanner.ListScanConfigsResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., web_security_scanner.ListScanConfigsResponse],
+        request: web_security_scanner.ListScanConfigsRequest,
+        response: web_security_scanner.ListScanConfigsResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -80,7 +83,7 @@ class ListScanConfigsPager:
             yield from page.scan_configs
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class ListScanConfigsAsyncPager:
@@ -100,12 +103,15 @@ class ListScanConfigsAsyncPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., Awaitable[web_security_scanner.ListScanConfigsResponse]],
-            request: web_security_scanner.ListScanConfigsRequest,
-            response: web_security_scanner.ListScanConfigsResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., Awaitable[web_security_scanner.ListScanConfigsResponse]],
+        request: web_security_scanner.ListScanConfigsRequest,
+        response: web_security_scanner.ListScanConfigsResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -127,7 +133,9 @@ class ListScanConfigsAsyncPager:
         return getattr(self._response, name)
 
     @property
-    async def pages(self) -> AsyncIterable[web_security_scanner.ListScanConfigsResponse]:
+    async def pages(
+        self,
+    ) -> AsyncIterable[web_security_scanner.ListScanConfigsResponse]:
         yield self._response
         while self._response.next_page_token:
             self._request.page_token = self._response.next_page_token
@@ -143,7 +151,7 @@ class ListScanConfigsAsyncPager:
         return async_generator()
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class ListScanRunsPager:
@@ -163,12 +171,15 @@ class ListScanRunsPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., web_security_scanner.ListScanRunsResponse],
-            request: web_security_scanner.ListScanRunsRequest,
-            response: web_security_scanner.ListScanRunsResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., web_security_scanner.ListScanRunsResponse],
+        request: web_security_scanner.ListScanRunsRequest,
+        response: web_security_scanner.ListScanRunsResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -202,7 +213,7 @@ class ListScanRunsPager:
             yield from page.scan_runs
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class ListScanRunsAsyncPager:
@@ -222,12 +233,15 @@ class ListScanRunsAsyncPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., Awaitable[web_security_scanner.ListScanRunsResponse]],
-            request: web_security_scanner.ListScanRunsRequest,
-            response: web_security_scanner.ListScanRunsResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., Awaitable[web_security_scanner.ListScanRunsResponse]],
+        request: web_security_scanner.ListScanRunsRequest,
+        response: web_security_scanner.ListScanRunsResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -265,7 +279,7 @@ class ListScanRunsAsyncPager:
         return async_generator()
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class ListCrawledUrlsPager:
@@ -285,12 +299,15 @@ class ListCrawledUrlsPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., web_security_scanner.ListCrawledUrlsResponse],
-            request: web_security_scanner.ListCrawledUrlsRequest,
-            response: web_security_scanner.ListCrawledUrlsResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., web_security_scanner.ListCrawledUrlsResponse],
+        request: web_security_scanner.ListCrawledUrlsRequest,
+        response: web_security_scanner.ListCrawledUrlsResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -324,7 +341,7 @@ class ListCrawledUrlsPager:
             yield from page.crawled_urls
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class ListCrawledUrlsAsyncPager:
@@ -344,12 +361,15 @@ class ListCrawledUrlsAsyncPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., Awaitable[web_security_scanner.ListCrawledUrlsResponse]],
-            request: web_security_scanner.ListCrawledUrlsRequest,
-            response: web_security_scanner.ListCrawledUrlsResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., Awaitable[web_security_scanner.ListCrawledUrlsResponse]],
+        request: web_security_scanner.ListCrawledUrlsRequest,
+        response: web_security_scanner.ListCrawledUrlsResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -371,7 +391,9 @@ class ListCrawledUrlsAsyncPager:
         return getattr(self._response, name)
 
     @property
-    async def pages(self) -> AsyncIterable[web_security_scanner.ListCrawledUrlsResponse]:
+    async def pages(
+        self,
+    ) -> AsyncIterable[web_security_scanner.ListCrawledUrlsResponse]:
         yield self._response
         while self._response.next_page_token:
             self._request.page_token = self._response.next_page_token
@@ -387,7 +409,7 @@ class ListCrawledUrlsAsyncPager:
         return async_generator()
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class ListFindingsPager:
@@ -407,12 +429,15 @@ class ListFindingsPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., web_security_scanner.ListFindingsResponse],
-            request: web_security_scanner.ListFindingsRequest,
-            response: web_security_scanner.ListFindingsResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., web_security_scanner.ListFindingsResponse],
+        request: web_security_scanner.ListFindingsRequest,
+        response: web_security_scanner.ListFindingsResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -446,7 +471,7 @@ class ListFindingsPager:
             yield from page.findings
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class ListFindingsAsyncPager:
@@ -466,12 +491,15 @@ class ListFindingsAsyncPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., Awaitable[web_security_scanner.ListFindingsResponse]],
-            request: web_security_scanner.ListFindingsRequest,
-            response: web_security_scanner.ListFindingsResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., Awaitable[web_security_scanner.ListFindingsResponse]],
+        request: web_security_scanner.ListFindingsRequest,
+        response: web_security_scanner.ListFindingsResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -509,4 +537,4 @@ class ListFindingsAsyncPager:
         return async_generator()
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)

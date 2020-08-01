@@ -17,9 +17,9 @@
 
 from typing import Callable, Dict, Optional, Sequence, Tuple
 
-from google.api_core import grpc_helpers   # type: ignore
-from google import auth                    # type: ignore
-from google.auth import credentials        # type: ignore
+from google.api_core import grpc_helpers  # type: ignore
+from google import auth  # type: ignore
+from google.auth import credentials  # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
 
 
@@ -50,17 +50,21 @@ class WebSecurityScannerGrpcTransport(WebSecurityScannerTransport):
     It sends protocol buffers over the wire using gRPC (which is built on
     top of HTTP/2); the ``grpcio`` package must be installed.
     """
+
     _stubs: Dict[str, Callable]
 
-    def __init__(self, *,
-            host: str = 'websecurityscanner.googleapis.com',
-            credentials: credentials.Credentials = None,
-            credentials_file: str = None,
-            scopes: Sequence[str] = None,
-            channel: grpc.Channel = None,
-            api_mtls_endpoint: str = None,
-            client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
-            quota_project_id: Optional[str] = None) -> None:
+    def __init__(
+        self,
+        *,
+        host: str = "websecurityscanner.googleapis.com",
+        credentials: credentials.Credentials = None,
+        credentials_file: str = None,
+        scopes: Sequence[str] = None,
+        channel: grpc.Channel = None,
+        api_mtls_endpoint: str = None,
+        client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
+        quota_project_id: Optional[str] = None
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -103,10 +107,16 @@ class WebSecurityScannerGrpcTransport(WebSecurityScannerTransport):
             # If a channel was explicitly provided, set it.
             self._grpc_channel = channel
         elif api_mtls_endpoint:
-            host = api_mtls_endpoint if ":" in api_mtls_endpoint else api_mtls_endpoint + ":443"
+            host = (
+                api_mtls_endpoint
+                if ":" in api_mtls_endpoint
+                else api_mtls_endpoint + ":443"
+            )
 
             if credentials is None:
-                credentials, _ = auth.default(scopes=self.AUTH_SCOPES, quota_project_id=quota_project_id)
+                credentials, _ = auth.default(
+                    scopes=self.AUTH_SCOPES, quota_project_id=quota_project_id
+                )
 
             # Create SSL credentials with client_cert_source or application
             # default SSL credentials.
@@ -140,13 +150,15 @@ class WebSecurityScannerGrpcTransport(WebSecurityScannerTransport):
         )
 
     @classmethod
-    def create_channel(cls,
-                       host: str = 'websecurityscanner.googleapis.com',
-                       credentials: credentials.Credentials = None,
-                       credentials_file: str = None,
-                       scopes: Optional[Sequence[str]] = None,
-                       quota_project_id: Optional[str] = None,
-                       **kwargs) -> grpc.Channel:
+    def create_channel(
+        cls,
+        host: str = "websecurityscanner.googleapis.com",
+        credentials: credentials.Credentials = None,
+        credentials_file: str = None,
+        scopes: Optional[Sequence[str]] = None,
+        quota_project_id: Optional[str] = None,
+        **kwargs
+    ) -> grpc.Channel:
         """Create and return a gRPC channel object.
         Args:
             address (Optionsl[str]): The host for the channel to use.
@@ -191,19 +203,20 @@ class WebSecurityScannerGrpcTransport(WebSecurityScannerTransport):
         """
         # Sanity check: Only create a new channel if we do not already
         # have one.
-        if not hasattr(self, '_grpc_channel'):
+        if not hasattr(self, "_grpc_channel"):
             self._grpc_channel = self.create_channel(
-                self._host,
-                credentials=self._credentials,
+                self._host, credentials=self._credentials,
             )
 
         # Return the channel from cache.
         return self._grpc_channel
 
     @property
-    def create_scan_config(self) -> Callable[
-            [web_security_scanner.CreateScanConfigRequest],
-            gcw_scan_config.ScanConfig]:
+    def create_scan_config(
+        self,
+    ) -> Callable[
+        [web_security_scanner.CreateScanConfigRequest], gcw_scan_config.ScanConfig
+    ]:
         r"""Return a callable for the create scan config method over gRPC.
 
         Creates a new ScanConfig.
@@ -218,18 +231,18 @@ class WebSecurityScannerGrpcTransport(WebSecurityScannerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'create_scan_config' not in self._stubs:
-            self._stubs['create_scan_config'] = self.grpc_channel.unary_unary(
-                '/google.cloud.websecurityscanner.v1alpha.WebSecurityScanner/CreateScanConfig',
+        if "create_scan_config" not in self._stubs:
+            self._stubs["create_scan_config"] = self.grpc_channel.unary_unary(
+                "/google.cloud.websecurityscanner.v1alpha.WebSecurityScanner/CreateScanConfig",
                 request_serializer=web_security_scanner.CreateScanConfigRequest.serialize,
                 response_deserializer=gcw_scan_config.ScanConfig.deserialize,
             )
-        return self._stubs['create_scan_config']
+        return self._stubs["create_scan_config"]
 
     @property
-    def delete_scan_config(self) -> Callable[
-            [web_security_scanner.DeleteScanConfigRequest],
-            empty.Empty]:
+    def delete_scan_config(
+        self,
+    ) -> Callable[[web_security_scanner.DeleteScanConfigRequest], empty.Empty]:
         r"""Return a callable for the delete scan config method over gRPC.
 
         Deletes an existing ScanConfig and its child
@@ -245,18 +258,18 @@ class WebSecurityScannerGrpcTransport(WebSecurityScannerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'delete_scan_config' not in self._stubs:
-            self._stubs['delete_scan_config'] = self.grpc_channel.unary_unary(
-                '/google.cloud.websecurityscanner.v1alpha.WebSecurityScanner/DeleteScanConfig',
+        if "delete_scan_config" not in self._stubs:
+            self._stubs["delete_scan_config"] = self.grpc_channel.unary_unary(
+                "/google.cloud.websecurityscanner.v1alpha.WebSecurityScanner/DeleteScanConfig",
                 request_serializer=web_security_scanner.DeleteScanConfigRequest.serialize,
                 response_deserializer=empty.Empty.FromString,
             )
-        return self._stubs['delete_scan_config']
+        return self._stubs["delete_scan_config"]
 
     @property
-    def get_scan_config(self) -> Callable[
-            [web_security_scanner.GetScanConfigRequest],
-            scan_config.ScanConfig]:
+    def get_scan_config(
+        self,
+    ) -> Callable[[web_security_scanner.GetScanConfigRequest], scan_config.ScanConfig]:
         r"""Return a callable for the get scan config method over gRPC.
 
         Gets a ScanConfig.
@@ -271,18 +284,21 @@ class WebSecurityScannerGrpcTransport(WebSecurityScannerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'get_scan_config' not in self._stubs:
-            self._stubs['get_scan_config'] = self.grpc_channel.unary_unary(
-                '/google.cloud.websecurityscanner.v1alpha.WebSecurityScanner/GetScanConfig',
+        if "get_scan_config" not in self._stubs:
+            self._stubs["get_scan_config"] = self.grpc_channel.unary_unary(
+                "/google.cloud.websecurityscanner.v1alpha.WebSecurityScanner/GetScanConfig",
                 request_serializer=web_security_scanner.GetScanConfigRequest.serialize,
                 response_deserializer=scan_config.ScanConfig.deserialize,
             )
-        return self._stubs['get_scan_config']
+        return self._stubs["get_scan_config"]
 
     @property
-    def list_scan_configs(self) -> Callable[
-            [web_security_scanner.ListScanConfigsRequest],
-            web_security_scanner.ListScanConfigsResponse]:
+    def list_scan_configs(
+        self,
+    ) -> Callable[
+        [web_security_scanner.ListScanConfigsRequest],
+        web_security_scanner.ListScanConfigsResponse,
+    ]:
         r"""Return a callable for the list scan configs method over gRPC.
 
         Lists ScanConfigs under a given project.
@@ -297,18 +313,20 @@ class WebSecurityScannerGrpcTransport(WebSecurityScannerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'list_scan_configs' not in self._stubs:
-            self._stubs['list_scan_configs'] = self.grpc_channel.unary_unary(
-                '/google.cloud.websecurityscanner.v1alpha.WebSecurityScanner/ListScanConfigs',
+        if "list_scan_configs" not in self._stubs:
+            self._stubs["list_scan_configs"] = self.grpc_channel.unary_unary(
+                "/google.cloud.websecurityscanner.v1alpha.WebSecurityScanner/ListScanConfigs",
                 request_serializer=web_security_scanner.ListScanConfigsRequest.serialize,
                 response_deserializer=web_security_scanner.ListScanConfigsResponse.deserialize,
             )
-        return self._stubs['list_scan_configs']
+        return self._stubs["list_scan_configs"]
 
     @property
-    def update_scan_config(self) -> Callable[
-            [web_security_scanner.UpdateScanConfigRequest],
-            gcw_scan_config.ScanConfig]:
+    def update_scan_config(
+        self,
+    ) -> Callable[
+        [web_security_scanner.UpdateScanConfigRequest], gcw_scan_config.ScanConfig
+    ]:
         r"""Return a callable for the update scan config method over gRPC.
 
         Updates a ScanConfig. This method support partial
@@ -324,18 +342,18 @@ class WebSecurityScannerGrpcTransport(WebSecurityScannerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'update_scan_config' not in self._stubs:
-            self._stubs['update_scan_config'] = self.grpc_channel.unary_unary(
-                '/google.cloud.websecurityscanner.v1alpha.WebSecurityScanner/UpdateScanConfig',
+        if "update_scan_config" not in self._stubs:
+            self._stubs["update_scan_config"] = self.grpc_channel.unary_unary(
+                "/google.cloud.websecurityscanner.v1alpha.WebSecurityScanner/UpdateScanConfig",
                 request_serializer=web_security_scanner.UpdateScanConfigRequest.serialize,
                 response_deserializer=gcw_scan_config.ScanConfig.deserialize,
             )
-        return self._stubs['update_scan_config']
+        return self._stubs["update_scan_config"]
 
     @property
-    def start_scan_run(self) -> Callable[
-            [web_security_scanner.StartScanRunRequest],
-            scan_run.ScanRun]:
+    def start_scan_run(
+        self,
+    ) -> Callable[[web_security_scanner.StartScanRunRequest], scan_run.ScanRun]:
         r"""Return a callable for the start scan run method over gRPC.
 
         Start a ScanRun according to the given ScanConfig.
@@ -350,18 +368,18 @@ class WebSecurityScannerGrpcTransport(WebSecurityScannerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'start_scan_run' not in self._stubs:
-            self._stubs['start_scan_run'] = self.grpc_channel.unary_unary(
-                '/google.cloud.websecurityscanner.v1alpha.WebSecurityScanner/StartScanRun',
+        if "start_scan_run" not in self._stubs:
+            self._stubs["start_scan_run"] = self.grpc_channel.unary_unary(
+                "/google.cloud.websecurityscanner.v1alpha.WebSecurityScanner/StartScanRun",
                 request_serializer=web_security_scanner.StartScanRunRequest.serialize,
                 response_deserializer=scan_run.ScanRun.deserialize,
             )
-        return self._stubs['start_scan_run']
+        return self._stubs["start_scan_run"]
 
     @property
-    def get_scan_run(self) -> Callable[
-            [web_security_scanner.GetScanRunRequest],
-            scan_run.ScanRun]:
+    def get_scan_run(
+        self,
+    ) -> Callable[[web_security_scanner.GetScanRunRequest], scan_run.ScanRun]:
         r"""Return a callable for the get scan run method over gRPC.
 
         Gets a ScanRun.
@@ -376,18 +394,21 @@ class WebSecurityScannerGrpcTransport(WebSecurityScannerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'get_scan_run' not in self._stubs:
-            self._stubs['get_scan_run'] = self.grpc_channel.unary_unary(
-                '/google.cloud.websecurityscanner.v1alpha.WebSecurityScanner/GetScanRun',
+        if "get_scan_run" not in self._stubs:
+            self._stubs["get_scan_run"] = self.grpc_channel.unary_unary(
+                "/google.cloud.websecurityscanner.v1alpha.WebSecurityScanner/GetScanRun",
                 request_serializer=web_security_scanner.GetScanRunRequest.serialize,
                 response_deserializer=scan_run.ScanRun.deserialize,
             )
-        return self._stubs['get_scan_run']
+        return self._stubs["get_scan_run"]
 
     @property
-    def list_scan_runs(self) -> Callable[
-            [web_security_scanner.ListScanRunsRequest],
-            web_security_scanner.ListScanRunsResponse]:
+    def list_scan_runs(
+        self,
+    ) -> Callable[
+        [web_security_scanner.ListScanRunsRequest],
+        web_security_scanner.ListScanRunsResponse,
+    ]:
         r"""Return a callable for the list scan runs method over gRPC.
 
         Lists ScanRuns under a given ScanConfig, in
@@ -403,18 +424,18 @@ class WebSecurityScannerGrpcTransport(WebSecurityScannerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'list_scan_runs' not in self._stubs:
-            self._stubs['list_scan_runs'] = self.grpc_channel.unary_unary(
-                '/google.cloud.websecurityscanner.v1alpha.WebSecurityScanner/ListScanRuns',
+        if "list_scan_runs" not in self._stubs:
+            self._stubs["list_scan_runs"] = self.grpc_channel.unary_unary(
+                "/google.cloud.websecurityscanner.v1alpha.WebSecurityScanner/ListScanRuns",
                 request_serializer=web_security_scanner.ListScanRunsRequest.serialize,
                 response_deserializer=web_security_scanner.ListScanRunsResponse.deserialize,
             )
-        return self._stubs['list_scan_runs']
+        return self._stubs["list_scan_runs"]
 
     @property
-    def stop_scan_run(self) -> Callable[
-            [web_security_scanner.StopScanRunRequest],
-            scan_run.ScanRun]:
+    def stop_scan_run(
+        self,
+    ) -> Callable[[web_security_scanner.StopScanRunRequest], scan_run.ScanRun]:
         r"""Return a callable for the stop scan run method over gRPC.
 
         Stops a ScanRun. The stopped ScanRun is returned.
@@ -429,18 +450,21 @@ class WebSecurityScannerGrpcTransport(WebSecurityScannerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'stop_scan_run' not in self._stubs:
-            self._stubs['stop_scan_run'] = self.grpc_channel.unary_unary(
-                '/google.cloud.websecurityscanner.v1alpha.WebSecurityScanner/StopScanRun',
+        if "stop_scan_run" not in self._stubs:
+            self._stubs["stop_scan_run"] = self.grpc_channel.unary_unary(
+                "/google.cloud.websecurityscanner.v1alpha.WebSecurityScanner/StopScanRun",
                 request_serializer=web_security_scanner.StopScanRunRequest.serialize,
                 response_deserializer=scan_run.ScanRun.deserialize,
             )
-        return self._stubs['stop_scan_run']
+        return self._stubs["stop_scan_run"]
 
     @property
-    def list_crawled_urls(self) -> Callable[
-            [web_security_scanner.ListCrawledUrlsRequest],
-            web_security_scanner.ListCrawledUrlsResponse]:
+    def list_crawled_urls(
+        self,
+    ) -> Callable[
+        [web_security_scanner.ListCrawledUrlsRequest],
+        web_security_scanner.ListCrawledUrlsResponse,
+    ]:
         r"""Return a callable for the list crawled urls method over gRPC.
 
         List CrawledUrls under a given ScanRun.
@@ -455,18 +479,18 @@ class WebSecurityScannerGrpcTransport(WebSecurityScannerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'list_crawled_urls' not in self._stubs:
-            self._stubs['list_crawled_urls'] = self.grpc_channel.unary_unary(
-                '/google.cloud.websecurityscanner.v1alpha.WebSecurityScanner/ListCrawledUrls',
+        if "list_crawled_urls" not in self._stubs:
+            self._stubs["list_crawled_urls"] = self.grpc_channel.unary_unary(
+                "/google.cloud.websecurityscanner.v1alpha.WebSecurityScanner/ListCrawledUrls",
                 request_serializer=web_security_scanner.ListCrawledUrlsRequest.serialize,
                 response_deserializer=web_security_scanner.ListCrawledUrlsResponse.deserialize,
             )
-        return self._stubs['list_crawled_urls']
+        return self._stubs["list_crawled_urls"]
 
     @property
-    def get_finding(self) -> Callable[
-            [web_security_scanner.GetFindingRequest],
-            finding.Finding]:
+    def get_finding(
+        self,
+    ) -> Callable[[web_security_scanner.GetFindingRequest], finding.Finding]:
         r"""Return a callable for the get finding method over gRPC.
 
         Gets a Finding.
@@ -481,18 +505,21 @@ class WebSecurityScannerGrpcTransport(WebSecurityScannerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'get_finding' not in self._stubs:
-            self._stubs['get_finding'] = self.grpc_channel.unary_unary(
-                '/google.cloud.websecurityscanner.v1alpha.WebSecurityScanner/GetFinding',
+        if "get_finding" not in self._stubs:
+            self._stubs["get_finding"] = self.grpc_channel.unary_unary(
+                "/google.cloud.websecurityscanner.v1alpha.WebSecurityScanner/GetFinding",
                 request_serializer=web_security_scanner.GetFindingRequest.serialize,
                 response_deserializer=finding.Finding.deserialize,
             )
-        return self._stubs['get_finding']
+        return self._stubs["get_finding"]
 
     @property
-    def list_findings(self) -> Callable[
-            [web_security_scanner.ListFindingsRequest],
-            web_security_scanner.ListFindingsResponse]:
+    def list_findings(
+        self,
+    ) -> Callable[
+        [web_security_scanner.ListFindingsRequest],
+        web_security_scanner.ListFindingsResponse,
+    ]:
         r"""Return a callable for the list findings method over gRPC.
 
         List Findings under a given ScanRun.
@@ -507,18 +534,21 @@ class WebSecurityScannerGrpcTransport(WebSecurityScannerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'list_findings' not in self._stubs:
-            self._stubs['list_findings'] = self.grpc_channel.unary_unary(
-                '/google.cloud.websecurityscanner.v1alpha.WebSecurityScanner/ListFindings',
+        if "list_findings" not in self._stubs:
+            self._stubs["list_findings"] = self.grpc_channel.unary_unary(
+                "/google.cloud.websecurityscanner.v1alpha.WebSecurityScanner/ListFindings",
                 request_serializer=web_security_scanner.ListFindingsRequest.serialize,
                 response_deserializer=web_security_scanner.ListFindingsResponse.deserialize,
             )
-        return self._stubs['list_findings']
+        return self._stubs["list_findings"]
 
     @property
-    def list_finding_type_stats(self) -> Callable[
-            [web_security_scanner.ListFindingTypeStatsRequest],
-            web_security_scanner.ListFindingTypeStatsResponse]:
+    def list_finding_type_stats(
+        self,
+    ) -> Callable[
+        [web_security_scanner.ListFindingTypeStatsRequest],
+        web_security_scanner.ListFindingTypeStatsResponse,
+    ]:
         r"""Return a callable for the list finding type stats method over gRPC.
 
         List all FindingTypeStats under a given ScanRun.
@@ -533,15 +563,13 @@ class WebSecurityScannerGrpcTransport(WebSecurityScannerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'list_finding_type_stats' not in self._stubs:
-            self._stubs['list_finding_type_stats'] = self.grpc_channel.unary_unary(
-                '/google.cloud.websecurityscanner.v1alpha.WebSecurityScanner/ListFindingTypeStats',
+        if "list_finding_type_stats" not in self._stubs:
+            self._stubs["list_finding_type_stats"] = self.grpc_channel.unary_unary(
+                "/google.cloud.websecurityscanner.v1alpha.WebSecurityScanner/ListFindingTypeStats",
                 request_serializer=web_security_scanner.ListFindingTypeStatsRequest.serialize,
                 response_deserializer=web_security_scanner.ListFindingTypeStatsResponse.deserialize,
             )
-        return self._stubs['list_finding_type_stats']
+        return self._stubs["list_finding_type_stats"]
 
 
-__all__ = (
-    'WebSecurityScannerGrpcTransport',
-)
+__all__ = ("WebSecurityScannerGrpcTransport",)

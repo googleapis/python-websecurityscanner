@@ -24,10 +24,7 @@ from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package='google.cloud.websecurityscanner.v1beta',
-    manifest={
-        'ScanRun',
-    },
+    package="google.cloud.websecurityscanner.v1beta", manifest={"ScanRun",},
 )
 
 
@@ -82,6 +79,7 @@ class ScanRun(proto.Message):
             A list of warnings, if such are encountered
             during this scan run.
     """
+
     class ExecutionState(proto.Enum):
         r"""Types of ScanRun execution state."""
         EXECUTION_STATE_UNSPECIFIED = 0
@@ -98,21 +96,13 @@ class ScanRun(proto.Message):
 
     name = proto.Field(proto.STRING, number=1)
 
-    execution_state = proto.Field(proto.ENUM, number=2,
-        enum=ExecutionState,
-    )
+    execution_state = proto.Field(proto.ENUM, number=2, enum=ExecutionState,)
 
-    result_state = proto.Field(proto.ENUM, number=3,
-        enum=ResultState,
-    )
+    result_state = proto.Field(proto.ENUM, number=3, enum=ResultState,)
 
-    start_time = proto.Field(proto.MESSAGE, number=4,
-        message=timestamp.Timestamp,
-    )
+    start_time = proto.Field(proto.MESSAGE, number=4, message=timestamp.Timestamp,)
 
-    end_time = proto.Field(proto.MESSAGE, number=5,
-        message=timestamp.Timestamp,
-    )
+    end_time = proto.Field(proto.MESSAGE, number=5, message=timestamp.Timestamp,)
 
     urls_crawled_count = proto.Field(proto.INT64, number=6)
 
@@ -122,12 +112,12 @@ class ScanRun(proto.Message):
 
     progress_percent = proto.Field(proto.INT32, number=9)
 
-    error_trace = proto.Field(proto.MESSAGE, number=10,
-        message=scan_run_error_trace.ScanRunErrorTrace,
+    error_trace = proto.Field(
+        proto.MESSAGE, number=10, message=scan_run_error_trace.ScanRunErrorTrace,
     )
 
-    warning_traces = proto.RepeatedField(proto.MESSAGE, number=11,
-        message=scan_run_warning_trace.ScanRunWarningTrace,
+    warning_traces = proto.RepeatedField(
+        proto.MESSAGE, number=11, message=scan_run_warning_trace.ScanRunWarningTrace,
     )
 
 

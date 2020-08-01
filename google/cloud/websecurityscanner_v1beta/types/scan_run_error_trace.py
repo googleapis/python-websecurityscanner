@@ -18,14 +18,13 @@
 import proto  # type: ignore
 
 
-from google.cloud.websecurityscanner_v1beta.types import scan_config_error as gcw_scan_config_error
+from google.cloud.websecurityscanner_v1beta.types import (
+    scan_config_error as gcw_scan_config_error,
+)
 
 
 __protobuf__ = proto.module(
-    package='google.cloud.websecurityscanner.v1beta',
-    manifest={
-        'ScanRunErrorTrace',
-    },
+    package="google.cloud.websecurityscanner.v1beta", manifest={"ScanRunErrorTrace",},
 )
 
 
@@ -46,6 +45,7 @@ class ScanRunErrorTrace(proto.Message):
             available. For example, if this code is 404, the scan has
             encountered too many NOT_FOUND responses.
     """
+
     class Code(proto.Enum):
         r"""Output only.
         Defines an error reason code.
@@ -59,12 +59,10 @@ class ScanRunErrorTrace(proto.Message):
         TOO_MANY_REDIRECTS = 5
         TOO_MANY_HTTP_ERRORS = 6
 
-    code = proto.Field(proto.ENUM, number=1,
-        enum=Code,
-    )
+    code = proto.Field(proto.ENUM, number=1, enum=Code,)
 
-    scan_config_error = proto.Field(proto.MESSAGE, number=2,
-        message=gcw_scan_config_error.ScanConfigError,
+    scan_config_error = proto.Field(
+        proto.MESSAGE, number=2, message=gcw_scan_config_error.ScanConfigError,
     )
 
     most_common_http_error_code = proto.Field(proto.INT32, number=3)

@@ -19,10 +19,7 @@ import proto  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package='google.cloud.websecurityscanner.v1beta',
-    manifest={
-        'ScanRunWarningTrace',
-    },
+    package="google.cloud.websecurityscanner.v1beta", manifest={"ScanRunWarningTrace",},
 )
 
 
@@ -36,6 +33,7 @@ class ScanRunWarningTrace(proto.Message):
         code (~.scan_run_warning_trace.ScanRunWarningTrace.Code):
             Indicates the warning code.
     """
+
     class Code(proto.Enum):
         r"""Output only.
         Defines a warning message code.
@@ -47,9 +45,7 @@ class ScanRunWarningTrace(proto.Message):
         TOO_MANY_FUZZ_TASKS = 3
         BLOCKED_BY_IAP = 4
 
-    code = proto.Field(proto.ENUM, number=1,
-        enum=Code,
-    )
+    code = proto.Field(proto.ENUM, number=1, enum=Code,)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

@@ -52,7 +52,6 @@ from .web_security_scanner import (
     ListFindingTypeStatsResponse,
 )
 
-
 __all__ = (
     "CrawledUrl",
     "Form",

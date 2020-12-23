@@ -20,35 +20,33 @@ import proto  # type: ignore
 
 from google.cloud.websecurityscanner_v1alpha.types import crawled_url
 from google.cloud.websecurityscanner_v1alpha.types import finding
-from google.cloud.websecurityscanner_v1alpha.types import (
-    finding_type_stats as gcw_finding_type_stats,
-)
+from google.cloud.websecurityscanner_v1alpha.types import finding_type_stats as gcw_finding_type_stats
 from google.cloud.websecurityscanner_v1alpha.types import scan_config as gcw_scan_config
 from google.cloud.websecurityscanner_v1alpha.types import scan_run
 from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package="google.cloud.websecurityscanner.v1alpha",
+    package='google.cloud.websecurityscanner.v1alpha',
     manifest={
-        "CreateScanConfigRequest",
-        "DeleteScanConfigRequest",
-        "GetScanConfigRequest",
-        "ListScanConfigsRequest",
-        "UpdateScanConfigRequest",
-        "ListScanConfigsResponse",
-        "StartScanRunRequest",
-        "GetScanRunRequest",
-        "ListScanRunsRequest",
-        "ListScanRunsResponse",
-        "StopScanRunRequest",
-        "ListCrawledUrlsRequest",
-        "ListCrawledUrlsResponse",
-        "GetFindingRequest",
-        "ListFindingsRequest",
-        "ListFindingsResponse",
-        "ListFindingTypeStatsRequest",
-        "ListFindingTypeStatsResponse",
+        'CreateScanConfigRequest',
+        'DeleteScanConfigRequest',
+        'GetScanConfigRequest',
+        'ListScanConfigsRequest',
+        'UpdateScanConfigRequest',
+        'ListScanConfigsResponse',
+        'StartScanRunRequest',
+        'GetScanRunRequest',
+        'ListScanRunsRequest',
+        'ListScanRunsResponse',
+        'StopScanRunRequest',
+        'ListCrawledUrlsRequest',
+        'ListCrawledUrlsResponse',
+        'GetFindingRequest',
+        'ListFindingsRequest',
+        'ListFindingsResponse',
+        'ListFindingTypeStatsRequest',
+        'ListFindingTypeStatsResponse',
     },
 )
 
@@ -68,8 +66,8 @@ class CreateScanConfigRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    scan_config = proto.Field(
-        proto.MESSAGE, number=2, message=gcw_scan_config.ScanConfig,
+    scan_config = proto.Field(proto.MESSAGE, number=2,
+        message=gcw_scan_config.ScanConfig,
     )
 
 
@@ -141,11 +139,13 @@ class UpdateScanConfigRequest(proto.Message):
             https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
     """
 
-    scan_config = proto.Field(
-        proto.MESSAGE, number=2, message=gcw_scan_config.ScanConfig,
+    scan_config = proto.Field(proto.MESSAGE, number=2,
+        message=gcw_scan_config.ScanConfig,
     )
 
-    update_mask = proto.Field(proto.MESSAGE, number=3, message=field_mask.FieldMask,)
+    update_mask = proto.Field(proto.MESSAGE, number=3,
+        message=field_mask.FieldMask,
+    )
 
 
 class ListScanConfigsResponse(proto.Message):
@@ -164,8 +164,8 @@ class ListScanConfigsResponse(proto.Message):
     def raw_page(self):
         return self
 
-    scan_configs = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=gcw_scan_config.ScanConfig,
+    scan_configs = proto.RepeatedField(proto.MESSAGE, number=1,
+        message=gcw_scan_config.ScanConfig,
     )
 
     next_page_token = proto.Field(proto.STRING, number=2)
@@ -240,7 +240,9 @@ class ListScanRunsResponse(proto.Message):
     def raw_page(self):
         return self
 
-    scan_runs = proto.RepeatedField(proto.MESSAGE, number=1, message=scan_run.ScanRun,)
+    scan_runs = proto.RepeatedField(proto.MESSAGE, number=1,
+        message=scan_run.ScanRun,
+    )
 
     next_page_token = proto.Field(proto.STRING, number=2)
 
@@ -301,8 +303,8 @@ class ListCrawledUrlsResponse(proto.Message):
     def raw_page(self):
         return self
 
-    crawled_urls = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=crawled_url.CrawledUrl,
+    crawled_urls = proto.RepeatedField(proto.MESSAGE, number=1,
+        message=crawled_url.CrawledUrl,
     )
 
     next_page_token = proto.Field(proto.STRING, number=2)
@@ -370,7 +372,9 @@ class ListFindingsResponse(proto.Message):
     def raw_page(self):
         return self
 
-    findings = proto.RepeatedField(proto.MESSAGE, number=1, message=finding.Finding,)
+    findings = proto.RepeatedField(proto.MESSAGE, number=1,
+        message=finding.Finding,
+    )
 
     next_page_token = proto.Field(proto.STRING, number=2)
 
@@ -396,8 +400,8 @@ class ListFindingTypeStatsResponse(proto.Message):
             The list of FindingTypeStats returned.
     """
 
-    finding_type_stats = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=gcw_finding_type_stats.FindingTypeStats,
+    finding_type_stats = proto.RepeatedField(proto.MESSAGE, number=1,
+        message=gcw_finding_type_stats.FindingTypeStats,
     )
 
 

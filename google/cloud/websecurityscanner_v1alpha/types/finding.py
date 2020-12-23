@@ -22,10 +22,7 @@ from google.cloud.websecurityscanner_v1alpha.types import finding_addon
 
 
 __protobuf__ = proto.module(
-    package='google.cloud.websecurityscanner.v1alpha',
-    manifest={
-        'Finding',
-    },
+    package="google.cloud.websecurityscanner.v1alpha", manifest={"Finding",},
 )
 
 
@@ -85,6 +82,7 @@ class Finding(proto.Message):
             An addon containing information reported for
             an XSS, if any.
     """
+
     class FindingType(proto.Enum):
         r"""Types of Findings."""
         FINDING_TYPE_UNSPECIFIED = 0
@@ -102,9 +100,7 @@ class Finding(proto.Message):
 
     name = proto.Field(proto.STRING, number=1)
 
-    finding_type = proto.Field(proto.ENUM, number=2,
-        enum=FindingType,
-    )
+    finding_type = proto.Field(proto.ENUM, number=2, enum=FindingType,)
 
     http_method = proto.Field(proto.STRING, number=3)
 
@@ -122,25 +118,23 @@ class Finding(proto.Message):
 
     tracking_id = proto.Field(proto.STRING, number=10)
 
-    outdated_library = proto.Field(proto.MESSAGE, number=11,
-        message=finding_addon.OutdatedLibrary,
+    outdated_library = proto.Field(
+        proto.MESSAGE, number=11, message=finding_addon.OutdatedLibrary,
     )
 
-    violating_resource = proto.Field(proto.MESSAGE, number=12,
-        message=finding_addon.ViolatingResource,
+    violating_resource = proto.Field(
+        proto.MESSAGE, number=12, message=finding_addon.ViolatingResource,
     )
 
-    vulnerable_headers = proto.Field(proto.MESSAGE, number=15,
-        message=finding_addon.VulnerableHeaders,
+    vulnerable_headers = proto.Field(
+        proto.MESSAGE, number=15, message=finding_addon.VulnerableHeaders,
     )
 
-    vulnerable_parameters = proto.Field(proto.MESSAGE, number=13,
-        message=finding_addon.VulnerableParameters,
+    vulnerable_parameters = proto.Field(
+        proto.MESSAGE, number=13, message=finding_addon.VulnerableParameters,
     )
 
-    xss = proto.Field(proto.MESSAGE, number=14,
-        message=finding_addon.Xss,
-    )
+    xss = proto.Field(proto.MESSAGE, number=14, message=finding_addon.Xss,)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

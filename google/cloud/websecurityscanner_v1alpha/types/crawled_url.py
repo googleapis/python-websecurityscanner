@@ -19,10 +19,7 @@ import proto  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package='google.cloud.websecurityscanner.v1alpha',
-    manifest={
-        'CrawledUrl',
-    },
+    package="google.cloud.websecurityscanner.v1alpha", manifest={"CrawledUrl",},
 )
 
 

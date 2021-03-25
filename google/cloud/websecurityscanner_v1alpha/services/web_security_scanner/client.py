@@ -126,6 +126,22 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
     )
 
     @classmethod
+    def from_service_account_info(cls, info: dict, *args, **kwargs):
+        """Creates an instance of this client using the provided credentials info.
+
+        Args:
+            info (dict): The service account private key info.
+            args: Additional arguments to pass to the constructor.
+            kwargs: Additional arguments to pass to the constructor.
+
+        Returns:
+            WebSecurityScannerClient: The constructed client.
+        """
+        credentials = service_account.Credentials.from_service_account_info(info)
+        kwargs["credentials"] = credentials
+        return cls(*args, **kwargs)
+
+    @classmethod
     def from_service_account_file(cls, filename: str, *args, **kwargs):
         """Creates an instance of this client using the provided credentials
         file.
@@ -137,7 +153,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
             kwargs: Additional arguments to pass to the constructor.
 
         Returns:
-            {@api.name}: The constructed client.
+            WebSecurityScannerClient: The constructed client.
         """
         credentials = service_account.Credentials.from_service_account_file(filename)
         kwargs["credentials"] = credentials
@@ -281,10 +297,10 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
                 credentials identify the application to the service; if none
                 are specified, the client will attempt to ascertain the
                 credentials from the environment.
-            transport (Union[str, ~.WebSecurityScannerTransport]): The
+            transport (Union[str, WebSecurityScannerTransport]): The
                 transport to use. If set to None, a transport is chosen
                 automatically.
-            client_options (client_options_lib.ClientOptions): Custom options for the
+            client_options (google.api_core.client_options.ClientOptions): Custom options for the
                 client. It won't take effect if a ``transport`` instance is provided.
                 (1) The ``api_endpoint`` property can be used to override the
                 default endpoint provided by the client. GOOGLE_API_USE_MTLS_ENDPOINT
@@ -320,21 +336,17 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
             util.strtobool(os.getenv("GOOGLE_API_USE_CLIENT_CERTIFICATE", "false"))
         )
 
-        ssl_credentials = None
+        client_cert_source_func = None
         is_mtls = False
         if use_client_cert:
             if client_options.client_cert_source:
-                import grpc  # type: ignore
-
-                cert, key = client_options.client_cert_source()
-                ssl_credentials = grpc.ssl_channel_credentials(
-                    certificate_chain=cert, private_key=key
-                )
                 is_mtls = True
+                client_cert_source_func = client_options.client_cert_source
             else:
-                creds = SslCredentials()
-                is_mtls = creds.is_mtls
-                ssl_credentials = creds.ssl_credentials if is_mtls else None
+                is_mtls = mtls.has_default_client_cert_source()
+                client_cert_source_func = (
+                    mtls.default_client_cert_source() if is_mtls else None
+                )
 
         # Figure out which api endpoint to use.
         if client_options.api_endpoint is not None:
@@ -377,7 +389,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
                 credentials_file=client_options.credentials_file,
                 host=api_endpoint,
                 scopes=client_options.scopes,
-                ssl_channel_credentials=ssl_credentials,
+                client_cert_source_for_mtls=client_cert_source_func,
                 quota_project_id=client_options.quota_project_id,
                 client_info=client_info,
             )
@@ -395,20 +407,22 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         r"""Creates a new ScanConfig.
 
         Args:
-            request (:class:`~.web_security_scanner.CreateScanConfigRequest`):
+            request (google.cloud.websecurityscanner_v1alpha.types.CreateScanConfigRequest):
                 The request object. Request for the `CreateScanConfig`
                 method.
-            parent (:class:`str`):
+            parent (str):
                 Required. The parent resource name
                 where the scan is created, which should
                 be a project resource name in the format
                 'projects/{projectId}'.
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            scan_config (:class:`~.gcw_scan_config.ScanConfig`):
+            scan_config (google.cloud.websecurityscanner_v1alpha.types.ScanConfig):
                 Required. The ScanConfig to be
                 created.
+
                 This corresponds to the ``scan_config`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -420,7 +434,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.gcw_scan_config.ScanConfig:
+            google.cloud.websecurityscanner_v1alpha.types.ScanConfig:
                 A ScanConfig resource contains the
                 configurations to launch a scan. next
                 id: 12
@@ -480,14 +494,15 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         resources.
 
         Args:
-            request (:class:`~.web_security_scanner.DeleteScanConfigRequest`):
+            request (google.cloud.websecurityscanner_v1alpha.types.DeleteScanConfigRequest):
                 The request object. Request for the `DeleteScanConfig`
                 method.
-            name (:class:`str`):
+            name (str):
                 Required. The resource name of the
                 ScanConfig to be deleted. The name
                 follows the format of
                 'projects/{projectId}/scanConfigs/{scanConfigId}'.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -548,14 +563,15 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         r"""Gets a ScanConfig.
 
         Args:
-            request (:class:`~.web_security_scanner.GetScanConfigRequest`):
+            request (google.cloud.websecurityscanner_v1alpha.types.GetScanConfigRequest):
                 The request object. Request for the `GetScanConfig`
                 method.
-            name (:class:`str`):
+            name (str):
                 Required. The resource name of the
                 ScanConfig to be returned. The name
                 follows the format of
                 'projects/{projectId}/scanConfigs/{scanConfigId}'.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -567,7 +583,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.scan_config.ScanConfig:
+            google.cloud.websecurityscanner_v1alpha.types.ScanConfig:
                 A ScanConfig resource contains the
                 configurations to launch a scan. next
                 id: 12
@@ -624,13 +640,14 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         r"""Lists ScanConfigs under a given project.
 
         Args:
-            request (:class:`~.web_security_scanner.ListScanConfigsRequest`):
+            request (google.cloud.websecurityscanner_v1alpha.types.ListScanConfigsRequest):
                 The request object. Request for the `ListScanConfigs`
                 method.
-            parent (:class:`str`):
+            parent (str):
                 Required. The parent resource name,
                 which should be a project resource name
                 in the format 'projects/{projectId}'.
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -642,8 +659,8 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.ListScanConfigsPager:
-                Response for the ``ListScanConfigs`` method.
+            google.cloud.websecurityscanner_v1alpha.services.web_security_scanner.pagers.ListScanConfigsPager:
+                Response for the ListScanConfigs method.
 
                 Iterating over this object will yield results and
                 resolve additional pages automatically.
@@ -708,22 +725,24 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         update of a ScanConfig.
 
         Args:
-            request (:class:`~.web_security_scanner.UpdateScanConfigRequest`):
+            request (google.cloud.websecurityscanner_v1alpha.types.UpdateScanConfigRequest):
                 The request object. Request for the
                 `UpdateScanConfigRequest` method.
-            scan_config (:class:`~.gcw_scan_config.ScanConfig`):
+            scan_config (google.cloud.websecurityscanner_v1alpha.types.ScanConfig):
                 Required. The ScanConfig to be
                 updated. The name field must be set to
                 identify the resource to be updated. The
                 values of fields not covered by the mask
                 will be ignored.
+
                 This corresponds to the ``scan_config`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            update_mask (:class:`~.field_mask.FieldMask`):
+            update_mask (google.protobuf.field_mask_pb2.FieldMask):
                 Required. The update mask applies to the resource. For
                 the ``FieldMask`` definition, see
                 https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -735,7 +754,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.gcw_scan_config.ScanConfig:
+            google.cloud.websecurityscanner_v1alpha.types.ScanConfig:
                 A ScanConfig resource contains the
                 configurations to launch a scan. next
                 id: 12
@@ -796,14 +815,15 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         r"""Start a ScanRun according to the given ScanConfig.
 
         Args:
-            request (:class:`~.web_security_scanner.StartScanRunRequest`):
+            request (google.cloud.websecurityscanner_v1alpha.types.StartScanRunRequest):
                 The request object. Request for the `StartScanRun`
                 method.
-            name (:class:`str`):
+            name (str):
                 Required. The resource name of the
                 ScanConfig to be used. The name follows
                 the format of
                 'projects/{projectId}/scanConfigs/{scanConfigId}'.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -815,7 +835,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.scan_run.ScanRun:
+            google.cloud.websecurityscanner_v1alpha.types.ScanRun:
                 A ScanRun is a output-only resource
                 representing an actual run of the scan.
 
@@ -871,13 +891,14 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         r"""Gets a ScanRun.
 
         Args:
-            request (:class:`~.web_security_scanner.GetScanRunRequest`):
+            request (google.cloud.websecurityscanner_v1alpha.types.GetScanRunRequest):
                 The request object. Request for the `GetScanRun` method.
-            name (:class:`str`):
+            name (str):
                 Required. The resource name of the
                 ScanRun to be returned. The name follows
                 the format of
                 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -889,7 +910,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.scan_run.ScanRun:
+            google.cloud.websecurityscanner_v1alpha.types.ScanRun:
                 A ScanRun is a output-only resource
                 representing an actual run of the scan.
 
@@ -946,14 +967,15 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         descending order of ScanRun stop time.
 
         Args:
-            request (:class:`~.web_security_scanner.ListScanRunsRequest`):
+            request (google.cloud.websecurityscanner_v1alpha.types.ListScanRunsRequest):
                 The request object. Request for the `ListScanRuns`
                 method.
-            parent (:class:`str`):
+            parent (str):
                 Required. The parent resource name,
                 which should be a scan resource name in
                 the format
                 'projects/{projectId}/scanConfigs/{scanConfigId}'.
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -965,8 +987,8 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.ListScanRunsPager:
-                Response for the ``ListScanRuns`` method.
+            google.cloud.websecurityscanner_v1alpha.services.web_security_scanner.pagers.ListScanRunsPager:
+                Response for the ListScanRuns method.
 
                 Iterating over this object will yield results and
                 resolve additional pages automatically.
@@ -1029,14 +1051,15 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         r"""Stops a ScanRun. The stopped ScanRun is returned.
 
         Args:
-            request (:class:`~.web_security_scanner.StopScanRunRequest`):
+            request (google.cloud.websecurityscanner_v1alpha.types.StopScanRunRequest):
                 The request object. Request for the `StopScanRun`
                 method.
-            name (:class:`str`):
+            name (str):
                 Required. The resource name of the
                 ScanRun to be stopped. The name follows
                 the format of
                 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1048,7 +1071,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.scan_run.ScanRun:
+            google.cloud.websecurityscanner_v1alpha.types.ScanRun:
                 A ScanRun is a output-only resource
                 representing an actual run of the scan.
 
@@ -1104,14 +1127,15 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         r"""List CrawledUrls under a given ScanRun.
 
         Args:
-            request (:class:`~.web_security_scanner.ListCrawledUrlsRequest`):
+            request (google.cloud.websecurityscanner_v1alpha.types.ListCrawledUrlsRequest):
                 The request object. Request for the `ListCrawledUrls`
                 method.
-            parent (:class:`str`):
+            parent (str):
                 Required. The parent resource name,
                 which should be a scan run resource name
                 in the format
                 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1123,8 +1147,8 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.ListCrawledUrlsPager:
-                Response for the ``ListCrawledUrls`` method.
+            google.cloud.websecurityscanner_v1alpha.services.web_security_scanner.pagers.ListCrawledUrlsPager:
+                Response for the ListCrawledUrls method.
 
                 Iterating over this object will yield results and
                 resolve additional pages automatically.
@@ -1187,13 +1211,14 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         r"""Gets a Finding.
 
         Args:
-            request (:class:`~.web_security_scanner.GetFindingRequest`):
+            request (google.cloud.websecurityscanner_v1alpha.types.GetFindingRequest):
                 The request object. Request for the `GetFinding` method.
-            name (:class:`str`):
+            name (str):
                 Required. The resource name of the
                 Finding to be returned. The name follows
                 the format of
                 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}/findings/{findingId}'.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1205,7 +1230,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.finding.Finding:
+            google.cloud.websecurityscanner_v1alpha.types.Finding:
                 A Finding resource represents a
                 vulnerability instance identified during
                 a ScanRun.
@@ -1263,21 +1288,23 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         r"""List Findings under a given ScanRun.
 
         Args:
-            request (:class:`~.web_security_scanner.ListFindingsRequest`):
+            request (google.cloud.websecurityscanner_v1alpha.types.ListFindingsRequest):
                 The request object. Request for the `ListFindings`
                 method.
-            parent (:class:`str`):
+            parent (str):
                 Required. The parent resource name,
                 which should be a scan run resource name
                 in the format
                 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            filter (:class:`str`):
+            filter (str):
                 Required. The filter expression. The expression must be
                 in the format: . Supported field: 'finding_type'.
                 Supported operator: '='.
+
                 This corresponds to the ``filter`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1289,8 +1316,8 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.ListFindingsPager:
-                Response for the ``ListFindings`` method.
+            google.cloud.websecurityscanner_v1alpha.services.web_security_scanner.pagers.ListFindingsPager:
+                Response for the ListFindings method.
 
                 Iterating over this object will yield results and
                 resolve additional pages automatically.
@@ -1355,14 +1382,15 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         r"""List all FindingTypeStats under a given ScanRun.
 
         Args:
-            request (:class:`~.web_security_scanner.ListFindingTypeStatsRequest`):
+            request (google.cloud.websecurityscanner_v1alpha.types.ListFindingTypeStatsRequest):
                 The request object. Request for the
                 `ListFindingTypeStats` method.
-            parent (:class:`str`):
+            parent (str):
                 Required. The parent resource name,
                 which should be a scan run resource name
                 in the format
                 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1374,8 +1402,8 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.web_security_scanner.ListFindingTypeStatsResponse:
-                Response for the ``ListFindingTypeStats`` method.
+            google.cloud.websecurityscanner_v1alpha.types.ListFindingTypeStatsResponse:
+                Response for the ListFindingTypeStats method.
         """
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have

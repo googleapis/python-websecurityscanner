@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 from collections import OrderedDict
 import functools
 import re
@@ -39,7 +37,6 @@ from google.cloud.websecurityscanner_v1alpha.types import scan_run
 from google.cloud.websecurityscanner_v1alpha.types import web_security_scanner
 from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
 from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
-
 from .transports.base import WebSecurityScannerTransport, DEFAULT_CLIENT_INFO
 from .transports.grpc_asyncio import WebSecurityScannerGrpcAsyncIOTransport
 from .client import WebSecurityScannerClient
@@ -65,31 +62,26 @@ class WebSecurityScannerAsyncClient:
     )
     scan_run_path = staticmethod(WebSecurityScannerClient.scan_run_path)
     parse_scan_run_path = staticmethod(WebSecurityScannerClient.parse_scan_run_path)
-
     common_billing_account_path = staticmethod(
         WebSecurityScannerClient.common_billing_account_path
     )
     parse_common_billing_account_path = staticmethod(
         WebSecurityScannerClient.parse_common_billing_account_path
     )
-
     common_folder_path = staticmethod(WebSecurityScannerClient.common_folder_path)
     parse_common_folder_path = staticmethod(
         WebSecurityScannerClient.parse_common_folder_path
     )
-
     common_organization_path = staticmethod(
         WebSecurityScannerClient.common_organization_path
     )
     parse_common_organization_path = staticmethod(
         WebSecurityScannerClient.parse_common_organization_path
     )
-
     common_project_path = staticmethod(WebSecurityScannerClient.common_project_path)
     parse_common_project_path = staticmethod(
         WebSecurityScannerClient.parse_common_project_path
     )
-
     common_location_path = staticmethod(WebSecurityScannerClient.common_location_path)
     parse_common_location_path = staticmethod(
         WebSecurityScannerClient.parse_common_location_path
@@ -181,7 +173,6 @@ class WebSecurityScannerAsyncClient:
             google.auth.exceptions.MutualTlsChannelError: If mutual TLS transport
                 creation failed for any reason.
         """
-
         self._client = WebSecurityScannerClient(
             credentials=credentials,
             transport=transport,
@@ -203,7 +194,8 @@ class WebSecurityScannerAsyncClient:
 
         Args:
             request (:class:`google.cloud.websecurityscanner_v1alpha.types.CreateScanConfigRequest`):
-                The request object. Request for the `CreateScanConfig`
+                The request object.
+                Request for the `CreateScanConfig`
                 method.
             parent (:class:`str`):
                 Required. The parent resource name
@@ -221,7 +213,6 @@ class WebSecurityScannerAsyncClient:
                 This corresponds to the ``scan_config`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -249,7 +240,6 @@ class WebSecurityScannerAsyncClient:
 
         # If we have keyword arguments corresponding to fields on the
         # request, apply these.
-
         if parent is not None:
             request.parent = parent
         if scan_config is not None:
@@ -289,7 +279,8 @@ class WebSecurityScannerAsyncClient:
 
         Args:
             request (:class:`google.cloud.websecurityscanner_v1alpha.types.DeleteScanConfigRequest`):
-                The request object. Request for the `DeleteScanConfig`
+                The request object.
+                Request for the `DeleteScanConfig`
                 method.
             name (:class:`str`):
                 Required. The resource name of the
@@ -300,7 +291,6 @@ class WebSecurityScannerAsyncClient:
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -321,7 +311,6 @@ class WebSecurityScannerAsyncClient:
 
         # If we have keyword arguments corresponding to fields on the
         # request, apply these.
-
         if name is not None:
             request.name = name
 
@@ -366,7 +355,8 @@ class WebSecurityScannerAsyncClient:
 
         Args:
             request (:class:`google.cloud.websecurityscanner_v1alpha.types.GetScanConfigRequest`):
-                The request object. Request for the `GetScanConfig`
+                The request object.
+                Request for the `GetScanConfig`
                 method.
             name (:class:`str`):
                 Required. The resource name of the
@@ -377,7 +367,6 @@ class WebSecurityScannerAsyncClient:
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -405,7 +394,6 @@ class WebSecurityScannerAsyncClient:
 
         # If we have keyword arguments corresponding to fields on the
         # request, apply these.
-
         if name is not None:
             request.name = name
 
@@ -451,7 +439,8 @@ class WebSecurityScannerAsyncClient:
 
         Args:
             request (:class:`google.cloud.websecurityscanner_v1alpha.types.ListScanConfigsRequest`):
-                The request object. Request for the `ListScanConfigs`
+                The request object.
+                Request for the `ListScanConfigs`
                 method.
             parent (:class:`str`):
                 Required. The parent resource name,
@@ -461,7 +450,6 @@ class WebSecurityScannerAsyncClient:
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -490,7 +478,6 @@ class WebSecurityScannerAsyncClient:
 
         # If we have keyword arguments corresponding to fields on the
         # request, apply these.
-
         if parent is not None:
             request.parent = parent
 
@@ -544,7 +531,8 @@ class WebSecurityScannerAsyncClient:
 
         Args:
             request (:class:`google.cloud.websecurityscanner_v1alpha.types.UpdateScanConfigRequest`):
-                The request object. Request for the
+                The request object.
+                Request for the
                 `UpdateScanConfigRequest` method.
             scan_config (:class:`google.cloud.websecurityscanner_v1alpha.types.ScanConfig`):
                 Required. The ScanConfig to be
@@ -564,7 +552,6 @@ class WebSecurityScannerAsyncClient:
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -592,7 +579,6 @@ class WebSecurityScannerAsyncClient:
 
         # If we have keyword arguments corresponding to fields on the
         # request, apply these.
-
         if scan_config is not None:
             request.scan_config = scan_config
         if update_mask is not None:
@@ -633,7 +619,8 @@ class WebSecurityScannerAsyncClient:
 
         Args:
             request (:class:`google.cloud.websecurityscanner_v1alpha.types.StartScanRunRequest`):
-                The request object. Request for the `StartScanRun`
+                The request object.
+                Request for the `StartScanRun`
                 method.
             name (:class:`str`):
                 Required. The resource name of the
@@ -644,7 +631,6 @@ class WebSecurityScannerAsyncClient:
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -671,7 +657,6 @@ class WebSecurityScannerAsyncClient:
 
         # If we have keyword arguments corresponding to fields on the
         # request, apply these.
-
         if name is not None:
             request.name = name
 
@@ -708,7 +693,8 @@ class WebSecurityScannerAsyncClient:
 
         Args:
             request (:class:`google.cloud.websecurityscanner_v1alpha.types.GetScanRunRequest`):
-                The request object. Request for the `GetScanRun` method.
+                The request object.
+                Request for the `GetScanRun` method.
             name (:class:`str`):
                 Required. The resource name of the
                 ScanRun to be returned. The name follows
@@ -718,7 +704,6 @@ class WebSecurityScannerAsyncClient:
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -745,7 +730,6 @@ class WebSecurityScannerAsyncClient:
 
         # If we have keyword arguments corresponding to fields on the
         # request, apply these.
-
         if name is not None:
             request.name = name
 
@@ -792,7 +776,8 @@ class WebSecurityScannerAsyncClient:
 
         Args:
             request (:class:`google.cloud.websecurityscanner_v1alpha.types.ListScanRunsRequest`):
-                The request object. Request for the `ListScanRuns`
+                The request object.
+                Request for the `ListScanRuns`
                 method.
             parent (:class:`str`):
                 Required. The parent resource name,
@@ -803,7 +788,6 @@ class WebSecurityScannerAsyncClient:
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -832,7 +816,6 @@ class WebSecurityScannerAsyncClient:
 
         # If we have keyword arguments corresponding to fields on the
         # request, apply these.
-
         if parent is not None:
             request.parent = parent
 
@@ -884,7 +867,8 @@ class WebSecurityScannerAsyncClient:
 
         Args:
             request (:class:`google.cloud.websecurityscanner_v1alpha.types.StopScanRunRequest`):
-                The request object. Request for the `StopScanRun`
+                The request object.
+                Request for the `StopScanRun`
                 method.
             name (:class:`str`):
                 Required. The resource name of the
@@ -895,7 +879,6 @@ class WebSecurityScannerAsyncClient:
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -922,7 +905,6 @@ class WebSecurityScannerAsyncClient:
 
         # If we have keyword arguments corresponding to fields on the
         # request, apply these.
-
         if name is not None:
             request.name = name
 
@@ -959,7 +941,8 @@ class WebSecurityScannerAsyncClient:
 
         Args:
             request (:class:`google.cloud.websecurityscanner_v1alpha.types.ListCrawledUrlsRequest`):
-                The request object. Request for the `ListCrawledUrls`
+                The request object.
+                Request for the `ListCrawledUrls`
                 method.
             parent (:class:`str`):
                 Required. The parent resource name,
@@ -970,7 +953,6 @@ class WebSecurityScannerAsyncClient:
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -999,7 +981,6 @@ class WebSecurityScannerAsyncClient:
 
         # If we have keyword arguments corresponding to fields on the
         # request, apply these.
-
         if parent is not None:
             request.parent = parent
 
@@ -1051,7 +1032,8 @@ class WebSecurityScannerAsyncClient:
 
         Args:
             request (:class:`google.cloud.websecurityscanner_v1alpha.types.GetFindingRequest`):
-                The request object. Request for the `GetFinding` method.
+                The request object.
+                Request for the `GetFinding` method.
             name (:class:`str`):
                 Required. The resource name of the
                 Finding to be returned. The name follows
@@ -1061,7 +1043,6 @@ class WebSecurityScannerAsyncClient:
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -1089,7 +1070,6 @@ class WebSecurityScannerAsyncClient:
 
         # If we have keyword arguments corresponding to fields on the
         # request, apply these.
-
         if name is not None:
             request.name = name
 
@@ -1136,7 +1116,8 @@ class WebSecurityScannerAsyncClient:
 
         Args:
             request (:class:`google.cloud.websecurityscanner_v1alpha.types.ListFindingsRequest`):
-                The request object. Request for the `ListFindings`
+                The request object.
+                Request for the `ListFindings`
                 method.
             parent (:class:`str`):
                 Required. The parent resource name,
@@ -1155,7 +1136,6 @@ class WebSecurityScannerAsyncClient:
                 This corresponds to the ``filter`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -1184,7 +1164,6 @@ class WebSecurityScannerAsyncClient:
 
         # If we have keyword arguments corresponding to fields on the
         # request, apply these.
-
         if parent is not None:
             request.parent = parent
         if filter is not None:
@@ -1238,7 +1217,8 @@ class WebSecurityScannerAsyncClient:
 
         Args:
             request (:class:`google.cloud.websecurityscanner_v1alpha.types.ListFindingTypeStatsRequest`):
-                The request object. Request for the
+                The request object.
+                Request for the
                 `ListFindingTypeStats` method.
             parent (:class:`str`):
                 Required. The parent resource name,
@@ -1249,7 +1229,6 @@ class WebSecurityScannerAsyncClient:
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -1274,7 +1253,6 @@ class WebSecurityScannerAsyncClient:
 
         # If we have keyword arguments corresponding to fields on the
         # request, apply these.
-
         if parent is not None:
             request.parent = parent
 

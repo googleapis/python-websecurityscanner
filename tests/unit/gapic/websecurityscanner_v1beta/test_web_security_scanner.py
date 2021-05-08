@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,15 +13,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 import os
 import mock
+import packaging.version
 
 import grpc
 from grpc.experimental import aio
 import math
 import pytest
 from proto.marshal.rules.dates import DurationRule, TimestampRule
+
 
 from google import auth
 from google.api_core import client_options
@@ -42,6 +42,12 @@ from google.cloud.websecurityscanner_v1beta.services.web_security_scanner import
 from google.cloud.websecurityscanner_v1beta.services.web_security_scanner import (
     transports,
 )
+from google.cloud.websecurityscanner_v1beta.services.web_security_scanner.transports.base import (
+    _API_CORE_VERSION,
+)
+from google.cloud.websecurityscanner_v1beta.services.web_security_scanner.transports.base import (
+    _GOOGLE_AUTH_VERSION,
+)
 from google.cloud.websecurityscanner_v1beta.types import crawled_url
 from google.cloud.websecurityscanner_v1beta.types import finding
 from google.cloud.websecurityscanner_v1beta.types import finding_addon
@@ -56,6 +62,29 @@ from google.cloud.websecurityscanner_v1beta.types import web_security_scanner
 from google.oauth2 import service_account
 from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
 from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
+
+
+# TODO(busunkim): Once google-api-core >= 1.26.0 is required:
+# - Delete all the api-core and auth "less than" test cases
+# - Delete these pytest markers (Make the "greater than or equal to" tests the default).
+requires_google_auth_lt_1_25_0 = pytest.mark.skipif(
+    packaging.version.parse(_GOOGLE_AUTH_VERSION) >= packaging.version.parse("1.25.0"),
+    reason="This test requires google-auth < 1.25.0",
+)
+requires_google_auth_gte_1_25_0 = pytest.mark.skipif(
+    packaging.version.parse(_GOOGLE_AUTH_VERSION) < packaging.version.parse("1.25.0"),
+    reason="This test requires google-auth >= 1.25.0",
+)
+
+requires_api_core_lt_1_26_0 = pytest.mark.skipif(
+    packaging.version.parse(_API_CORE_VERSION) >= packaging.version.parse("1.26.0"),
+    reason="This test requires google-api-core < 1.26.0",
+)
+
+requires_api_core_gte_1_26_0 = pytest.mark.skipif(
+    packaging.version.parse(_API_CORE_VERSION) < packaging.version.parse("1.26.0"),
+    reason="This test requires google-api-core >= 1.26.0",
+)
 
 
 def client_cert_source_callback():
@@ -498,40 +527,28 @@ def test_create_scan_config(
             export_to_security_command_center=gcw_scan_config.ScanConfig.ExportToSecurityCommandCenter.ENABLED,
             risk_level=gcw_scan_config.ScanConfig.RiskLevel.NORMAL,
         )
-
         response = client.create_scan_config(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.CreateScanConfigRequest()
 
     # Establish that the response is the type that we expect.
-
     assert isinstance(response, gcw_scan_config.ScanConfig)
-
     assert response.name == "name_value"
-
     assert response.display_name == "display_name_value"
-
     assert response.max_qps == 761
-
     assert response.starting_urls == ["starting_urls_value"]
-
     assert response.user_agent == gcw_scan_config.ScanConfig.UserAgent.CHROME_LINUX
-
     assert response.blacklist_patterns == ["blacklist_patterns_value"]
-
     assert response.target_platforms == [
         gcw_scan_config.ScanConfig.TargetPlatform.APP_ENGINE
     ]
-
     assert (
         response.export_to_security_command_center
         == gcw_scan_config.ScanConfig.ExportToSecurityCommandCenter.ENABLED
     )
-
     assert response.risk_level == gcw_scan_config.ScanConfig.RiskLevel.NORMAL
 
 
@@ -553,7 +570,6 @@ def test_create_scan_config_empty_call():
         client.create_scan_config()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.CreateScanConfigRequest()
 
 
@@ -588,39 +604,28 @@ async def test_create_scan_config_async(
                 risk_level=gcw_scan_config.ScanConfig.RiskLevel.NORMAL,
             )
         )
-
         response = await client.create_scan_config(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.CreateScanConfigRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, gcw_scan_config.ScanConfig)
-
     assert response.name == "name_value"
-
     assert response.display_name == "display_name_value"
-
     assert response.max_qps == 761
-
     assert response.starting_urls == ["starting_urls_value"]
-
     assert response.user_agent == gcw_scan_config.ScanConfig.UserAgent.CHROME_LINUX
-
     assert response.blacklist_patterns == ["blacklist_patterns_value"]
-
     assert response.target_platforms == [
         gcw_scan_config.ScanConfig.TargetPlatform.APP_ENGINE
     ]
-
     assert (
         response.export_to_security_command_center
         == gcw_scan_config.ScanConfig.ExportToSecurityCommandCenter.ENABLED
     )
-
     assert response.risk_level == gcw_scan_config.ScanConfig.RiskLevel.NORMAL
 
 
@@ -635,6 +640,7 @@ def test_create_scan_config_field_headers():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = web_security_scanner.CreateScanConfigRequest()
+
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
@@ -642,7 +648,6 @@ def test_create_scan_config_field_headers():
         type(client.transport.create_scan_config), "__call__"
     ) as call:
         call.return_value = gcw_scan_config.ScanConfig()
-
         client.create_scan_config(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -664,6 +669,7 @@ async def test_create_scan_config_field_headers_async():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = web_security_scanner.CreateScanConfigRequest()
+
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
@@ -673,7 +679,6 @@ async def test_create_scan_config_field_headers_async():
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             gcw_scan_config.ScanConfig()
         )
-
         await client.create_scan_config(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -695,7 +700,6 @@ def test_create_scan_config_flattened():
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = gcw_scan_config.ScanConfig()
-
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         client.create_scan_config(
@@ -707,9 +711,7 @@ def test_create_scan_config_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0].parent == "parent_value"
-
         assert args[0].scan_config == gcw_scan_config.ScanConfig(name="name_value")
 
 
@@ -753,9 +755,7 @@ async def test_create_scan_config_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0].parent == "parent_value"
-
         assert args[0].scan_config == gcw_scan_config.ScanConfig(name="name_value")
 
 
@@ -792,13 +792,11 @@ def test_delete_scan_config(
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = None
-
         response = client.delete_scan_config(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.DeleteScanConfigRequest()
 
     # Establish that the response is the type that we expect.
@@ -823,7 +821,6 @@ def test_delete_scan_config_empty_call():
         client.delete_scan_config()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.DeleteScanConfigRequest()
 
 
@@ -846,13 +843,11 @@ async def test_delete_scan_config_async(
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
-
         response = await client.delete_scan_config(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.DeleteScanConfigRequest()
 
     # Establish that the response is the type that we expect.
@@ -870,6 +865,7 @@ def test_delete_scan_config_field_headers():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = web_security_scanner.DeleteScanConfigRequest()
+
     request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
@@ -877,7 +873,6 @@ def test_delete_scan_config_field_headers():
         type(client.transport.delete_scan_config), "__call__"
     ) as call:
         call.return_value = None
-
         client.delete_scan_config(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -899,6 +894,7 @@ async def test_delete_scan_config_field_headers_async():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = web_security_scanner.DeleteScanConfigRequest()
+
     request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
@@ -906,7 +902,6 @@ async def test_delete_scan_config_field_headers_async():
         type(client.transport.delete_scan_config), "__call__"
     ) as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
-
         await client.delete_scan_config(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -928,7 +923,6 @@ def test_delete_scan_config_flattened():
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = None
-
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         client.delete_scan_config(name="name_value",)
@@ -937,7 +931,6 @@ def test_delete_scan_config_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0].name == "name_value"
 
 
@@ -974,7 +967,6 @@ async def test_delete_scan_config_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0].name == "name_value"
 
 
@@ -1017,40 +1009,28 @@ def test_get_scan_config(
             export_to_security_command_center=scan_config.ScanConfig.ExportToSecurityCommandCenter.ENABLED,
             risk_level=scan_config.ScanConfig.RiskLevel.NORMAL,
         )
-
         response = client.get_scan_config(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.GetScanConfigRequest()
 
     # Establish that the response is the type that we expect.
-
     assert isinstance(response, scan_config.ScanConfig)
-
     assert response.name == "name_value"
-
     assert response.display_name == "display_name_value"
-
     assert response.max_qps == 761
-
     assert response.starting_urls == ["starting_urls_value"]
-
     assert response.user_agent == scan_config.ScanConfig.UserAgent.CHROME_LINUX
-
     assert response.blacklist_patterns == ["blacklist_patterns_value"]
-
     assert response.target_platforms == [
         scan_config.ScanConfig.TargetPlatform.APP_ENGINE
     ]
-
     assert (
         response.export_to_security_command_center
         == scan_config.ScanConfig.ExportToSecurityCommandCenter.ENABLED
     )
-
     assert response.risk_level == scan_config.ScanConfig.RiskLevel.NORMAL
 
 
@@ -1070,7 +1050,6 @@ def test_get_scan_config_empty_call():
         client.get_scan_config()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.GetScanConfigRequest()
 
 
@@ -1103,39 +1082,28 @@ async def test_get_scan_config_async(
                 risk_level=scan_config.ScanConfig.RiskLevel.NORMAL,
             )
         )
-
         response = await client.get_scan_config(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.GetScanConfigRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, scan_config.ScanConfig)
-
     assert response.name == "name_value"
-
     assert response.display_name == "display_name_value"
-
     assert response.max_qps == 761
-
     assert response.starting_urls == ["starting_urls_value"]
-
     assert response.user_agent == scan_config.ScanConfig.UserAgent.CHROME_LINUX
-
     assert response.blacklist_patterns == ["blacklist_patterns_value"]
-
     assert response.target_platforms == [
         scan_config.ScanConfig.TargetPlatform.APP_ENGINE
     ]
-
     assert (
         response.export_to_security_command_center
         == scan_config.ScanConfig.ExportToSecurityCommandCenter.ENABLED
     )
-
     assert response.risk_level == scan_config.ScanConfig.RiskLevel.NORMAL
 
 
@@ -1150,12 +1118,12 @@ def test_get_scan_config_field_headers():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = web_security_scanner.GetScanConfigRequest()
+
     request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client.transport.get_scan_config), "__call__") as call:
         call.return_value = scan_config.ScanConfig()
-
         client.get_scan_config(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -1177,6 +1145,7 @@ async def test_get_scan_config_field_headers_async():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = web_security_scanner.GetScanConfigRequest()
+
     request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
@@ -1184,7 +1153,6 @@ async def test_get_scan_config_field_headers_async():
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             scan_config.ScanConfig()
         )
-
         await client.get_scan_config(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -1204,7 +1172,6 @@ def test_get_scan_config_flattened():
     with mock.patch.object(type(client.transport.get_scan_config), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = scan_config.ScanConfig()
-
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         client.get_scan_config(name="name_value",)
@@ -1213,7 +1180,6 @@ def test_get_scan_config_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0].name == "name_value"
 
 
@@ -1250,7 +1216,6 @@ async def test_get_scan_config_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0].name == "name_value"
 
 
@@ -1287,19 +1252,15 @@ def test_list_scan_configs(
         call.return_value = web_security_scanner.ListScanConfigsResponse(
             next_page_token="next_page_token_value",
         )
-
         response = client.list_scan_configs(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.ListScanConfigsRequest()
 
     # Establish that the response is the type that we expect.
-
     assert isinstance(response, pagers.ListScanConfigsPager)
-
     assert response.next_page_token == "next_page_token_value"
 
 
@@ -1321,7 +1282,6 @@ def test_list_scan_configs_empty_call():
         client.list_scan_configs()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.ListScanConfigsRequest()
 
 
@@ -1348,18 +1308,15 @@ async def test_list_scan_configs_async(
                 next_page_token="next_page_token_value",
             )
         )
-
         response = await client.list_scan_configs(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.ListScanConfigsRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, pagers.ListScanConfigsAsyncPager)
-
     assert response.next_page_token == "next_page_token_value"
 
 
@@ -1374,6 +1331,7 @@ def test_list_scan_configs_field_headers():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = web_security_scanner.ListScanConfigsRequest()
+
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
@@ -1381,7 +1339,6 @@ def test_list_scan_configs_field_headers():
         type(client.transport.list_scan_configs), "__call__"
     ) as call:
         call.return_value = web_security_scanner.ListScanConfigsResponse()
-
         client.list_scan_configs(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -1403,6 +1360,7 @@ async def test_list_scan_configs_field_headers_async():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = web_security_scanner.ListScanConfigsRequest()
+
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
@@ -1412,7 +1370,6 @@ async def test_list_scan_configs_field_headers_async():
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             web_security_scanner.ListScanConfigsResponse()
         )
-
         await client.list_scan_configs(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -1434,7 +1391,6 @@ def test_list_scan_configs_flattened():
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = web_security_scanner.ListScanConfigsResponse()
-
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         client.list_scan_configs(parent="parent_value",)
@@ -1443,7 +1399,6 @@ def test_list_scan_configs_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0].parent == "parent_value"
 
 
@@ -1482,7 +1437,6 @@ async def test_list_scan_configs_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0].parent == "parent_value"
 
 
@@ -1685,40 +1639,28 @@ def test_update_scan_config(
             export_to_security_command_center=gcw_scan_config.ScanConfig.ExportToSecurityCommandCenter.ENABLED,
             risk_level=gcw_scan_config.ScanConfig.RiskLevel.NORMAL,
         )
-
         response = client.update_scan_config(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.UpdateScanConfigRequest()
 
     # Establish that the response is the type that we expect.
-
     assert isinstance(response, gcw_scan_config.ScanConfig)
-
     assert response.name == "name_value"
-
     assert response.display_name == "display_name_value"
-
     assert response.max_qps == 761
-
     assert response.starting_urls == ["starting_urls_value"]
-
     assert response.user_agent == gcw_scan_config.ScanConfig.UserAgent.CHROME_LINUX
-
     assert response.blacklist_patterns == ["blacklist_patterns_value"]
-
     assert response.target_platforms == [
         gcw_scan_config.ScanConfig.TargetPlatform.APP_ENGINE
     ]
-
     assert (
         response.export_to_security_command_center
         == gcw_scan_config.ScanConfig.ExportToSecurityCommandCenter.ENABLED
     )
-
     assert response.risk_level == gcw_scan_config.ScanConfig.RiskLevel.NORMAL
 
 
@@ -1740,7 +1682,6 @@ def test_update_scan_config_empty_call():
         client.update_scan_config()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.UpdateScanConfigRequest()
 
 
@@ -1775,39 +1716,28 @@ async def test_update_scan_config_async(
                 risk_level=gcw_scan_config.ScanConfig.RiskLevel.NORMAL,
             )
         )
-
         response = await client.update_scan_config(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.UpdateScanConfigRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, gcw_scan_config.ScanConfig)
-
     assert response.name == "name_value"
-
     assert response.display_name == "display_name_value"
-
     assert response.max_qps == 761
-
     assert response.starting_urls == ["starting_urls_value"]
-
     assert response.user_agent == gcw_scan_config.ScanConfig.UserAgent.CHROME_LINUX
-
     assert response.blacklist_patterns == ["blacklist_patterns_value"]
-
     assert response.target_platforms == [
         gcw_scan_config.ScanConfig.TargetPlatform.APP_ENGINE
     ]
-
     assert (
         response.export_to_security_command_center
         == gcw_scan_config.ScanConfig.ExportToSecurityCommandCenter.ENABLED
     )
-
     assert response.risk_level == gcw_scan_config.ScanConfig.RiskLevel.NORMAL
 
 
@@ -1822,6 +1752,7 @@ def test_update_scan_config_field_headers():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = web_security_scanner.UpdateScanConfigRequest()
+
     request.scan_config.name = "scan_config.name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
@@ -1829,7 +1760,6 @@ def test_update_scan_config_field_headers():
         type(client.transport.update_scan_config), "__call__"
     ) as call:
         call.return_value = gcw_scan_config.ScanConfig()
-
         client.update_scan_config(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -1853,6 +1783,7 @@ async def test_update_scan_config_field_headers_async():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = web_security_scanner.UpdateScanConfigRequest()
+
     request.scan_config.name = "scan_config.name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
@@ -1862,7 +1793,6 @@ async def test_update_scan_config_field_headers_async():
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             gcw_scan_config.ScanConfig()
         )
-
         await client.update_scan_config(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -1886,7 +1816,6 @@ def test_update_scan_config_flattened():
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = gcw_scan_config.ScanConfig()
-
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         client.update_scan_config(
@@ -1898,9 +1827,7 @@ def test_update_scan_config_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0].scan_config == gcw_scan_config.ScanConfig(name="name_value")
-
         assert args[0].update_mask == field_mask.FieldMask(paths=["paths_value"])
 
 
@@ -1944,9 +1871,7 @@ async def test_update_scan_config_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0].scan_config == gcw_scan_config.ScanConfig(name="name_value")
-
         assert args[0].update_mask == field_mask.FieldMask(paths=["paths_value"])
 
 
@@ -1989,31 +1914,21 @@ def test_start_scan_run(
             has_vulnerabilities=True,
             progress_percent=1733,
         )
-
         response = client.start_scan_run(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.StartScanRunRequest()
 
     # Establish that the response is the type that we expect.
-
     assert isinstance(response, scan_run.ScanRun)
-
     assert response.name == "name_value"
-
     assert response.execution_state == scan_run.ScanRun.ExecutionState.QUEUED
-
     assert response.result_state == scan_run.ScanRun.ResultState.SUCCESS
-
     assert response.urls_crawled_count == 1935
-
     assert response.urls_tested_count == 1846
-
     assert response.has_vulnerabilities is True
-
     assert response.progress_percent == 1733
 
 
@@ -2033,7 +1948,6 @@ def test_start_scan_run_empty_call():
         client.start_scan_run()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.StartScanRunRequest()
 
 
@@ -2064,30 +1978,21 @@ async def test_start_scan_run_async(
                 progress_percent=1733,
             )
         )
-
         response = await client.start_scan_run(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.StartScanRunRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, scan_run.ScanRun)
-
     assert response.name == "name_value"
-
     assert response.execution_state == scan_run.ScanRun.ExecutionState.QUEUED
-
     assert response.result_state == scan_run.ScanRun.ResultState.SUCCESS
-
     assert response.urls_crawled_count == 1935
-
     assert response.urls_tested_count == 1846
-
     assert response.has_vulnerabilities is True
-
     assert response.progress_percent == 1733
 
 
@@ -2102,12 +2007,12 @@ def test_start_scan_run_field_headers():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = web_security_scanner.StartScanRunRequest()
+
     request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client.transport.start_scan_run), "__call__") as call:
         call.return_value = scan_run.ScanRun()
-
         client.start_scan_run(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -2129,12 +2034,12 @@ async def test_start_scan_run_field_headers_async():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = web_security_scanner.StartScanRunRequest()
+
     request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client.transport.start_scan_run), "__call__") as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(scan_run.ScanRun())
-
         await client.start_scan_run(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -2154,7 +2059,6 @@ def test_start_scan_run_flattened():
     with mock.patch.object(type(client.transport.start_scan_run), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = scan_run.ScanRun()
-
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         client.start_scan_run(name="name_value",)
@@ -2163,7 +2067,6 @@ def test_start_scan_run_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0].name == "name_value"
 
 
@@ -2198,7 +2101,6 @@ async def test_start_scan_run_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0].name == "name_value"
 
 
@@ -2239,31 +2141,21 @@ def test_get_scan_run(
             has_vulnerabilities=True,
             progress_percent=1733,
         )
-
         response = client.get_scan_run(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.GetScanRunRequest()
 
     # Establish that the response is the type that we expect.
-
     assert isinstance(response, scan_run.ScanRun)
-
     assert response.name == "name_value"
-
     assert response.execution_state == scan_run.ScanRun.ExecutionState.QUEUED
-
     assert response.result_state == scan_run.ScanRun.ResultState.SUCCESS
-
     assert response.urls_crawled_count == 1935
-
     assert response.urls_tested_count == 1846
-
     assert response.has_vulnerabilities is True
-
     assert response.progress_percent == 1733
 
 
@@ -2283,7 +2175,6 @@ def test_get_scan_run_empty_call():
         client.get_scan_run()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.GetScanRunRequest()
 
 
@@ -2313,30 +2204,21 @@ async def test_get_scan_run_async(
                 progress_percent=1733,
             )
         )
-
         response = await client.get_scan_run(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.GetScanRunRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, scan_run.ScanRun)
-
     assert response.name == "name_value"
-
     assert response.execution_state == scan_run.ScanRun.ExecutionState.QUEUED
-
     assert response.result_state == scan_run.ScanRun.ResultState.SUCCESS
-
     assert response.urls_crawled_count == 1935
-
     assert response.urls_tested_count == 1846
-
     assert response.has_vulnerabilities is True
-
     assert response.progress_percent == 1733
 
 
@@ -2351,12 +2233,12 @@ def test_get_scan_run_field_headers():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = web_security_scanner.GetScanRunRequest()
+
     request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client.transport.get_scan_run), "__call__") as call:
         call.return_value = scan_run.ScanRun()
-
         client.get_scan_run(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -2378,12 +2260,12 @@ async def test_get_scan_run_field_headers_async():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = web_security_scanner.GetScanRunRequest()
+
     request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client.transport.get_scan_run), "__call__") as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(scan_run.ScanRun())
-
         await client.get_scan_run(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -2403,7 +2285,6 @@ def test_get_scan_run_flattened():
     with mock.patch.object(type(client.transport.get_scan_run), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = scan_run.ScanRun()
-
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         client.get_scan_run(name="name_value",)
@@ -2412,7 +2293,6 @@ def test_get_scan_run_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0].name == "name_value"
 
 
@@ -2447,7 +2327,6 @@ async def test_get_scan_run_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0].name == "name_value"
 
 
@@ -2482,19 +2361,15 @@ def test_list_scan_runs(
         call.return_value = web_security_scanner.ListScanRunsResponse(
             next_page_token="next_page_token_value",
         )
-
         response = client.list_scan_runs(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.ListScanRunsRequest()
 
     # Establish that the response is the type that we expect.
-
     assert isinstance(response, pagers.ListScanRunsPager)
-
     assert response.next_page_token == "next_page_token_value"
 
 
@@ -2514,7 +2389,6 @@ def test_list_scan_runs_empty_call():
         client.list_scan_runs()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.ListScanRunsRequest()
 
 
@@ -2539,18 +2413,15 @@ async def test_list_scan_runs_async(
                 next_page_token="next_page_token_value",
             )
         )
-
         response = await client.list_scan_runs(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.ListScanRunsRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, pagers.ListScanRunsAsyncPager)
-
     assert response.next_page_token == "next_page_token_value"
 
 
@@ -2565,12 +2436,12 @@ def test_list_scan_runs_field_headers():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = web_security_scanner.ListScanRunsRequest()
+
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client.transport.list_scan_runs), "__call__") as call:
         call.return_value = web_security_scanner.ListScanRunsResponse()
-
         client.list_scan_runs(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -2592,6 +2463,7 @@ async def test_list_scan_runs_field_headers_async():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = web_security_scanner.ListScanRunsRequest()
+
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
@@ -2599,7 +2471,6 @@ async def test_list_scan_runs_field_headers_async():
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             web_security_scanner.ListScanRunsResponse()
         )
-
         await client.list_scan_runs(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -2619,7 +2490,6 @@ def test_list_scan_runs_flattened():
     with mock.patch.object(type(client.transport.list_scan_runs), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = web_security_scanner.ListScanRunsResponse()
-
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         client.list_scan_runs(parent="parent_value",)
@@ -2628,7 +2498,6 @@ def test_list_scan_runs_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0].parent == "parent_value"
 
 
@@ -2665,7 +2534,6 @@ async def test_list_scan_runs_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0].parent == "parent_value"
 
 
@@ -2840,31 +2708,21 @@ def test_stop_scan_run(
             has_vulnerabilities=True,
             progress_percent=1733,
         )
-
         response = client.stop_scan_run(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.StopScanRunRequest()
 
     # Establish that the response is the type that we expect.
-
     assert isinstance(response, scan_run.ScanRun)
-
     assert response.name == "name_value"
-
     assert response.execution_state == scan_run.ScanRun.ExecutionState.QUEUED
-
     assert response.result_state == scan_run.ScanRun.ResultState.SUCCESS
-
     assert response.urls_crawled_count == 1935
-
     assert response.urls_tested_count == 1846
-
     assert response.has_vulnerabilities is True
-
     assert response.progress_percent == 1733
 
 
@@ -2884,7 +2742,6 @@ def test_stop_scan_run_empty_call():
         client.stop_scan_run()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.StopScanRunRequest()
 
 
@@ -2915,30 +2772,21 @@ async def test_stop_scan_run_async(
                 progress_percent=1733,
             )
         )
-
         response = await client.stop_scan_run(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.StopScanRunRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, scan_run.ScanRun)
-
     assert response.name == "name_value"
-
     assert response.execution_state == scan_run.ScanRun.ExecutionState.QUEUED
-
     assert response.result_state == scan_run.ScanRun.ResultState.SUCCESS
-
     assert response.urls_crawled_count == 1935
-
     assert response.urls_tested_count == 1846
-
     assert response.has_vulnerabilities is True
-
     assert response.progress_percent == 1733
 
 
@@ -2953,12 +2801,12 @@ def test_stop_scan_run_field_headers():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = web_security_scanner.StopScanRunRequest()
+
     request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client.transport.stop_scan_run), "__call__") as call:
         call.return_value = scan_run.ScanRun()
-
         client.stop_scan_run(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -2980,12 +2828,12 @@ async def test_stop_scan_run_field_headers_async():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = web_security_scanner.StopScanRunRequest()
+
     request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client.transport.stop_scan_run), "__call__") as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(scan_run.ScanRun())
-
         await client.stop_scan_run(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -3005,7 +2853,6 @@ def test_stop_scan_run_flattened():
     with mock.patch.object(type(client.transport.stop_scan_run), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = scan_run.ScanRun()
-
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         client.stop_scan_run(name="name_value",)
@@ -3014,7 +2861,6 @@ def test_stop_scan_run_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0].name == "name_value"
 
 
@@ -3049,7 +2895,6 @@ async def test_stop_scan_run_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0].name == "name_value"
 
 
@@ -3086,19 +2931,15 @@ def test_list_crawled_urls(
         call.return_value = web_security_scanner.ListCrawledUrlsResponse(
             next_page_token="next_page_token_value",
         )
-
         response = client.list_crawled_urls(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.ListCrawledUrlsRequest()
 
     # Establish that the response is the type that we expect.
-
     assert isinstance(response, pagers.ListCrawledUrlsPager)
-
     assert response.next_page_token == "next_page_token_value"
 
 
@@ -3120,7 +2961,6 @@ def test_list_crawled_urls_empty_call():
         client.list_crawled_urls()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.ListCrawledUrlsRequest()
 
 
@@ -3147,18 +2987,15 @@ async def test_list_crawled_urls_async(
                 next_page_token="next_page_token_value",
             )
         )
-
         response = await client.list_crawled_urls(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.ListCrawledUrlsRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, pagers.ListCrawledUrlsAsyncPager)
-
     assert response.next_page_token == "next_page_token_value"
 
 
@@ -3173,6 +3010,7 @@ def test_list_crawled_urls_field_headers():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = web_security_scanner.ListCrawledUrlsRequest()
+
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
@@ -3180,7 +3018,6 @@ def test_list_crawled_urls_field_headers():
         type(client.transport.list_crawled_urls), "__call__"
     ) as call:
         call.return_value = web_security_scanner.ListCrawledUrlsResponse()
-
         client.list_crawled_urls(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -3202,6 +3039,7 @@ async def test_list_crawled_urls_field_headers_async():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = web_security_scanner.ListCrawledUrlsRequest()
+
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
@@ -3211,7 +3049,6 @@ async def test_list_crawled_urls_field_headers_async():
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             web_security_scanner.ListCrawledUrlsResponse()
         )
-
         await client.list_crawled_urls(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -3233,7 +3070,6 @@ def test_list_crawled_urls_flattened():
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = web_security_scanner.ListCrawledUrlsResponse()
-
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         client.list_crawled_urls(parent="parent_value",)
@@ -3242,7 +3078,6 @@ def test_list_crawled_urls_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0].parent == "parent_value"
 
 
@@ -3281,7 +3116,6 @@ async def test_list_crawled_urls_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0].parent == "parent_value"
 
 
@@ -3483,37 +3317,24 @@ def test_get_finding(
             final_url="final_url_value",
             tracking_id="tracking_id_value",
         )
-
         response = client.get_finding(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.GetFindingRequest()
 
     # Establish that the response is the type that we expect.
-
     assert isinstance(response, finding.Finding)
-
     assert response.name == "name_value"
-
     assert response.finding_type == "finding_type_value"
-
     assert response.http_method == "http_method_value"
-
     assert response.fuzzed_url == "fuzzed_url_value"
-
     assert response.body == "body_value"
-
     assert response.description == "description_value"
-
     assert response.reproduction_url == "reproduction_url_value"
-
     assert response.frame_url == "frame_url_value"
-
     assert response.final_url == "final_url_value"
-
     assert response.tracking_id == "tracking_id_value"
 
 
@@ -3533,7 +3354,6 @@ def test_get_finding_empty_call():
         client.get_finding()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.GetFindingRequest()
 
 
@@ -3566,36 +3386,24 @@ async def test_get_finding_async(
                 tracking_id="tracking_id_value",
             )
         )
-
         response = await client.get_finding(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.GetFindingRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, finding.Finding)
-
     assert response.name == "name_value"
-
     assert response.finding_type == "finding_type_value"
-
     assert response.http_method == "http_method_value"
-
     assert response.fuzzed_url == "fuzzed_url_value"
-
     assert response.body == "body_value"
-
     assert response.description == "description_value"
-
     assert response.reproduction_url == "reproduction_url_value"
-
     assert response.frame_url == "frame_url_value"
-
     assert response.final_url == "final_url_value"
-
     assert response.tracking_id == "tracking_id_value"
 
 
@@ -3610,12 +3418,12 @@ def test_get_finding_field_headers():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = web_security_scanner.GetFindingRequest()
+
     request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client.transport.get_finding), "__call__") as call:
         call.return_value = finding.Finding()
-
         client.get_finding(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -3637,12 +3445,12 @@ async def test_get_finding_field_headers_async():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = web_security_scanner.GetFindingRequest()
+
     request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client.transport.get_finding), "__call__") as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(finding.Finding())
-
         await client.get_finding(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -3662,7 +3470,6 @@ def test_get_finding_flattened():
     with mock.patch.object(type(client.transport.get_finding), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = finding.Finding()
-
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         client.get_finding(name="name_value",)
@@ -3671,7 +3478,6 @@ def test_get_finding_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0].name == "name_value"
 
 
@@ -3706,7 +3512,6 @@ async def test_get_finding_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0].name == "name_value"
 
 
@@ -3741,19 +3546,15 @@ def test_list_findings(
         call.return_value = web_security_scanner.ListFindingsResponse(
             next_page_token="next_page_token_value",
         )
-
         response = client.list_findings(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.ListFindingsRequest()
 
     # Establish that the response is the type that we expect.
-
     assert isinstance(response, pagers.ListFindingsPager)
-
     assert response.next_page_token == "next_page_token_value"
 
 
@@ -3773,7 +3574,6 @@ def test_list_findings_empty_call():
         client.list_findings()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.ListFindingsRequest()
 
 
@@ -3798,18 +3598,15 @@ async def test_list_findings_async(
                 next_page_token="next_page_token_value",
             )
         )
-
         response = await client.list_findings(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.ListFindingsRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, pagers.ListFindingsAsyncPager)
-
     assert response.next_page_token == "next_page_token_value"
 
 
@@ -3824,12 +3621,12 @@ def test_list_findings_field_headers():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = web_security_scanner.ListFindingsRequest()
+
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client.transport.list_findings), "__call__") as call:
         call.return_value = web_security_scanner.ListFindingsResponse()
-
         client.list_findings(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -3851,6 +3648,7 @@ async def test_list_findings_field_headers_async():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = web_security_scanner.ListFindingsRequest()
+
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
@@ -3858,7 +3656,6 @@ async def test_list_findings_field_headers_async():
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             web_security_scanner.ListFindingsResponse()
         )
-
         await client.list_findings(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -3878,7 +3675,6 @@ def test_list_findings_flattened():
     with mock.patch.object(type(client.transport.list_findings), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = web_security_scanner.ListFindingsResponse()
-
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         client.list_findings(
@@ -3889,9 +3685,7 @@ def test_list_findings_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0].parent == "parent_value"
-
         assert args[0].filter == "filter_value"
 
 
@@ -3932,9 +3726,7 @@ async def test_list_findings_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0].parent == "parent_value"
-
         assert args[0].filter == "filter_value"
 
 
@@ -4106,17 +3898,14 @@ def test_list_finding_type_stats(
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = web_security_scanner.ListFindingTypeStatsResponse()
-
         response = client.list_finding_type_stats(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.ListFindingTypeStatsRequest()
 
     # Establish that the response is the type that we expect.
-
     assert isinstance(response, web_security_scanner.ListFindingTypeStatsResponse)
 
 
@@ -4138,7 +3927,6 @@ def test_list_finding_type_stats_empty_call():
         client.list_finding_type_stats()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.ListFindingTypeStatsRequest()
 
 
@@ -4163,13 +3951,11 @@ async def test_list_finding_type_stats_async(
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             web_security_scanner.ListFindingTypeStatsResponse()
         )
-
         response = await client.list_finding_type_stats(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == web_security_scanner.ListFindingTypeStatsRequest()
 
     # Establish that the response is the type that we expect.
@@ -4187,6 +3973,7 @@ def test_list_finding_type_stats_field_headers():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = web_security_scanner.ListFindingTypeStatsRequest()
+
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
@@ -4194,7 +3981,6 @@ def test_list_finding_type_stats_field_headers():
         type(client.transport.list_finding_type_stats), "__call__"
     ) as call:
         call.return_value = web_security_scanner.ListFindingTypeStatsResponse()
-
         client.list_finding_type_stats(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -4216,6 +4002,7 @@ async def test_list_finding_type_stats_field_headers_async():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = web_security_scanner.ListFindingTypeStatsRequest()
+
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
@@ -4225,7 +4012,6 @@ async def test_list_finding_type_stats_field_headers_async():
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             web_security_scanner.ListFindingTypeStatsResponse()
         )
-
         await client.list_finding_type_stats(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -4247,7 +4033,6 @@ def test_list_finding_type_stats_flattened():
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = web_security_scanner.ListFindingTypeStatsResponse()
-
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         client.list_finding_type_stats(parent="parent_value",)
@@ -4256,7 +4041,6 @@ def test_list_finding_type_stats_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0].parent == "parent_value"
 
 
@@ -4295,7 +4079,6 @@ async def test_list_finding_type_stats_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0].parent == "parent_value"
 
 
@@ -4429,10 +4212,32 @@ def test_web_security_scanner_base_transport():
             getattr(transport, method)(request=object())
 
 
+@requires_google_auth_gte_1_25_0
 def test_web_security_scanner_base_transport_with_credentials_file():
     # Instantiate the base transport with a credentials file
     with mock.patch.object(
-        auth, "load_credentials_from_file"
+        auth, "load_credentials_from_file", autospec=True
+    ) as load_creds, mock.patch(
+        "google.cloud.websecurityscanner_v1beta.services.web_security_scanner.transports.WebSecurityScannerTransport._prep_wrapped_messages"
+    ) as Transport:
+        Transport.return_value = None
+        load_creds.return_value = (credentials.AnonymousCredentials(), None)
+        transport = transports.WebSecurityScannerTransport(
+            credentials_file="credentials.json", quota_project_id="octopus",
+        )
+        load_creds.assert_called_once_with(
+            "credentials.json",
+            scopes=None,
+            default_scopes=("https://www.googleapis.com/auth/cloud-platform",),
+            quota_project_id="octopus",
+        )
+
+
+@requires_google_auth_lt_1_25_0
+def test_web_security_scanner_base_transport_with_credentials_file_old_google_auth():
+    # Instantiate the base transport with a credentials file
+    with mock.patch.object(
+        auth, "load_credentials_from_file", autospec=True
     ) as load_creds, mock.patch(
         "google.cloud.websecurityscanner_v1beta.services.web_security_scanner.transports.WebSecurityScannerTransport._prep_wrapped_messages"
     ) as Transport:
@@ -4450,7 +4255,7 @@ def test_web_security_scanner_base_transport_with_credentials_file():
 
 def test_web_security_scanner_base_transport_with_adc():
     # Test the default credentials are used if credentials and credentials_file are None.
-    with mock.patch.object(auth, "default") as adc, mock.patch(
+    with mock.patch.object(auth, "default", autospec=True) as adc, mock.patch(
         "google.cloud.websecurityscanner_v1beta.services.web_security_scanner.transports.WebSecurityScannerTransport._prep_wrapped_messages"
     ) as Transport:
         Transport.return_value = None
@@ -4459,9 +4264,23 @@ def test_web_security_scanner_base_transport_with_adc():
         adc.assert_called_once()
 
 
+@requires_google_auth_gte_1_25_0
 def test_web_security_scanner_auth_adc():
     # If no credentials are provided, we should use ADC credentials.
-    with mock.patch.object(auth, "default") as adc:
+    with mock.patch.object(auth, "default", autospec=True) as adc:
+        adc.return_value = (credentials.AnonymousCredentials(), None)
+        WebSecurityScannerClient()
+        adc.assert_called_once_with(
+            scopes=None,
+            default_scopes=("https://www.googleapis.com/auth/cloud-platform",),
+            quota_project_id=None,
+        )
+
+
+@requires_google_auth_lt_1_25_0
+def test_web_security_scanner_auth_adc_old_google_auth():
+    # If no credentials are provided, we should use ADC credentials.
+    with mock.patch.object(auth, "default", autospec=True) as adc:
         adc.return_value = (credentials.AnonymousCredentials(), None)
         WebSecurityScannerClient()
         adc.assert_called_once_with(
@@ -4470,17 +4289,147 @@ def test_web_security_scanner_auth_adc():
         )
 
 
-def test_web_security_scanner_transport_auth_adc():
+@pytest.mark.parametrize(
+    "transport_class",
+    [
+        transports.WebSecurityScannerGrpcTransport,
+        transports.WebSecurityScannerGrpcAsyncIOTransport,
+    ],
+)
+@requires_google_auth_gte_1_25_0
+def test_web_security_scanner_transport_auth_adc(transport_class):
     # If credentials and host are not provided, the transport class should use
     # ADC credentials.
-    with mock.patch.object(auth, "default") as adc:
+    with mock.patch.object(auth, "default", autospec=True) as adc:
         adc.return_value = (credentials.AnonymousCredentials(), None)
-        transports.WebSecurityScannerGrpcTransport(
-            host="squid.clam.whelk", quota_project_id="octopus"
+        transport_class(quota_project_id="octopus", scopes=["1", "2"])
+        adc.assert_called_once_with(
+            scopes=["1", "2"],
+            default_scopes=("https://www.googleapis.com/auth/cloud-platform",),
+            quota_project_id="octopus",
         )
+
+
+@pytest.mark.parametrize(
+    "transport_class",
+    [
+        transports.WebSecurityScannerGrpcTransport,
+        transports.WebSecurityScannerGrpcAsyncIOTransport,
+    ],
+)
+@requires_google_auth_lt_1_25_0
+def test_web_security_scanner_transport_auth_adc_old_google_auth(transport_class):
+    # If credentials and host are not provided, the transport class should use
+    # ADC credentials.
+    with mock.patch.object(auth, "default", autospec=True) as adc:
+        adc.return_value = (credentials.AnonymousCredentials(), None)
+        transport_class(quota_project_id="octopus")
         adc.assert_called_once_with(
             scopes=("https://www.googleapis.com/auth/cloud-platform",),
             quota_project_id="octopus",
+        )
+
+
+@pytest.mark.parametrize(
+    "transport_class,grpc_helpers",
+    [
+        (transports.WebSecurityScannerGrpcTransport, grpc_helpers),
+        (transports.WebSecurityScannerGrpcAsyncIOTransport, grpc_helpers_async),
+    ],
+)
+@requires_api_core_gte_1_26_0
+def test_web_security_scanner_transport_create_channel(transport_class, grpc_helpers):
+    # If credentials and host are not provided, the transport class should use
+    # ADC credentials.
+    with mock.patch.object(auth, "default", autospec=True) as adc, mock.patch.object(
+        grpc_helpers, "create_channel", autospec=True
+    ) as create_channel:
+        creds = credentials.AnonymousCredentials()
+        adc.return_value = (creds, None)
+        transport_class(quota_project_id="octopus", scopes=["1", "2"])
+
+        create_channel.assert_called_with(
+            "websecurityscanner.googleapis.com",
+            credentials=creds,
+            credentials_file=None,
+            quota_project_id="octopus",
+            default_scopes=("https://www.googleapis.com/auth/cloud-platform",),
+            scopes=["1", "2"],
+            default_host="websecurityscanner.googleapis.com",
+            ssl_credentials=None,
+            options=[
+                ("grpc.max_send_message_length", -1),
+                ("grpc.max_receive_message_length", -1),
+            ],
+        )
+
+
+@pytest.mark.parametrize(
+    "transport_class,grpc_helpers",
+    [
+        (transports.WebSecurityScannerGrpcTransport, grpc_helpers),
+        (transports.WebSecurityScannerGrpcAsyncIOTransport, grpc_helpers_async),
+    ],
+)
+@requires_api_core_lt_1_26_0
+def test_web_security_scanner_transport_create_channel_old_api_core(
+    transport_class, grpc_helpers
+):
+    # If credentials and host are not provided, the transport class should use
+    # ADC credentials.
+    with mock.patch.object(auth, "default", autospec=True) as adc, mock.patch.object(
+        grpc_helpers, "create_channel", autospec=True
+    ) as create_channel:
+        creds = credentials.AnonymousCredentials()
+        adc.return_value = (creds, None)
+        transport_class(quota_project_id="octopus")
+
+        create_channel.assert_called_with(
+            "websecurityscanner.googleapis.com",
+            credentials=creds,
+            credentials_file=None,
+            quota_project_id="octopus",
+            scopes=("https://www.googleapis.com/auth/cloud-platform",),
+            ssl_credentials=None,
+            options=[
+                ("grpc.max_send_message_length", -1),
+                ("grpc.max_receive_message_length", -1),
+            ],
+        )
+
+
+@pytest.mark.parametrize(
+    "transport_class,grpc_helpers",
+    [
+        (transports.WebSecurityScannerGrpcTransport, grpc_helpers),
+        (transports.WebSecurityScannerGrpcAsyncIOTransport, grpc_helpers_async),
+    ],
+)
+@requires_api_core_lt_1_26_0
+def test_web_security_scanner_transport_create_channel_user_scopes(
+    transport_class, grpc_helpers
+):
+    # If credentials and host are not provided, the transport class should use
+    # ADC credentials.
+    with mock.patch.object(auth, "default", autospec=True) as adc, mock.patch.object(
+        grpc_helpers, "create_channel", autospec=True
+    ) as create_channel:
+        creds = credentials.AnonymousCredentials()
+        adc.return_value = (creds, None)
+
+        transport_class(quota_project_id="octopus", scopes=["1", "2"])
+
+        create_channel.assert_called_with(
+            "websecurityscanner.googleapis.com",
+            credentials=creds,
+            credentials_file=None,
+            quota_project_id="octopus",
+            scopes=["1", "2"],
+            ssl_credentials=None,
+            options=[
+                ("grpc.max_send_message_length", -1),
+                ("grpc.max_receive_message_length", -1),
+            ],
         )
 
 
@@ -4680,7 +4629,6 @@ def test_finding_path():
     scan_config = "clam"
     scan_run = "whelk"
     finding = "octopus"
-
     expected = "projects/{project}/scanConfigs/{scan_config}/scanRuns/{scan_run}/findings/{finding}".format(
         project=project, scan_config=scan_config, scan_run=scan_run, finding=finding,
     )
@@ -4707,7 +4655,6 @@ def test_parse_finding_path():
 def test_scan_config_path():
     project = "winkle"
     scan_config = "nautilus"
-
     expected = "projects/{project}/scanConfigs/{scan_config}".format(
         project=project, scan_config=scan_config,
     )
@@ -4731,7 +4678,6 @@ def test_scan_run_path():
     project = "squid"
     scan_config = "clam"
     scan_run = "whelk"
-
     expected = "projects/{project}/scanConfigs/{scan_config}/scanRuns/{scan_run}".format(
         project=project, scan_config=scan_config, scan_run=scan_run,
     )
@@ -4754,7 +4700,6 @@ def test_parse_scan_run_path():
 
 def test_common_billing_account_path():
     billing_account = "cuttlefish"
-
     expected = "billingAccounts/{billing_account}".format(
         billing_account=billing_account,
     )
@@ -4775,7 +4720,6 @@ def test_parse_common_billing_account_path():
 
 def test_common_folder_path():
     folder = "winkle"
-
     expected = "folders/{folder}".format(folder=folder,)
     actual = WebSecurityScannerClient.common_folder_path(folder)
     assert expected == actual
@@ -4794,7 +4738,6 @@ def test_parse_common_folder_path():
 
 def test_common_organization_path():
     organization = "scallop"
-
     expected = "organizations/{organization}".format(organization=organization,)
     actual = WebSecurityScannerClient.common_organization_path(organization)
     assert expected == actual
@@ -4813,7 +4756,6 @@ def test_parse_common_organization_path():
 
 def test_common_project_path():
     project = "squid"
-
     expected = "projects/{project}".format(project=project,)
     actual = WebSecurityScannerClient.common_project_path(project)
     assert expected == actual
@@ -4833,7 +4775,6 @@ def test_parse_common_project_path():
 def test_common_location_path():
     project = "whelk"
     location = "octopus"
-
     expected = "projects/{project}/locations/{location}".format(
         project=project, location=location,
     )

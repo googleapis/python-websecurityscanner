@@ -234,9 +234,7 @@ class WebSecurityScannerGrpcTransport(WebSecurityScannerTransport):
     ) -> Callable[
         [web_security_scanner.CreateScanConfigRequest], scan_config.ScanConfig
     ]:
-        r"""Return a callable for the
-        create scan config
-          method over gRPC.
+        r"""Return a callable for the create scan config method over gRPC.
 
         Creates a new ScanConfig.
 
@@ -262,9 +260,7 @@ class WebSecurityScannerGrpcTransport(WebSecurityScannerTransport):
     def delete_scan_config(
         self,
     ) -> Callable[[web_security_scanner.DeleteScanConfigRequest], empty.Empty]:
-        r"""Return a callable for the
-        delete scan config
-          method over gRPC.
+        r"""Return a callable for the delete scan config method over gRPC.
 
         Deletes an existing ScanConfig and its child
         resources.
@@ -291,9 +287,7 @@ class WebSecurityScannerGrpcTransport(WebSecurityScannerTransport):
     def get_scan_config(
         self,
     ) -> Callable[[web_security_scanner.GetScanConfigRequest], scan_config.ScanConfig]:
-        r"""Return a callable for the
-        get scan config
-          method over gRPC.
+        r"""Return a callable for the get scan config method over gRPC.
 
         Gets a ScanConfig.
 
@@ -322,9 +316,7 @@ class WebSecurityScannerGrpcTransport(WebSecurityScannerTransport):
         [web_security_scanner.ListScanConfigsRequest],
         web_security_scanner.ListScanConfigsResponse,
     ]:
-        r"""Return a callable for the
-        list scan configs
-          method over gRPC.
+        r"""Return a callable for the list scan configs method over gRPC.
 
         Lists ScanConfigs under a given project.
 
@@ -352,9 +344,7 @@ class WebSecurityScannerGrpcTransport(WebSecurityScannerTransport):
     ) -> Callable[
         [web_security_scanner.UpdateScanConfigRequest], scan_config.ScanConfig
     ]:
-        r"""Return a callable for the
-        update scan config
-          method over gRPC.
+        r"""Return a callable for the update scan config method over gRPC.
 
         Updates a ScanConfig. This method support partial
         update of a ScanConfig.
@@ -381,9 +371,7 @@ class WebSecurityScannerGrpcTransport(WebSecurityScannerTransport):
     def start_scan_run(
         self,
     ) -> Callable[[web_security_scanner.StartScanRunRequest], scan_run.ScanRun]:
-        r"""Return a callable for the
-        start scan run
-          method over gRPC.
+        r"""Return a callable for the start scan run method over gRPC.
 
         Start a ScanRun according to the given ScanConfig.
 
@@ -409,9 +397,7 @@ class WebSecurityScannerGrpcTransport(WebSecurityScannerTransport):
     def get_scan_run(
         self,
     ) -> Callable[[web_security_scanner.GetScanRunRequest], scan_run.ScanRun]:
-        r"""Return a callable for the
-        get scan run
-          method over gRPC.
+        r"""Return a callable for the get scan run method over gRPC.
 
         Gets a ScanRun.
 
@@ -440,9 +426,7 @@ class WebSecurityScannerGrpcTransport(WebSecurityScannerTransport):
         [web_security_scanner.ListScanRunsRequest],
         web_security_scanner.ListScanRunsResponse,
     ]:
-        r"""Return a callable for the
-        list scan runs
-          method over gRPC.
+        r"""Return a callable for the list scan runs method over gRPC.
 
         Lists ScanRuns under a given ScanConfig, in
         descending order of ScanRun stop time.
@@ -469,9 +453,7 @@ class WebSecurityScannerGrpcTransport(WebSecurityScannerTransport):
     def stop_scan_run(
         self,
     ) -> Callable[[web_security_scanner.StopScanRunRequest], scan_run.ScanRun]:
-        r"""Return a callable for the
-        stop scan run
-          method over gRPC.
+        r"""Return a callable for the stop scan run method over gRPC.
 
         Stops a ScanRun. The stopped ScanRun is returned.
 
@@ -500,9 +482,7 @@ class WebSecurityScannerGrpcTransport(WebSecurityScannerTransport):
         [web_security_scanner.ListCrawledUrlsRequest],
         web_security_scanner.ListCrawledUrlsResponse,
     ]:
-        r"""Return a callable for the
-        list crawled urls
-          method over gRPC.
+        r"""Return a callable for the list crawled urls method over gRPC.
 
         List CrawledUrls under a given ScanRun.
 
@@ -528,9 +508,7 @@ class WebSecurityScannerGrpcTransport(WebSecurityScannerTransport):
     def get_finding(
         self,
     ) -> Callable[[web_security_scanner.GetFindingRequest], finding.Finding]:
-        r"""Return a callable for the
-        get finding
-          method over gRPC.
+        r"""Return a callable for the get finding method over gRPC.
 
         Gets a Finding.
 
@@ -559,9 +537,7 @@ class WebSecurityScannerGrpcTransport(WebSecurityScannerTransport):
         [web_security_scanner.ListFindingsRequest],
         web_security_scanner.ListFindingsResponse,
     ]:
-        r"""Return a callable for the
-        list findings
-          method over gRPC.
+        r"""Return a callable for the list findings method over gRPC.
 
         List Findings under a given ScanRun.
 
@@ -590,9 +566,7 @@ class WebSecurityScannerGrpcTransport(WebSecurityScannerTransport):
         [web_security_scanner.ListFindingTypeStatsRequest],
         web_security_scanner.ListFindingTypeStatsResponse,
     ]:
-        r"""Return a callable for the
-        list finding type stats
-          method over gRPC.
+        r"""Return a callable for the list finding type stats method over gRPC.
 
         List all FindingTypeStats under a given ScanRun.
 

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,6 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
 from collections import OrderedDict
 from distutils import util
 import os
@@ -41,6 +43,7 @@ from google.cloud.websecurityscanner_v1.types import scan_run_error_trace
 from google.cloud.websecurityscanner_v1.types import scan_run_warning_trace
 from google.cloud.websecurityscanner_v1.types import web_security_scanner
 from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
+
 from .transports.base import WebSecurityScannerTransport, DEFAULT_CLIENT_INFO
 from .transports.grpc import WebSecurityScannerGrpcTransport
 from .transports.grpc_asyncio import WebSecurityScannerGrpcAsyncIOTransport
@@ -372,9 +375,9 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         Args:
             request (google.cloud.websecurityscanner_v1.types.CreateScanConfigRequest):
-                The request object.
-                Request for the `CreateScanConfig`
+                The request object. Request for the `CreateScanConfig`
                 method.
+
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -388,6 +391,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         """
         # Create or coerce a protobuf request object.
+
         # Minor optimization to avoid making a copy if the user passes
         # in a web_security_scanner.CreateScanConfigRequest.
         # There's no risk of modifying the input as we've already verified
@@ -424,9 +428,9 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         Args:
             request (google.cloud.websecurityscanner_v1.types.DeleteScanConfigRequest):
-                The request object.
-                Request for the `DeleteScanConfig`
+                The request object. Request for the `DeleteScanConfig`
                 method.
+
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -434,6 +438,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
                 sent along with the request as metadata.
         """
         # Create or coerce a protobuf request object.
+
         # Minor optimization to avoid making a copy if the user passes
         # in a web_security_scanner.DeleteScanConfigRequest.
         # There's no risk of modifying the input as we've already verified
@@ -468,9 +473,9 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         Args:
             request (google.cloud.websecurityscanner_v1.types.GetScanConfigRequest):
-                The request object.
-                Request for the `GetScanConfig`
+                The request object. Request for the `GetScanConfig`
                 method.
+
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -484,6 +489,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         """
         # Create or coerce a protobuf request object.
+
         # Minor optimization to avoid making a copy if the user passes
         # in a web_security_scanner.GetScanConfigRequest.
         # There's no risk of modifying the input as we've already verified
@@ -519,9 +525,9 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         Args:
             request (google.cloud.websecurityscanner_v1.types.ListScanConfigsRequest):
-                The request object.
-                Request for the `ListScanConfigs`
+                The request object. Request for the `ListScanConfigs`
                 method.
+
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -537,6 +543,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         """
         # Create or coerce a protobuf request object.
+
         # Minor optimization to avoid making a copy if the user passes
         # in a web_security_scanner.ListScanConfigsRequest.
         # There's no risk of modifying the input as we've already verified
@@ -579,9 +586,9 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         Args:
             request (google.cloud.websecurityscanner_v1.types.UpdateScanConfigRequest):
-                The request object.
-                Request for the
+                The request object. Request for the
                 `UpdateScanConfigRequest` method.
+
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -595,6 +602,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         """
         # Create or coerce a protobuf request object.
+
         # Minor optimization to avoid making a copy if the user passes
         # in a web_security_scanner.UpdateScanConfigRequest.
         # There's no risk of modifying the input as we've already verified
@@ -632,9 +640,9 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         Args:
             request (google.cloud.websecurityscanner_v1.types.StartScanRunRequest):
-                The request object.
-                Request for the `StartScanRun`
+                The request object. Request for the `StartScanRun`
                 method.
+
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -649,6 +657,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         """
         # Create or coerce a protobuf request object.
+
         # Minor optimization to avoid making a copy if the user passes
         # in a web_security_scanner.StartScanRunRequest.
         # There's no risk of modifying the input as we've already verified
@@ -684,8 +693,8 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         Args:
             request (google.cloud.websecurityscanner_v1.types.GetScanRunRequest):
-                The request object.
-                Request for the `GetScanRun` method.
+                The request object. Request for the `GetScanRun` method.
+
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -700,6 +709,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         """
         # Create or coerce a protobuf request object.
+
         # Minor optimization to avoid making a copy if the user passes
         # in a web_security_scanner.GetScanRunRequest.
         # There's no risk of modifying the input as we've already verified
@@ -736,9 +746,9 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         Args:
             request (google.cloud.websecurityscanner_v1.types.ListScanRunsRequest):
-                The request object.
-                Request for the `ListScanRuns`
+                The request object. Request for the `ListScanRuns`
                 method.
+
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -754,6 +764,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         """
         # Create or coerce a protobuf request object.
+
         # Minor optimization to avoid making a copy if the user passes
         # in a web_security_scanner.ListScanRunsRequest.
         # There's no risk of modifying the input as we've already verified
@@ -795,9 +806,9 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         Args:
             request (google.cloud.websecurityscanner_v1.types.StopScanRunRequest):
-                The request object.
-                Request for the `StopScanRun`
+                The request object. Request for the `StopScanRun`
                 method.
+
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -812,6 +823,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         """
         # Create or coerce a protobuf request object.
+
         # Minor optimization to avoid making a copy if the user passes
         # in a web_security_scanner.StopScanRunRequest.
         # There's no risk of modifying the input as we've already verified
@@ -847,9 +859,9 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         Args:
             request (google.cloud.websecurityscanner_v1.types.ListCrawledUrlsRequest):
-                The request object.
-                Request for the `ListCrawledUrls`
+                The request object. Request for the `ListCrawledUrls`
                 method.
+
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -865,6 +877,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         """
         # Create or coerce a protobuf request object.
+
         # Minor optimization to avoid making a copy if the user passes
         # in a web_security_scanner.ListCrawledUrlsRequest.
         # There's no risk of modifying the input as we've already verified
@@ -906,8 +919,8 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         Args:
             request (google.cloud.websecurityscanner_v1.types.GetFindingRequest):
-                The request object.
-                Request for the `GetFinding` method.
+                The request object. Request for the `GetFinding` method.
+
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -922,6 +935,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         """
         # Create or coerce a protobuf request object.
+
         # Minor optimization to avoid making a copy if the user passes
         # in a web_security_scanner.GetFindingRequest.
         # There's no risk of modifying the input as we've already verified
@@ -957,9 +971,9 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         Args:
             request (google.cloud.websecurityscanner_v1.types.ListFindingsRequest):
-                The request object.
-                Request for the `ListFindings`
+                The request object. Request for the `ListFindings`
                 method.
+
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -975,6 +989,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         """
         # Create or coerce a protobuf request object.
+
         # Minor optimization to avoid making a copy if the user passes
         # in a web_security_scanner.ListFindingsRequest.
         # There's no risk of modifying the input as we've already verified
@@ -1016,9 +1031,9 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         Args:
             request (google.cloud.websecurityscanner_v1.types.ListFindingTypeStatsRequest):
-                The request object.
-                Request for the
+                The request object. Request for the
                 `ListFindingTypeStats` method.
+
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -1030,6 +1045,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
                 Response for the ListFindingTypeStats method.
         """
         # Create or coerce a protobuf request object.
+
         # Minor optimization to avoid making a copy if the user passes
         # in a web_security_scanner.ListFindingTypeStatsRequest.
         # There's no risk of modifying the input as we've already verified

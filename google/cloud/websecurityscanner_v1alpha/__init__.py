@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +16,6 @@
 #
 
 from .services.web_security_scanner import WebSecurityScannerClient
-
 from .types.crawled_url import CrawledUrl
 from .types.finding import Finding
 from .types.finding_addon import OutdatedLibrary
@@ -44,6 +44,7 @@ from .types.web_security_scanner import ListScanRunsResponse
 from .types.web_security_scanner import StartScanRunRequest
 from .types.web_security_scanner import StopScanRunRequest
 from .types.web_security_scanner import UpdateScanConfigRequest
+
 
 __all__ = (
     "CrawledUrl",

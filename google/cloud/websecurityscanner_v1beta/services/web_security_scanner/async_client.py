@@ -196,7 +196,8 @@ class WebSecurityScannerAsyncClient:
 
         Args:
             request (:class:`google.cloud.websecurityscanner_v1beta.types.CreateScanConfigRequest`):
-                The request object. Request for the `CreateScanConfig`
+                The request object.
+                Request for the `CreateScanConfig`
                 method.
             parent (:class:`str`):
                 Required. The parent resource name
@@ -279,7 +280,8 @@ class WebSecurityScannerAsyncClient:
 
         Args:
             request (:class:`google.cloud.websecurityscanner_v1beta.types.DeleteScanConfigRequest`):
-                The request object. Request for the `DeleteScanConfig`
+                The request object.
+                Request for the `DeleteScanConfig`
                 method.
             name (:class:`str`):
                 Required. The resource name of the
@@ -354,7 +356,8 @@ class WebSecurityScannerAsyncClient:
 
         Args:
             request (:class:`google.cloud.websecurityscanner_v1beta.types.GetScanConfigRequest`):
-                The request object. Request for the `GetScanConfig`
+                The request object.
+                Request for the `GetScanConfig`
                 method.
             name (:class:`str`):
                 Required. The resource name of the
@@ -436,7 +439,8 @@ class WebSecurityScannerAsyncClient:
 
         Args:
             request (:class:`google.cloud.websecurityscanner_v1beta.types.ListScanConfigsRequest`):
-                The request object. Request for the `ListScanConfigs`
+                The request object.
+                Request for the `ListScanConfigs`
                 method.
             parent (:class:`str`):
                 Required. The parent resource name,
@@ -527,7 +531,8 @@ class WebSecurityScannerAsyncClient:
 
         Args:
             request (:class:`google.cloud.websecurityscanner_v1beta.types.UpdateScanConfigRequest`):
-                The request object. Request for the
+                The request object.
+                Request for the
                 `UpdateScanConfigRequest` method.
             scan_config (:class:`google.cloud.websecurityscanner_v1beta.types.ScanConfig`):
                 Required. The ScanConfig to be
@@ -613,7 +618,8 @@ class WebSecurityScannerAsyncClient:
 
         Args:
             request (:class:`google.cloud.websecurityscanner_v1beta.types.StartScanRunRequest`):
-                The request object. Request for the `StartScanRun`
+                The request object.
+                Request for the `StartScanRun`
                 method.
             name (:class:`str`):
                 Required. The resource name of the
@@ -687,7 +693,8 @@ class WebSecurityScannerAsyncClient:
 
         Args:
             request (:class:`google.cloud.websecurityscanner_v1beta.types.GetScanRunRequest`):
-                The request object. Request for the `GetScanRun` method.
+                The request object.
+                Request for the `GetScanRun` method.
             name (:class:`str`):
                 Required. The resource name of the
                 ScanRun to be returned. The name follows
@@ -770,7 +777,8 @@ class WebSecurityScannerAsyncClient:
 
         Args:
             request (:class:`google.cloud.websecurityscanner_v1beta.types.ListScanRunsRequest`):
-                The request object. Request for the `ListScanRuns`
+                The request object.
+                Request for the `ListScanRuns`
                 method.
             parent (:class:`str`):
                 Required. The parent resource name,
@@ -860,7 +868,8 @@ class WebSecurityScannerAsyncClient:
 
         Args:
             request (:class:`google.cloud.websecurityscanner_v1beta.types.StopScanRunRequest`):
-                The request object. Request for the `StopScanRun`
+                The request object.
+                Request for the `StopScanRun`
                 method.
             name (:class:`str`):
                 Required. The resource name of the
@@ -934,7 +943,8 @@ class WebSecurityScannerAsyncClient:
 
         Args:
             request (:class:`google.cloud.websecurityscanner_v1beta.types.ListCrawledUrlsRequest`):
-                The request object. Request for the `ListCrawledUrls`
+                The request object.
+                Request for the `ListCrawledUrls`
                 method.
             parent (:class:`str`):
                 Required. The parent resource name,
@@ -1024,7 +1034,8 @@ class WebSecurityScannerAsyncClient:
 
         Args:
             request (:class:`google.cloud.websecurityscanner_v1beta.types.GetFindingRequest`):
-                The request object. Request for the `GetFinding` method.
+                The request object.
+                Request for the `GetFinding` method.
             name (:class:`str`):
                 Required. The resource name of the
                 Finding to be returned. The name follows
@@ -1107,7 +1118,8 @@ class WebSecurityScannerAsyncClient:
 
         Args:
             request (:class:`google.cloud.websecurityscanner_v1beta.types.ListFindingsRequest`):
-                The request object. Request for the `ListFindings`
+                The request object.
+                Request for the `ListFindings`
                 method.
             parent (:class:`str`):
                 Required. The parent resource name,
@@ -1207,7 +1219,8 @@ class WebSecurityScannerAsyncClient:
 
         Args:
             request (:class:`google.cloud.websecurityscanner_v1beta.types.ListFindingTypeStatsRequest`):
-                The request object. Request for the
+                The request object.
+                Request for the
                 `ListFindingTypeStats` method.
             parent (:class:`str`):
                 Required. The parent resource name,

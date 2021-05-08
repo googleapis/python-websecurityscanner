@@ -3417,7 +3417,7 @@ def test_web_security_scanner_transport_create_channel(transport_class, grpc_hel
         transport_class(quota_project_id="octopus", scopes=["1", "2"])
 
         create_channel.assert_called_with(
-            "websecurityscanner.googleapis.com:443",
+            "websecurityscanner.googleapis.com",
             credentials=creds,
             credentials_file=None,
             quota_project_id="octopus",

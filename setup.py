@@ -22,7 +22,7 @@ import setuptools
 
 name = "google-cloud-websecurityscanner"
 description = ("Google Cloud Web Security Scanner API client library",)
-version = "1.1.0"
+version = "1.2.0"
 # Should be one of:
 # 'Development Status :: 3 - Alpha'
 # 'Development Status :: 4 - Beta'
@@ -31,6 +31,7 @@ release_status = "Development Status :: 4 - Beta"
 dependencies = [
     "google-api-core[grpc] >= 1.22.2, < 2.0.0dev",
     "proto-plus >= 1.15.0",
+    "packaging >= 14.3",
 ]
 extras = {}
 

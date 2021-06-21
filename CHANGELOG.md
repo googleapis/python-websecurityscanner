@@ -4,6 +4,13 @@
 
 [1]: https://pypi.org/project/google-cloud-websecurityscanner/#history
 
+### [1.3.1](https://www.github.com/googleapis/python-websecurityscanner/compare/v1.3.0...v1.3.1) (2021-06-21)
+
+
+### Documentation
+
+* omit mention of Python 2.7 in 'CONTRIBUTING.rst' ([#1127](https://www.github.com/googleapis/python-websecurityscanner/issues/1127)) ([#74](https://www.github.com/googleapis/python-websecurityscanner/issues/74)) ([31439ef](https://www.github.com/googleapis/python-websecurityscanner/commit/31439ef980c5f96d1181bf2982cf0aa9b5265122)), closes [#1126](https://www.github.com/googleapis/python-websecurityscanner/issues/1126)
+
 ## [1.3.0](https://www.github.com/googleapis/python-websecurityscanner/compare/v1.2.0...v1.3.0) (2021-06-07)
 
 

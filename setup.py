@@ -28,7 +28,8 @@ version = "1.4.0"
 # 'Development Status :: 4 - Beta'
 # 'Development Status :: 5 - Production/Stable'
 release_status = "Development Status :: 5 - Production/Stable"
-dependencies = [    # NOTE: Maintainers, please do not require google-api-core>=2.x.x
+dependencies = [
+    # NOTE: Maintainers, please do not require google-api-core>=2.x.x
     # Until this issue is closed
     # https://github.com/googleapis/google-cloud-python/issues/10566
     "google-api-core[grpc] >= 1.26.0, <3.0.0dev",

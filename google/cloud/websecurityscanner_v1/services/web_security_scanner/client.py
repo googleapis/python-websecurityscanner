@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -453,7 +453,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import websecurityscanner_v1
+                    from google.cloud import websecurityscanner_v1
 
             def sample_create_scan_config():
                 # Create a client
@@ -528,7 +528,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import websecurityscanner_v1
+                    from google.cloud import websecurityscanner_v1
 
             def sample_delete_scan_config():
                 # Create a client
@@ -589,7 +589,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import websecurityscanner_v1
+                    from google.cloud import websecurityscanner_v1
 
             def sample_get_scan_config():
                 # Create a client
@@ -662,7 +662,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import websecurityscanner_v1
+                    from google.cloud import websecurityscanner_v1
 
             def sample_list_scan_configs():
                 # Create a client
@@ -749,7 +749,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import websecurityscanner_v1
+                    from google.cloud import websecurityscanner_v1
 
             def sample_update_scan_config():
                 # Create a client
@@ -824,7 +824,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import websecurityscanner_v1
+                    from google.cloud import websecurityscanner_v1
 
             def sample_start_scan_run():
                 # Create a client
@@ -898,7 +898,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import websecurityscanner_v1
+                    from google.cloud import websecurityscanner_v1
 
             def sample_get_scan_run():
                 # Create a client
@@ -973,7 +973,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import websecurityscanner_v1
+                    from google.cloud import websecurityscanner_v1
 
             def sample_list_scan_runs():
                 # Create a client
@@ -1058,7 +1058,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import websecurityscanner_v1
+                    from google.cloud import websecurityscanner_v1
 
             def sample_stop_scan_run():
                 # Create a client
@@ -1132,7 +1132,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import websecurityscanner_v1
+                    from google.cloud import websecurityscanner_v1
 
             def sample_list_crawled_urls():
                 # Create a client
@@ -1217,7 +1217,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import websecurityscanner_v1
+                    from google.cloud import websecurityscanner_v1
 
             def sample_get_finding():
                 # Create a client
@@ -1290,7 +1290,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import websecurityscanner_v1
+                    from google.cloud import websecurityscanner_v1
 
             def sample_list_findings():
                 # Create a client
@@ -1375,7 +1375,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import websecurityscanner_v1
+                    from google.cloud import websecurityscanner_v1
 
             def sample_list_finding_type_stats():
                 # Create a client

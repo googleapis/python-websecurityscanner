@@ -3945,7 +3945,6 @@ def test_web_security_scanner_transport_auth_adc(transport_class):
     [
         transports.WebSecurityScannerGrpcTransport,
         transports.WebSecurityScannerGrpcAsyncIOTransport,
-        transports.WebSecurityScannerRestTransport,
     ],
 )
 def test_web_security_scanner_transport_auth_gdch_credentials(transport_class):

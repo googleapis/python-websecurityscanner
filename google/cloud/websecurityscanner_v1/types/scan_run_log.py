@@ -15,14 +15,12 @@
 #
 import proto  # type: ignore
 
-from google.cloud.websecurityscanner_v1.types import scan_run
-from google.cloud.websecurityscanner_v1.types import scan_run_error_trace
-
+from google.cloud.websecurityscanner_v1.types import scan_run, scan_run_error_trace
 
 __protobuf__ = proto.module(
-    package='google.cloud.websecurityscanner.v1',
+    package="google.cloud.websecurityscanner.v1",
     manifest={
-        'ScanRunLog',
+        "ScanRunLog",
     },
 )
 

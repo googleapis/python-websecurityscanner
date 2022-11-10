@@ -16,7 +16,18 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union, cast
+from typing import (
+    Dict,
+    Mapping,
+    MutableMapping,
+    MutableSequence,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+    cast,
+)
 
 from google.api_core import client_options as client_options_lib
 from google.api_core import exceptions as core_exceptions
@@ -70,7 +81,7 @@ class WebSecurityScannerClientMeta(type):
 
     def get_transport_class(
         cls,
-        label: str = None,
+        label: Optional[str] = None,
     ) -> Type[WebSecurityScannerTransport]:
         """Returns an appropriate transport class.
 
@@ -351,7 +362,7 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
         self,
         *,
         credentials: Optional[ga_credentials.Credentials] = None,
-        transport: Union[str, WebSecurityScannerTransport, None] = None,
+        transport: Optional[Union[str, WebSecurityScannerTransport]] = None,
         client_options: Optional[Union[client_options_lib.ClientOptions, dict]] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
@@ -449,10 +460,12 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
     def create_scan_config(
         self,
-        request: Union[web_security_scanner.CreateScanConfigRequest, dict] = None,
+        request: Optional[
+            Union[web_security_scanner.CreateScanConfigRequest, dict]
+        ] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> scan_config.ScanConfig:
         r"""Creates a new ScanConfig.
@@ -529,10 +542,12 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
     def delete_scan_config(
         self,
-        request: Union[web_security_scanner.DeleteScanConfigRequest, dict] = None,
+        request: Optional[
+            Union[web_security_scanner.DeleteScanConfigRequest, dict]
+        ] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> None:
         r"""Deletes an existing ScanConfig and its child
@@ -598,10 +613,12 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
     def get_scan_config(
         self,
-        request: Union[web_security_scanner.GetScanConfigRequest, dict] = None,
+        request: Optional[
+            Union[web_security_scanner.GetScanConfigRequest, dict]
+        ] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> scan_config.ScanConfig:
         r"""Gets a ScanConfig.
@@ -678,10 +695,12 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
     def list_scan_configs(
         self,
-        request: Union[web_security_scanner.ListScanConfigsRequest, dict] = None,
+        request: Optional[
+            Union[web_security_scanner.ListScanConfigsRequest, dict]
+        ] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListScanConfigsPager:
         r"""Lists ScanConfigs under a given project.
@@ -770,10 +789,12 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
     def update_scan_config(
         self,
-        request: Union[web_security_scanner.UpdateScanConfigRequest, dict] = None,
+        request: Optional[
+            Union[web_security_scanner.UpdateScanConfigRequest, dict]
+        ] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> scan_config.ScanConfig:
         r"""Updates a ScanConfig. This method support partial
@@ -853,10 +874,10 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
     def start_scan_run(
         self,
-        request: Union[web_security_scanner.StartScanRunRequest, dict] = None,
+        request: Optional[Union[web_security_scanner.StartScanRunRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> scan_run.ScanRun:
         r"""Start a ScanRun according to the given ScanConfig.
@@ -934,10 +955,10 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
     def get_scan_run(
         self,
-        request: Union[web_security_scanner.GetScanRunRequest, dict] = None,
+        request: Optional[Union[web_security_scanner.GetScanRunRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> scan_run.ScanRun:
         r"""Gets a ScanRun.
@@ -1014,10 +1035,10 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
     def list_scan_runs(
         self,
-        request: Union[web_security_scanner.ListScanRunsRequest, dict] = None,
+        request: Optional[Union[web_security_scanner.ListScanRunsRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListScanRunsPager:
         r"""Lists ScanRuns under a given ScanConfig, in
@@ -1107,10 +1128,10 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
     def stop_scan_run(
         self,
-        request: Union[web_security_scanner.StopScanRunRequest, dict] = None,
+        request: Optional[Union[web_security_scanner.StopScanRunRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> scan_run.ScanRun:
         r"""Stops a ScanRun. The stopped ScanRun is returned.
@@ -1188,10 +1209,12 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
     def list_crawled_urls(
         self,
-        request: Union[web_security_scanner.ListCrawledUrlsRequest, dict] = None,
+        request: Optional[
+            Union[web_security_scanner.ListCrawledUrlsRequest, dict]
+        ] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListCrawledUrlsPager:
         r"""List CrawledUrls under a given ScanRun.
@@ -1280,10 +1303,10 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
     def get_finding(
         self,
-        request: Union[web_security_scanner.GetFindingRequest, dict] = None,
+        request: Optional[Union[web_security_scanner.GetFindingRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> finding.Finding:
         r"""Gets a Finding.
@@ -1360,10 +1383,10 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
     def list_findings(
         self,
-        request: Union[web_security_scanner.ListFindingsRequest, dict] = None,
+        request: Optional[Union[web_security_scanner.ListFindingsRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListFindingsPager:
         r"""List Findings under a given ScanRun.
@@ -1452,10 +1475,12 @@ class WebSecurityScannerClient(metaclass=WebSecurityScannerClientMeta):
 
     def list_finding_type_stats(
         self,
-        request: Union[web_security_scanner.ListFindingTypeStatsRequest, dict] = None,
+        request: Optional[
+            Union[web_security_scanner.ListFindingTypeStatsRequest, dict]
+        ] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> web_security_scanner.ListFindingTypeStatsResponse:
         r"""List all FindingTypeStats under a given ScanRun.

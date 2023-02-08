@@ -14,24 +14,21 @@
 # limitations under the License.
 #
 
-from google.auth.transport.requests import AuthorizedSession  # type: ignore
-import json  # type: ignore
-import grpc  # type: ignore
-from google.auth.transport.grpc import SslCredentials  # type: ignore
-from google.auth import credentials as ga_credentials  # type: ignore
-from google.api_core import exceptions as core_exceptions
-from google.api_core import retry as retries
-from google.api_core import rest_helpers
-from google.api_core import rest_streaming
-from google.api_core import path_template
-from google.api_core import gapic_v1
-
-from google.protobuf import json_format
-from requests import __version__ as requests_version
 import dataclasses
+import json  # type: ignore
 import re
 from typing import Callable, Dict, List, Optional, Sequence, Tuple, Union
 import warnings
+
+from google.api_core import gapic_v1, path_template, rest_helpers, rest_streaming
+from google.api_core import exceptions as core_exceptions
+from google.api_core import retry as retries
+from google.auth import credentials as ga_credentials  # type: ignore
+from google.auth.transport.grpc import SslCredentials  # type: ignore
+from google.auth.transport.requests import AuthorizedSession  # type: ignore
+from google.protobuf import json_format
+import grpc  # type: ignore
+from requests import __version__ as requests_version
 
 try:
     OptionalRetry = Union[retries.Retry, gapic_v1.method._MethodDefault]
@@ -39,14 +36,17 @@ except AttributeError:  # pragma: NO COVER
     OptionalRetry = Union[retries.Retry, object]  # type: ignore
 
 
-from google.cloud.websecurityscanner_v1.types import finding
-from google.cloud.websecurityscanner_v1.types import scan_config
-from google.cloud.websecurityscanner_v1.types import scan_run
-from google.cloud.websecurityscanner_v1.types import web_security_scanner
 from google.protobuf import empty_pb2  # type: ignore
 
-from .base import WebSecurityScannerTransport, DEFAULT_CLIENT_INFO as BASE_DEFAULT_CLIENT_INFO
+from google.cloud.websecurityscanner_v1.types import (
+    finding,
+    scan_config,
+    scan_run,
+    web_security_scanner,
+)
 
+from .base import DEFAULT_CLIENT_INFO as BASE_DEFAULT_CLIENT_INFO
+from .base import WebSecurityScannerTransport
 
 DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
     gapic_version=BASE_DEFAULT_CLIENT_INFO.gapic_version,
@@ -175,7 +175,12 @@ class WebSecurityScannerRestInterceptor:
 
 
     """
-    def pre_create_scan_config(self, request: web_security_scanner.CreateScanConfigRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[web_security_scanner.CreateScanConfigRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_scan_config(
+        self,
+        request: web_security_scanner.CreateScanConfigRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[web_security_scanner.CreateScanConfigRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_scan_config
 
         Override in a subclass to manipulate the request or metadata
@@ -183,7 +188,9 @@ class WebSecurityScannerRestInterceptor:
         """
         return request, metadata
 
-    def post_create_scan_config(self, response: scan_config.ScanConfig) -> scan_config.ScanConfig:
+    def post_create_scan_config(
+        self, response: scan_config.ScanConfig
+    ) -> scan_config.ScanConfig:
         """Post-rpc interceptor for create_scan_config
 
         Override in a subclass to manipulate the response
@@ -191,7 +198,12 @@ class WebSecurityScannerRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_delete_scan_config(self, request: web_security_scanner.DeleteScanConfigRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[web_security_scanner.DeleteScanConfigRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_delete_scan_config(
+        self,
+        request: web_security_scanner.DeleteScanConfigRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[web_security_scanner.DeleteScanConfigRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for delete_scan_config
 
         Override in a subclass to manipulate the request or metadata
@@ -199,7 +211,11 @@ class WebSecurityScannerRestInterceptor:
         """
         return request, metadata
 
-    def pre_get_finding(self, request: web_security_scanner.GetFindingRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[web_security_scanner.GetFindingRequest, Sequence[Tuple[str, str]]]:
+    def pre_get_finding(
+        self,
+        request: web_security_scanner.GetFindingRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[web_security_scanner.GetFindingRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_finding
 
         Override in a subclass to manipulate the request or metadata
@@ -215,7 +231,12 @@ class WebSecurityScannerRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_scan_config(self, request: web_security_scanner.GetScanConfigRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[web_security_scanner.GetScanConfigRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_scan_config(
+        self,
+        request: web_security_scanner.GetScanConfigRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[web_security_scanner.GetScanConfigRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_scan_config
 
         Override in a subclass to manipulate the request or metadata
@@ -223,7 +244,9 @@ class WebSecurityScannerRestInterceptor:
         """
         return request, metadata
 
-    def post_get_scan_config(self, response: scan_config.ScanConfig) -> scan_config.ScanConfig:
+    def post_get_scan_config(
+        self, response: scan_config.ScanConfig
+    ) -> scan_config.ScanConfig:
         """Post-rpc interceptor for get_scan_config
 
         Override in a subclass to manipulate the response
@@ -231,7 +254,12 @@ class WebSecurityScannerRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_scan_run(self, request: web_security_scanner.GetScanRunRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[web_security_scanner.GetScanRunRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_scan_run(
+        self,
+        request: web_security_scanner.GetScanRunRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[web_security_scanner.GetScanRunRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_scan_run
 
         Override in a subclass to manipulate the request or metadata
@@ -247,7 +275,12 @@ class WebSecurityScannerRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_crawled_urls(self, request: web_security_scanner.ListCrawledUrlsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[web_security_scanner.ListCrawledUrlsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_crawled_urls(
+        self,
+        request: web_security_scanner.ListCrawledUrlsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[web_security_scanner.ListCrawledUrlsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_crawled_urls
 
         Override in a subclass to manipulate the request or metadata
@@ -255,7 +288,9 @@ class WebSecurityScannerRestInterceptor:
         """
         return request, metadata
 
-    def post_list_crawled_urls(self, response: web_security_scanner.ListCrawledUrlsResponse) -> web_security_scanner.ListCrawledUrlsResponse:
+    def post_list_crawled_urls(
+        self, response: web_security_scanner.ListCrawledUrlsResponse
+    ) -> web_security_scanner.ListCrawledUrlsResponse:
         """Post-rpc interceptor for list_crawled_urls
 
         Override in a subclass to manipulate the response
@@ -263,7 +298,12 @@ class WebSecurityScannerRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_findings(self, request: web_security_scanner.ListFindingsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[web_security_scanner.ListFindingsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_findings(
+        self,
+        request: web_security_scanner.ListFindingsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[web_security_scanner.ListFindingsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_findings
 
         Override in a subclass to manipulate the request or metadata
@@ -271,7 +311,9 @@ class WebSecurityScannerRestInterceptor:
         """
         return request, metadata
 
-    def post_list_findings(self, response: web_security_scanner.ListFindingsResponse) -> web_security_scanner.ListFindingsResponse:
+    def post_list_findings(
+        self, response: web_security_scanner.ListFindingsResponse
+    ) -> web_security_scanner.ListFindingsResponse:
         """Post-rpc interceptor for list_findings
 
         Override in a subclass to manipulate the response
@@ -279,7 +321,14 @@ class WebSecurityScannerRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_finding_type_stats(self, request: web_security_scanner.ListFindingTypeStatsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[web_security_scanner.ListFindingTypeStatsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_finding_type_stats(
+        self,
+        request: web_security_scanner.ListFindingTypeStatsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        web_security_scanner.ListFindingTypeStatsRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for list_finding_type_stats
 
         Override in a subclass to manipulate the request or metadata
@@ -287,7 +336,9 @@ class WebSecurityScannerRestInterceptor:
         """
         return request, metadata
 
-    def post_list_finding_type_stats(self, response: web_security_scanner.ListFindingTypeStatsResponse) -> web_security_scanner.ListFindingTypeStatsResponse:
+    def post_list_finding_type_stats(
+        self, response: web_security_scanner.ListFindingTypeStatsResponse
+    ) -> web_security_scanner.ListFindingTypeStatsResponse:
         """Post-rpc interceptor for list_finding_type_stats
 
         Override in a subclass to manipulate the response
@@ -295,7 +346,12 @@ class WebSecurityScannerRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_scan_configs(self, request: web_security_scanner.ListScanConfigsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[web_security_scanner.ListScanConfigsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_scan_configs(
+        self,
+        request: web_security_scanner.ListScanConfigsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[web_security_scanner.ListScanConfigsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_scan_configs
 
         Override in a subclass to manipulate the request or metadata
@@ -303,7 +359,9 @@ class WebSecurityScannerRestInterceptor:
         """
         return request, metadata
 
-    def post_list_scan_configs(self, response: web_security_scanner.ListScanConfigsResponse) -> web_security_scanner.ListScanConfigsResponse:
+    def post_list_scan_configs(
+        self, response: web_security_scanner.ListScanConfigsResponse
+    ) -> web_security_scanner.ListScanConfigsResponse:
         """Post-rpc interceptor for list_scan_configs
 
         Override in a subclass to manipulate the response
@@ -311,7 +369,12 @@ class WebSecurityScannerRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_scan_runs(self, request: web_security_scanner.ListScanRunsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[web_security_scanner.ListScanRunsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_scan_runs(
+        self,
+        request: web_security_scanner.ListScanRunsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[web_security_scanner.ListScanRunsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_scan_runs
 
         Override in a subclass to manipulate the request or metadata
@@ -319,7 +382,9 @@ class WebSecurityScannerRestInterceptor:
         """
         return request, metadata
 
-    def post_list_scan_runs(self, response: web_security_scanner.ListScanRunsResponse) -> web_security_scanner.ListScanRunsResponse:
+    def post_list_scan_runs(
+        self, response: web_security_scanner.ListScanRunsResponse
+    ) -> web_security_scanner.ListScanRunsResponse:
         """Post-rpc interceptor for list_scan_runs
 
         Override in a subclass to manipulate the response
@@ -327,7 +392,12 @@ class WebSecurityScannerRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_start_scan_run(self, request: web_security_scanner.StartScanRunRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[web_security_scanner.StartScanRunRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_start_scan_run(
+        self,
+        request: web_security_scanner.StartScanRunRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[web_security_scanner.StartScanRunRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for start_scan_run
 
         Override in a subclass to manipulate the request or metadata
@@ -343,7 +413,12 @@ class WebSecurityScannerRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_stop_scan_run(self, request: web_security_scanner.StopScanRunRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[web_security_scanner.StopScanRunRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_stop_scan_run(
+        self,
+        request: web_security_scanner.StopScanRunRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[web_security_scanner.StopScanRunRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for stop_scan_run
 
         Override in a subclass to manipulate the request or metadata
@@ -359,7 +434,12 @@ class WebSecurityScannerRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_scan_config(self, request: web_security_scanner.UpdateScanConfigRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[web_security_scanner.UpdateScanConfigRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_scan_config(
+        self,
+        request: web_security_scanner.UpdateScanConfigRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[web_security_scanner.UpdateScanConfigRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for update_scan_config
 
         Override in a subclass to manipulate the request or metadata
@@ -367,7 +447,9 @@ class WebSecurityScannerRestInterceptor:
         """
         return request, metadata
 
-    def post_update_scan_config(self, response: scan_config.ScanConfig) -> scan_config.ScanConfig:
+    def post_update_scan_config(
+        self, response: scan_config.ScanConfig
+    ) -> scan_config.ScanConfig:
         """Post-rpc interceptor for update_scan_config
 
         Override in a subclass to manipulate the response
@@ -400,20 +482,21 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
 
     """
 
-    def __init__(self, *,
-            host: str = 'websecurityscanner.googleapis.com',
-            credentials: Optional[ga_credentials.Credentials] = None,
-            credentials_file: Optional[str] = None,
-            scopes: Optional[Sequence[str]] = None,
-            client_cert_source_for_mtls: Optional[Callable[[
-                ], Tuple[bytes, bytes]]] = None,
-            quota_project_id: Optional[str] = None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            always_use_jwt_access: Optional[bool] = False,
-            url_scheme: str = 'https',
-            interceptor: Optional[WebSecurityScannerRestInterceptor] = None,
-            api_audience: Optional[str] = None,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        host: str = "websecurityscanner.googleapis.com",
+        credentials: Optional[ga_credentials.Credentials] = None,
+        credentials_file: Optional[str] = None,
+        scopes: Optional[Sequence[str]] = None,
+        client_cert_source_for_mtls: Optional[Callable[[], Tuple[bytes, bytes]]] = None,
+        quota_project_id: Optional[str] = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+        always_use_jwt_access: Optional[bool] = False,
+        url_scheme: str = "https",
+        interceptor: Optional[WebSecurityScannerRestInterceptor] = None,
+        api_audience: Optional[str] = None,
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -452,7 +535,9 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
         # credentials object
         maybe_url_match = re.match("^(?P<scheme>http(?:s)?://)?(?P<host>.*)$", host)
         if maybe_url_match is None:
-            raise ValueError(f"Unexpected hostname structure: {host}")  # pragma: NO COVER
+            raise ValueError(
+                f"Unexpected hostname structure: {host}"
+            )  # pragma: NO COVER
 
         url_match_items = maybe_url_match.groupdict()
 
@@ -463,10 +548,11 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
             credentials=credentials,
             client_info=client_info,
             always_use_jwt_access=always_use_jwt_access,
-            api_audience=api_audience
+            api_audience=api_audience,
         )
         self._session = AuthorizedSession(
-            self._credentials, default_host=self.DEFAULT_HOST)
+            self._credentials, default_host=self.DEFAULT_HOST
+        )
         if client_cert_source_for_mtls:
             self._session.configure_mtls_channel(client_cert_source_for_mtls)
         self._interceptor = interceptor or WebSecurityScannerRestInterceptor()
@@ -476,12 +562,14 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
         def __hash__(self):
             return hash("CreateScanConfig")
 
-        def __call__(self,
-                request: web_security_scanner.CreateScanConfigRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> scan_config.ScanConfig:
+        def __call__(
+            self,
+            request: web_security_scanner.CreateScanConfigRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> scan_config.ScanConfig:
             r"""Call the create scan config method over HTTP.
 
             Args:
@@ -500,45 +588,50 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*}/scanConfigs',
-                'body': 'scan_config',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*}/scanConfigs",
+                    "body": "scan_config",
+                },
             ]
-            request, metadata = self._interceptor.pre_create_scan_config(request, metadata)
+            request, metadata = self._interceptor.pre_create_scan_config(
+                request, metadata
+            )
             pb_request = web_security_scanner.CreateScanConfigRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -557,12 +650,14 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
         def __hash__(self):
             return hash("DeleteScanConfig")
 
-        def __call__(self,
-                request: web_security_scanner.DeleteScanConfigRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ):
+        def __call__(
+            self,
+            request: web_security_scanner.DeleteScanConfigRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ):
             r"""Call the delete scan config method over HTTP.
 
             Args:
@@ -575,36 +670,41 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
                     sent along with the request as metadata.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1/{name=projects/*/scanConfigs/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1/{name=projects/*/scanConfigs/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_delete_scan_config(request, metadata)
+            request, metadata = self._interceptor.pre_delete_scan_config(
+                request, metadata
+            )
             pb_request = web_security_scanner.DeleteScanConfigRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -615,12 +715,14 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
         def __hash__(self):
             return hash("GetFinding")
 
-        def __call__(self,
-                request: web_security_scanner.GetFindingRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> finding.Finding:
+        def __call__(
+            self,
+            request: web_security_scanner.GetFindingRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> finding.Finding:
             r"""Call the get finding method over HTTP.
 
             Args:
@@ -640,36 +742,39 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/scanConfigs/*/scanRuns/*/findings/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/scanConfigs/*/scanRuns/*/findings/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_get_finding(request, metadata)
             pb_request = web_security_scanner.GetFindingRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -688,12 +793,14 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
         def __hash__(self):
             return hash("GetScanConfig")
 
-        def __call__(self,
-                request: web_security_scanner.GetScanConfigRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> scan_config.ScanConfig:
+        def __call__(
+            self,
+            request: web_security_scanner.GetScanConfigRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> scan_config.ScanConfig:
             r"""Call the get scan config method over HTTP.
 
             Args:
@@ -712,36 +819,39 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/scanConfigs/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/scanConfigs/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_get_scan_config(request, metadata)
             pb_request = web_security_scanner.GetScanConfigRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -760,12 +870,14 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
         def __hash__(self):
             return hash("GetScanRun")
 
-        def __call__(self,
-                request: web_security_scanner.GetScanRunRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> scan_run.ScanRun:
+        def __call__(
+            self,
+            request: web_security_scanner.GetScanRunRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> scan_run.ScanRun:
             r"""Call the get scan run method over HTTP.
 
             Args:
@@ -785,36 +897,39 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/scanConfigs/*/scanRuns/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/scanConfigs/*/scanRuns/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_get_scan_run(request, metadata)
             pb_request = web_security_scanner.GetScanRunRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -833,12 +948,14 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
         def __hash__(self):
             return hash("ListCrawledUrls")
 
-        def __call__(self,
-                request: web_security_scanner.ListCrawledUrlsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> web_security_scanner.ListCrawledUrlsResponse:
+        def __call__(
+            self,
+            request: web_security_scanner.ListCrawledUrlsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> web_security_scanner.ListCrawledUrlsResponse:
             r"""Call the list crawled urls method over HTTP.
 
             Args:
@@ -855,36 +972,41 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
                     Response for the ``ListCrawledUrls`` method.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/scanConfigs/*/scanRuns/*}/crawledUrls',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/scanConfigs/*/scanRuns/*}/crawledUrls",
+                },
             ]
-            request, metadata = self._interceptor.pre_list_crawled_urls(request, metadata)
+            request, metadata = self._interceptor.pre_list_crawled_urls(
+                request, metadata
+            )
             pb_request = web_security_scanner.ListCrawledUrlsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -903,12 +1025,14 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
         def __hash__(self):
             return hash("ListFindings")
 
-        def __call__(self,
-                request: web_security_scanner.ListFindingsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> web_security_scanner.ListFindingsResponse:
+        def __call__(
+            self,
+            request: web_security_scanner.ListFindingsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> web_security_scanner.ListFindingsResponse:
             r"""Call the list findings method over HTTP.
 
             Args:
@@ -925,36 +1049,39 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
                     Response for the ``ListFindings`` method.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/scanConfigs/*/scanRuns/*}/findings',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/scanConfigs/*/scanRuns/*}/findings",
+                },
             ]
             request, metadata = self._interceptor.pre_list_findings(request, metadata)
             pb_request = web_security_scanner.ListFindingsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -973,12 +1100,14 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
         def __hash__(self):
             return hash("ListFindingTypeStats")
 
-        def __call__(self,
-                request: web_security_scanner.ListFindingTypeStatsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> web_security_scanner.ListFindingTypeStatsResponse:
+        def __call__(
+            self,
+            request: web_security_scanner.ListFindingTypeStatsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> web_security_scanner.ListFindingTypeStatsResponse:
             r"""Call the list finding type stats method over HTTP.
 
             Args:
@@ -995,36 +1124,41 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
                     Response for the ``ListFindingTypeStats`` method.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/scanConfigs/*/scanRuns/*}/findingTypeStats',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/scanConfigs/*/scanRuns/*}/findingTypeStats",
+                },
             ]
-            request, metadata = self._interceptor.pre_list_finding_type_stats(request, metadata)
+            request, metadata = self._interceptor.pre_list_finding_type_stats(
+                request, metadata
+            )
             pb_request = web_security_scanner.ListFindingTypeStatsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1043,12 +1177,14 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
         def __hash__(self):
             return hash("ListScanConfigs")
 
-        def __call__(self,
-                request: web_security_scanner.ListScanConfigsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> web_security_scanner.ListScanConfigsResponse:
+        def __call__(
+            self,
+            request: web_security_scanner.ListScanConfigsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> web_security_scanner.ListScanConfigsResponse:
             r"""Call the list scan configs method over HTTP.
 
             Args:
@@ -1065,36 +1201,41 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
                     Response for the ``ListScanConfigs`` method.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*}/scanConfigs',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*}/scanConfigs",
+                },
             ]
-            request, metadata = self._interceptor.pre_list_scan_configs(request, metadata)
+            request, metadata = self._interceptor.pre_list_scan_configs(
+                request, metadata
+            )
             pb_request = web_security_scanner.ListScanConfigsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1113,12 +1254,14 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
         def __hash__(self):
             return hash("ListScanRuns")
 
-        def __call__(self,
-                request: web_security_scanner.ListScanRunsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> web_security_scanner.ListScanRunsResponse:
+        def __call__(
+            self,
+            request: web_security_scanner.ListScanRunsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> web_security_scanner.ListScanRunsResponse:
             r"""Call the list scan runs method over HTTP.
 
             Args:
@@ -1135,36 +1278,39 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
                     Response for the ``ListScanRuns`` method.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/scanConfigs/*}/scanRuns',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/scanConfigs/*}/scanRuns",
+                },
             ]
             request, metadata = self._interceptor.pre_list_scan_runs(request, metadata)
             pb_request = web_security_scanner.ListScanRunsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1183,12 +1329,14 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
         def __hash__(self):
             return hash("StartScanRun")
 
-        def __call__(self,
-                request: web_security_scanner.StartScanRunRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> scan_run.ScanRun:
+        def __call__(
+            self,
+            request: web_security_scanner.StartScanRunRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> scan_run.ScanRun:
             r"""Call the start scan run method over HTTP.
 
             Args:
@@ -1208,11 +1356,12 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{name=projects/*/scanConfigs/*}:start',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=projects/*/scanConfigs/*}:start",
+                    "body": "*",
+                },
             ]
             request, metadata = self._interceptor.pre_start_scan_run(request, metadata)
             pb_request = web_security_scanner.StartScanRunRequest.pb(request)
@@ -1221,32 +1370,34 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1265,12 +1416,14 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
         def __hash__(self):
             return hash("StopScanRun")
 
-        def __call__(self,
-                request: web_security_scanner.StopScanRunRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> scan_run.ScanRun:
+        def __call__(
+            self,
+            request: web_security_scanner.StopScanRunRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> scan_run.ScanRun:
             r"""Call the stop scan run method over HTTP.
 
             Args:
@@ -1290,11 +1443,12 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{name=projects/*/scanConfigs/*/scanRuns/*}:stop',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=projects/*/scanConfigs/*/scanRuns/*}:stop",
+                    "body": "*",
+                },
             ]
             request, metadata = self._interceptor.pre_stop_scan_run(request, metadata)
             pb_request = web_security_scanner.StopScanRunRequest.pb(request)
@@ -1303,32 +1457,34 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1347,12 +1503,14 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
         def __hash__(self):
             return hash("UpdateScanConfig")
 
-        def __call__(self,
-                request: web_security_scanner.UpdateScanConfigRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> scan_config.ScanConfig:
+        def __call__(
+            self,
+            request: web_security_scanner.UpdateScanConfigRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> scan_config.ScanConfig:
             r"""Call the update scan config method over HTTP.
 
             Args:
@@ -1371,45 +1529,50 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1/{scan_config.name=projects/*/scanConfigs/*}',
-                'body': 'scan_config',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1/{scan_config.name=projects/*/scanConfigs/*}",
+                    "body": "scan_config",
+                },
             ]
-            request, metadata = self._interceptor.pre_update_scan_config(request, metadata)
+            request, metadata = self._interceptor.pre_update_scan_config(
+                request, metadata
+            )
             pb_request = web_security_scanner.UpdateScanConfigRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1425,108 +1588,127 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
             return resp
 
     @property
-    def create_scan_config(self) -> Callable[
-            [web_security_scanner.CreateScanConfigRequest],
-            scan_config.ScanConfig]:
+    def create_scan_config(
+        self,
+    ) -> Callable[
+        [web_security_scanner.CreateScanConfigRequest], scan_config.ScanConfig
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateScanConfig(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateScanConfig(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_scan_config(self) -> Callable[
-            [web_security_scanner.DeleteScanConfigRequest],
-            empty_pb2.Empty]:
+    def delete_scan_config(
+        self,
+    ) -> Callable[[web_security_scanner.DeleteScanConfigRequest], empty_pb2.Empty]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteScanConfig(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteScanConfig(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_finding(self) -> Callable[
-            [web_security_scanner.GetFindingRequest],
-            finding.Finding]:
+    def get_finding(
+        self,
+    ) -> Callable[[web_security_scanner.GetFindingRequest], finding.Finding]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetFinding(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetFinding(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_scan_config(self) -> Callable[
-            [web_security_scanner.GetScanConfigRequest],
-            scan_config.ScanConfig]:
+    def get_scan_config(
+        self,
+    ) -> Callable[[web_security_scanner.GetScanConfigRequest], scan_config.ScanConfig]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetScanConfig(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetScanConfig(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_scan_run(self) -> Callable[
-            [web_security_scanner.GetScanRunRequest],
-            scan_run.ScanRun]:
+    def get_scan_run(
+        self,
+    ) -> Callable[[web_security_scanner.GetScanRunRequest], scan_run.ScanRun]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetScanRun(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetScanRun(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_crawled_urls(self) -> Callable[
-            [web_security_scanner.ListCrawledUrlsRequest],
-            web_security_scanner.ListCrawledUrlsResponse]:
+    def list_crawled_urls(
+        self,
+    ) -> Callable[
+        [web_security_scanner.ListCrawledUrlsRequest],
+        web_security_scanner.ListCrawledUrlsResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListCrawledUrls(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListCrawledUrls(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_findings(self) -> Callable[
-            [web_security_scanner.ListFindingsRequest],
-            web_security_scanner.ListFindingsResponse]:
+    def list_findings(
+        self,
+    ) -> Callable[
+        [web_security_scanner.ListFindingsRequest],
+        web_security_scanner.ListFindingsResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListFindings(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListFindings(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_finding_type_stats(self) -> Callable[
-            [web_security_scanner.ListFindingTypeStatsRequest],
-            web_security_scanner.ListFindingTypeStatsResponse]:
+    def list_finding_type_stats(
+        self,
+    ) -> Callable[
+        [web_security_scanner.ListFindingTypeStatsRequest],
+        web_security_scanner.ListFindingTypeStatsResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListFindingTypeStats(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListFindingTypeStats(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_scan_configs(self) -> Callable[
-            [web_security_scanner.ListScanConfigsRequest],
-            web_security_scanner.ListScanConfigsResponse]:
+    def list_scan_configs(
+        self,
+    ) -> Callable[
+        [web_security_scanner.ListScanConfigsRequest],
+        web_security_scanner.ListScanConfigsResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListScanConfigs(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListScanConfigs(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_scan_runs(self) -> Callable[
-            [web_security_scanner.ListScanRunsRequest],
-            web_security_scanner.ListScanRunsResponse]:
+    def list_scan_runs(
+        self,
+    ) -> Callable[
+        [web_security_scanner.ListScanRunsRequest],
+        web_security_scanner.ListScanRunsResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListScanRuns(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListScanRuns(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def start_scan_run(self) -> Callable[
-            [web_security_scanner.StartScanRunRequest],
-            scan_run.ScanRun]:
+    def start_scan_run(
+        self,
+    ) -> Callable[[web_security_scanner.StartScanRunRequest], scan_run.ScanRun]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._StartScanRun(self._session, self._host, self._interceptor) # type: ignore
+        return self._StartScanRun(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def stop_scan_run(self) -> Callable[
-            [web_security_scanner.StopScanRunRequest],
-            scan_run.ScanRun]:
+    def stop_scan_run(
+        self,
+    ) -> Callable[[web_security_scanner.StopScanRunRequest], scan_run.ScanRun]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._StopScanRun(self._session, self._host, self._interceptor) # type: ignore
+        return self._StopScanRun(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_scan_config(self) -> Callable[
-            [web_security_scanner.UpdateScanConfigRequest],
-            scan_config.ScanConfig]:
+    def update_scan_config(
+        self,
+    ) -> Callable[
+        [web_security_scanner.UpdateScanConfigRequest], scan_config.ScanConfig
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateScanConfig(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateScanConfig(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
     def kind(self) -> str:
@@ -1536,6 +1718,4 @@ class WebSecurityScannerRestTransport(WebSecurityScannerTransport):
         self._session.close()
 
 
-__all__=(
-    'WebSecurityScannerRestTransport',
-)
+__all__ = ("WebSecurityScannerRestTransport",)
